@@ -1,0 +1,835 @@
+@import "tailwindcss";
+
+/*
+  Dark mode is class-driven rather than media-driven.
+  `useThemeStore` writes `.dark` onto <html>, which lets the reader pick a theme
+  explicitly instead of being locked to the OS setting. "System" is implemented
+  by watching the media query and toggling the same class, so every `dark:`
+  utility below has exactly one source of truth.
+*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  `touch:` is "a finger is the pointer": a coarse primary pointer, or a window
+  narrower than `md` (768px) whatever the pointer. The width half covers a
+  narrow desktop window and devtools device mode, where the pointer reports
+  fine but the layout is the phone one. Desktop density is untouched because
+  neither half matches a mouse on a wide window.
+*/
+@custom-variant touch {
+  @media (pointer: coarse) {
+    @slot;
+  }
+  @media (max-width: 767.98px) {
+    @slot;
+  }
+}
+
+@theme {
+  /* ──────────────────────────────────────────────────────────────
+     Brand palette — one indigo accent on neutral surfaces.
+     ──────────────────────────────────────────────────────────── */
+
+  /* Surfaces */
+  --color-background: hsl(0 0% 99%);
+  --color-bg: hsl(0 0% 99%);
+  --color-bg-subtle: hsl(220 14% 96%);
+  --color-bg-muted: hsl(220 13% 91%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+
+  /* Borders */
+  --color-border: hsl(220 13% 91%);
+  --color-border-subtle: hsl(220 14% 96%);
+  --color-input: hsl(220 13% 91%);
+  /* Off-state switch track: 3:1 against white so the control is visible. */
+  --color-switch-off: hsl(220 9% 58%);
+
+  /* Text */
+  --color-foreground: hsl(222 47% 11%);
+  --color-text-primary: hsl(222 47% 11%);
+  /*
+    AA for body text (4.5:1) on every surface text sits on, not just white.
+    Tertiary was 4.9:1 on white but 4.45:1 on `bg-subtle` (read rows, list
+    headers) and 3.95:1 on `bg-muted` (chips, hover). Measured against the
+    darkest light surface, `bg-muted`:
+      secondary 6.0:1 (7.4:1 on white), tertiary 4.7:1 (5.9:1 on white).
+  */
+  --color-text-secondary: hsl(215 19% 35%);
+  --color-text-tertiary: hsl(215 16% 41%);
+  --color-muted-foreground: hsl(215 19% 35%);
+
+  --color-text-primary-foreground: hsl(0 0% 100%);
+
+  /*
+    One accent. Primary buttons, unread markers, selection, focus and links all
+    use it, so the interface has a single point of emphasis instead of lime CTAs,
+    violet markers and a rose badge competing. Indigo 600 on white is 6.3:1, so
+    white button labels clear AA with room to spare.
+  */
+  --color-primary: hsl(243 75% 59%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-accent: hsl(243 75% 59%);
+  --color-accent-hover: hsl(244 62% 51%);
+  --color-accent-subtle: hsl(226 100% 97%);
+  --color-accent-subtle-fg: hsl(244 55% 41%);
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  /*
+    Brand pure-tones. `violet` is kept as a name because ~30 call sites use it
+    for selection and focus; it now resolves to the accent so they all agree.
+    Lime remains the logo colour and nothing else.
+  */
+  --color-lime: #bfff00;
+  --color-violet: hsl(243 75% 59%);
+
+  --color-ring: hsl(243 75% 59%);
+  --color-unread: hsl(243 75% 59%);
+
+  /* Semantic */
+  --color-secondary: hsl(220 14% 96%);
+  --color-secondary-foreground: hsl(222 47% 11%);
+  --color-muted: hsl(220 14% 96%);
+  /*
+    Used as text as often as fills, so held to the same 4.5:1 on white:
+    destructive 5.8:1 (was 4.8), success 4.8:1 (was 3.6), warning 5.8:1.
+  */
+  --color-destructive: hsl(0 72% 45%);
+  --color-destructive-subtle: hsl(0 72% 95%);
+  /* 29% L: 4.5:1 on bg-subtle too (the "This browser" badge was 4.34:1). */
+  --color-success: hsl(142 60% 29%);
+  /*
+    AI surfaces (the summary card): a teal-green kept apart from `success`, so
+    an AI note never reads as "delivered" or "archived". Text-ish uses (icon,
+    bullet marker) are held to 4.5:1 on the tint like the rest of the palette.
+  */
+  --color-ai: hsl(166 72% 26%);
+  --color-ai-subtle: hsl(156 64% 94%);
+  --color-ai-border: hsl(156 52% 78%);
+  --color-warning-bg: hsl(48 100% 96%);
+  --color-warning-border: hsl(48 96% 76%);
+  --color-warning-text: hsl(35 91% 30%);
+
+  /*
+    One family. Display text is Inter at a heavier weight; Cal Sans headings
+    beside Inter body text read as two products, and its tight default
+    spacing nearly closed the word gaps under `tracking-tight`.
+  */
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-sans);
+  --font-script: "Caveat", cursive;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Dark theme.
+   ────────────────────────────────────────────────────────────────────────── */
+.dark {
+  /* Surfaces */
+  --color-background: hsl(222 22% 7%);
+  --color-bg: hsl(222 22% 7%);
+  --color-bg-subtle: hsl(222 18% 11%);
+  --color-bg-muted: hsl(222 16% 17%);
+  --color-card: hsl(222 20% 10%);
+  --color-card-foreground: hsl(210 20% 96%);
+
+  /*
+    Borders. 21% L on a 10% card was barely there (1.4:1), so cards and
+    dividers blurred into the page. 28% gives about 1.8:1 against the card:
+    visible as an edge without becoming a grid.
+  */
+  --color-border: hsl(222 14% 28%);
+  --color-border-subtle: hsl(222 15% 18%);
+  --color-input: hsl(222 14% 30%);
+  /* Off-state switch track: has to read as a control on the card (3:1). */
+  --color-switch-off: hsl(222 12% 45%);
+
+  /* Text */
+  --color-foreground: hsl(210 20% 96%);
+  --color-text-primary: hsl(210 20% 96%);
+  /* Tertiary was 4.15:1 on `bg-muted`; 62% gives 5.3:1 there and 6.4:1 on card. */
+  --color-text-secondary: hsl(215 16% 68%);
+  --color-text-tertiary: hsl(215 14% 62%);
+  --color-muted-foreground: hsl(215 16% 68%);
+  --color-text-primary-foreground: hsl(222 47% 9%);
+
+  /*
+    A slightly deeper indigo than the text tone for fills, so white labels clear 4.5:1. The lighter
+    `violet` is for text and markers on dark surfaces, where it needs to be
+    bright enough to read.
+  */
+  --color-primary: hsl(239 70% 60%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-accent: hsl(239 70% 60%);
+  --color-accent-hover: hsl(239 75% 66%);
+  --color-accent-subtle: hsl(240 30% 17%);
+  --color-accent-subtle-fg: hsl(230 94% 82%);
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  --color-lime: #d4ff4d;
+  --color-violet: hsl(234 89% 74%);
+
+  --color-ring: hsl(234 89% 74%);
+  --color-unread: hsl(234 89% 74%);
+
+  /* Semantic */
+  --color-secondary: hsl(222 16% 17%);
+  --color-secondary-foreground: hsl(210 20% 96%);
+  --color-muted: hsl(222 16% 17%);
+  --color-destructive: hsl(0 84% 68%);
+  --color-destructive-subtle: hsl(0 45% 14%);
+  --color-success: hsl(142 55% 52%);
+  --color-ai: hsl(162 62% 58%);
+  --color-ai-subtle: hsl(165 35% 12%);
+  --color-ai-border: hsl(162 38% 30%);
+  --color-warning-bg: hsl(40 40% 12%);
+  --color-warning-border: hsl(40 55% 30%);
+  --color-warning-text: hsl(45 90% 68%);
+
+  color-scheme: dark;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Base styles
+   ────────────────────────────────────────────────────────────────────────── */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: light;
+  /*
+    The page scrollbar is always present where scrollbars take space, scrolling
+    or not, so the fixed top bar is the same width on every page. Without it a
+    long page (Settings, All inboxes) narrowed the bar by the scrollbar's width
+    and moved its right-hand icons. A real (inert) track reads as normal browser
+    chrome, where a reserved empty gutter read as a gap in the bar. Overlay
+    scrollbars (macOS default, phones) take no space, so nothing changes there.
+  */
+  overflow-y: scroll;
+  background-color: var(--color-background);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/*
+  `text-accent` as text (links, "Create one", icons) in dark mode. The accent
+  is tuned as a fill behind white labels, and as text on the dark card it was
+  3.15:1. The lighter `violet` is the dark theme's text tone for the same
+  colour (7:1+). Fills (`bg-accent`) are unaffected.
+*/
+.dark .text-accent {
+  color: var(--color-violet);
+}
+
+/*
+  Thin, theme-coloured scrollbars everywhere, not only on `.smooth-scroll`.
+  The list and reading panes scroll themselves, and the default bar was a
+  bright system gutter beside the timestamps in dark mode.
+*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(15 23 42 / 0.2) transparent;
+}
+.dark * {
+  scrollbar-color: rgb(226 232 240 / 0.18) transparent;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.6;
+}
+
+/*
+  44px touch targets wherever `touch:` applies (see the variant at the top).
+
+  A floor rather than a size: `min-*` grows a 28px icon button to 44px without
+  touching its glyph, and leaves anything already bigger alone. In
+  `@layer base`, so any utility on the element still wins: a control that has
+  to stay small for layout reasons (an inline chip inside running text, say)
+  can opt out with `touch:min-h-0`, and the ones that need a different shape
+  set it explicitly. Desktop density is not affected: neither media query
+  matches a mouse on a wide window.
+
+  Only interactive roles, and not inline links inside running text, which
+  WCAG 2.5.8 exempts and which would otherwise push lines apart.
+*/
+@layer base {
+  @media (pointer: coarse), (max-width: 767.98px) {
+    button:not(.touch-exempt),
+    [role="button"]:not(.touch-exempt),
+    [role="tab"],
+    [role="menuitem"],
+    [role="menuitemcheckbox"],
+    [role="menuitemradio"],
+    [role="option"]:not(li),
+    summary,
+    select,
+    a.inline-flex,
+    a.flex,
+    a.block {
+      min-height: 44px;
+    }
+    button:not(.touch-exempt),
+    [role="button"]:not(.touch-exempt),
+    [role="tab"],
+    a.inline-flex,
+    a.flex,
+    a.block {
+      min-width: 44px;
+    }
+    /*
+      Text fields. Pages used to opt in one by one with `touch:h-11`, and newer
+      settings pages missed some (36px inputs on Products, Privacy and
+      Notifications). A floor here covers every field; a field that sets its
+      own larger height keeps it.
+    */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="hidden"]):not([type="file"]):not(.touch-exempt),
+    textarea:not(.touch-exempt) {
+      min-height: 44px;
+    }
+    /*
+      Native checkboxes ignore padding, so they get their 44px from a wrapping
+      <label> at the call site rather than from a rule here.
+    */
+    /* The switch keeps its 20px track; the button around it takes the floor. */
+    /* Out-specifies `button:not(.touch-exempt)` above; a bare `[role=switch]` lost to it. */
+    button[role="switch"]:not(.touch-exempt),
+    [role="switch"] {
+      min-height: 0;
+      min-width: 0;
+    }
+  }
+}
+
+/*
+  App chrome dimensions, in one place.
+
+  The top bar and the phone tab bar are fixed, and every page frame offsets
+  itself by these, so no route can size the chrome differently. `AppShell`
+  reads nothing else. Changed only by breakpoint, never by page:
+  - desktop (md and up): 48px bar carrying the section links, no tab bar;
+  - phone (below md): 56px bar, 56px tab bar carrying the sections;
+  each plus the matching safe-area inset. There is no left app rail.
+*/
+:root {
+  --app-topbar-h: calc(3.5rem + env(safe-area-inset-top, 0px));
+  --app-tabbar-h: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+}
+/* Reading on a phone: the reader's action bar replaces the tab bar (AppShell). */
+:root[data-reading] {
+  --app-tabbar-h: 0px;
+}
+@media (min-width: 768px) {
+  :root {
+    --app-topbar-h: 3rem;
+    --app-tabbar-h: 0px;
+  }
+}
+/* A coarse pointer at desktop widths (a tablet) keeps 44px controls in a taller bar. */
+@media (min-width: 768px) and (pointer: coarse) {
+  :root {
+    --app-topbar-h: calc(3.5rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+/*
+  Safe areas. `viewport-fit=cover` in root.tsx lets the app draw under the
+  notch and the home indicator in standalone mode; these keep chrome and
+  floating controls out from under them. They resolve to 0 everywhere else.
+*/
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pl-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+.pr-safe {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.px-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/*
+  Menus become bottom sheets on a phone.
+
+  Radix positions dropdown content beside its trigger, which on a 390px screen
+  means a 224px menu opened from a right-edge button clamps against the edge or
+  runs off the bottom, and its 32px items are hard to hit. Below `sm` the
+  content is pinned to the bottom of the screen instead, full width, with 44px
+  rows and room for the home indicator. The wrapper Radix positions is reset so
+  the sheet is not offset by the computed anchor transform.
+*/
+@media (max-width: 639.98px) {
+  [data-radix-popper-content-wrapper]:has(> .menu-sheet) {
+    transform: none !important;
+    inset: auto 0 0 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    z-index: 60 !important;
+  }
+  .menu-sheet {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: min(70dvh, 560px);
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    border-width: 1px 0 0;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+    /*
+      The scrim is a huge spread shadow rather than a pseudo-element: the
+      slide-in animation transforms the sheet, which would make a fixed
+      `::before` resolve against the sheet instead of the viewport.
+    */
+    box-shadow:
+      0 -12px 40px -12px rgb(15 23 42 / 0.35),
+      0 0 0 100vmax rgb(0 0 0 / 0.35);
+    animation: tray-slide-in 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .menu-sheet [role="menuitem"],
+  .menu-sheet [role="menuitemcheckbox"],
+  .menu-sheet [role="menuitemradio"] {
+    min-height: 44px;
+    font-size: 15px;
+  }
+}
+
+/* A sideways-scrolling toolbar with no visible bar (Chromium and Safari). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+  Swipe reveal behind a mail row (`SwipeRow` in MailList). Invisible at rest;
+  `data-swipe` is written by `useSwipeRow` during a drag. Archive is green on
+  the left (the row moves right), trash red on the right. `data-armed` deepens
+  the colour once letting go would act, so the threshold can be felt.
+  White on success 32% is 5.3:1 and on destructive 45% is 5.8:1.
+*/
+.swipe-reveal {
+  visibility: hidden;
+}
+.swipe-reveal[data-swipe="archive"],
+.swipe-reveal[data-swipe="trash"] {
+  visibility: visible;
+}
+.swipe-reveal[data-swipe="archive"] {
+  background: hsl(142 60% 32%);
+}
+.swipe-reveal[data-swipe="trash"] {
+  background: hsl(0 72% 45%);
+}
+.swipe-reveal[data-swipe="archive"] .swipe-reveal-trash,
+.swipe-reveal[data-swipe="trash"] .swipe-reveal-archive {
+  visibility: hidden;
+}
+.swipe-reveal[data-armed="false"] > span {
+  opacity: 0.75;
+  transform: scale(0.92);
+}
+.swipe-reveal > span {
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+/* Mobile form controls — prevent zoom on focus */
+@media (max-width: 639.98px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(
+      [type="color"]
+    ),
+  textarea,
+  select,
+  [contenteditable="true"],
+  .notion-editor {
+    font-size: 16px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Utility classes
+   ────────────────────────────────────────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.05ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+  A disabled primary button reads as unavailable, not as a faded accent.
+
+  Thirty-odd call sites build their primary button from `bg-accent` and add
+  `disabled:opacity-50`. Half-transparent indigo with white text drops to about
+  2:1 and looks broken rather than off. One rule here gives every one of them a
+  neutral fill instead of each call site restyling its own.
+*/
+button.bg-accent:disabled,
+button.bg-primary:disabled {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-tertiary);
+  box-shadow: none;
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Drawer & tray animations
+   ────────────────────────────────────────────────────────────────────────── */
+@keyframes drawer-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes drawer-slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes drawer-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes drawer-overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.drawer-content[data-state="open"] {
+  animation: drawer-slide-in 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.drawer-content[data-state="closed"] {
+  animation: drawer-slide-out 240ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.drawer-overlay[data-state="open"] {
+  animation: drawer-overlay-in 200ms ease-out;
+}
+.drawer-overlay[data-state="closed"] {
+  animation: drawer-overlay-out 160ms ease-in;
+}
+
+@keyframes tray-slide-in {
+  from { transform: translateY(100%); opacity: 0.4; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes tray-slide-out {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}
+.tray-content[data-state="open"] {
+  animation: tray-slide-in 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.tray-content[data-state="closed"] {
+  animation: tray-slide-out 200ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.tray-overlay {
+  background: transparent;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Scrollbar styles
+   ────────────────────────────────────────────────────────────────────────── */
+.smooth-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.18) transparent;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+.smooth-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.smooth-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.smooth-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 23, 42, 0.14);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 200ms ease;
+}
+.smooth-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 23, 42, 0.28);
+}
+
+.dark .smooth-scroll {
+  scrollbar-color: rgba(226, 232, 240, 0.2) transparent;
+}
+.dark .smooth-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(226, 232, 240, 0.16);
+}
+.dark .smooth-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(226, 232, 240, 0.3);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Rich Text Editor Styles
+   ────────────────────────────────────────────────────────────────────────── */
+.notion-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.notion-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+}
+
+.notion-editor-content {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+.notion-editor {
+  padding: 12px 16px;
+  color: var(--color-text-primary);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+.notion-editor h1 {
+  font-family: var(--font-display);
+  font-size: 1.75em;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+.notion-editor h2 {
+  font-family: var(--font-display);
+  font-size: 1.375em;
+  font-weight: 600;
+  margin-top: 1.25em;
+  margin-bottom: 0.25em;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+}
+
+.notion-editor h3 {
+  font-family: var(--font-display);
+  font-size: 1.125em;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.25em;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.notion-editor p {
+  margin: 0;
+  min-height: 1.5em;
+}
+
+.notion-editor ul,
+.notion-editor ol {
+  padding-left: 1.5em;
+  margin: 0.25em 0;
+}
+
+.notion-editor li {
+  margin: 2px 0;
+}
+
+.notion-editor li p {
+  margin: 0;
+}
+
+.notion-editor blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1em;
+  margin: 0.5em 0;
+  color: var(--color-text-secondary);
+}
+
+.notion-editor pre {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0.5em 0;
+}
+
+.notion-editor pre code {
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "JetBrains Mono", Menlo, monospace;
+  color: var(--color-text-primary);
+}
+
+.notion-editor code {
+  background: var(--color-bg-muted);
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 0.9em;
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "JetBrains Mono", Menlo, monospace;
+  color: #e11d48;
+}
+
+.dark .notion-editor code {
+  color: #fda4af;
+}
+
+.notion-editor hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 1.5em 0;
+}
+
+/*
+  Unfilled `{{variable}}` from an inserted snippet. A decoration, so it is
+  never part of the sent HTML. Warning tokens, which already pass contrast in
+  both themes, plus a dashed underline so it doesn't rely on colour alone.
+*/
+.ProseMirror .snippet-var {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 var(--color-warning-border);
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+  padding: 0 1px;
+}
+
+/* The `;query` being typed while the snippet picker is open. */
+.ProseMirror .suggestion {
+  color: var(--color-accent-subtle-fg);
+  background: var(--color-accent-subtle);
+  border-radius: 3px;
+}
+
+.notion-editor p.is-editor-empty:first-child::before,
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--color-text-tertiary);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.notion-editor img,
+.notion-editor .notion-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.75em 0;
+  border-radius: 6px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Agent Panel Styles
+   ────────────────────────────────────────────────────────────────────────── */
+.agent-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-card);
+  border-left: 1px solid var(--color-border);
+}
+
+.agent-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+}
+
+.agent-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.agent-input-container {
+  padding: 14px 20px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+}
+
+/* Message bubbles */
+.message-bubble {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.message-bubble.user {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.message-bubble.assistant {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+/* Deep-link landing flash */
+@keyframes message-link-flash {
+  0% {
+    box-shadow: 0 0 0 2px rgb(79 70 229 / 0.55);
+    background-color: rgb(79 70 229 / 0.12);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(79 70 229 / 0);
+    background-color: transparent;
+  }
+}
+.message-link-flash {
+  animation: message-link-flash 2200ms ease-out 1;
+  border-radius: 6px;
+}

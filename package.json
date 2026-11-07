@@ -1,0 +1,152 @@
+{
+	"name": "tapetide-agentic-inbox",
+	"private": true,
+	"description": "Self-hosted email with an AI agent on Cloudflare Workers. Keep the Worker name in the deploy form. Email Routing rules and the mailbox Durable Objects are tied to it. If you change it, set the WORKER_SCRIPT_NAME variable to the new name, or connect a Cloudflare token afterwards and the app detects the renamed Worker.",
+	"license": "Apache-2.0",
+	"type": "module",
+	"engines": {
+		"//": "node:sqlite, used by test/threading.test.ts, is only built in from 22.5.",
+		"node": ">=22.5"
+	},
+	"cloudflare": {
+		"label": "cloudmail",
+		"products": [
+			"Workers",
+			"Durable Objects",
+			"R2",
+			"KV",
+			"Vectorize",
+			"Workers AI"
+		],
+		"bindings": {
+			"DOMAINS": {
+				"description": "Optional. The domain you receive mail for (e.g. `example.com`). Leave it empty if you connect a Cloudflare token: the app then lists your domains and sets them up. **Keep the Worker name above** unless you also set `WORKER_SCRIPT_NAME`; with a token connected the app detects a renamed Worker."
+			},
+			"SETUP_TOKEN": {
+				"description": "Recommended. One-time secret to create the first owner account at `/setup`, and the break-glass key for `/recover`. Generate one with `openssl rand -base64 32` and save it in a password manager. If you leave it empty, the Worker generates one and prints it in its logs (Worker → Logs in the dashboard); `/recover` is then unavailable."
+			},
+			"AUTH_SECRET": {
+				"description": "Recommended. Key material for encrypting two-factor (TOTP) secrets and the stored Cloudflare token at rest. Generate with `openssl rand -base64 32`. Set it now: changing it after anyone enables 2FA breaks their authenticator codes. If left empty, one is generated and stored automatically."
+			},
+			"CF_API_TOKEN": {
+				"description": "Optional but recommended. A Cloudflare API token lets the app set up Email Routing, sending and DNS for your domains, and shows you each change before it makes it. You can leave this empty and add the token later in **Settings → Cloudflare connection**, where a pre-filled link creates it with the right permissions."
+			},
+			"APP_URL": {
+				"description": "Optional. The address you open the app on, e.g. `https://mail.example.com`. Tracking and unsubscribe links in scheduled and sequence mail point here. Leave it empty and the app remembers the https address you sign in on (a custom domain wins over `workers.dev`); until then those sends go out without tracking or unsubscribe links. Changing it later invalidates existing passkeys."
+			},
+			"TURNSTILE_SECRET_KEY": {
+				"description": "Optional. [Turnstile](https://developers.cloudflare.com/turnstile/) secret key. Set together with the `TURNSTILE_SITE_KEY` variable to require a challenge on sign-in, setup and invite acceptance. Leave empty to disable."
+			}
+		}
+	},
+	"scripts": {
+		"build": "react-router build",
+		"cf-typegen": "wrangler types",
+		"deploy": "npm run build && wrangler deploy",
+		"dev": "react-router dev",
+		"preview": "npm run build && vite preview",
+		"secrets": "node scripts/generate-secrets.mjs",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
+	},
+	"dependencies": {
+		"@ai-sdk/anthropic": "4.0.89",
+		"@ai-sdk/openai-compatible": "3.0.79",
+		"@ai-sdk/react": "4.0.158",
+		"@cloudflare/ai-chat": "0.12.2",
+		"@cloudflare/workers-oauth-provider": "1.2.3",
+		"@modelcontextprotocol/sdk": "1.32.1",
+		"@radix-ui/react-avatar": "^1.2.6",
+		"@radix-ui/react-dialog": "^1.1.23",
+		"@radix-ui/react-dropdown-menu": "^2.1.24",
+		"@radix-ui/react-label": "^2.1.15",
+		"@radix-ui/react-scroll-area": "^1.2.18",
+		"@radix-ui/react-separator": "^1.1.15",
+		"@radix-ui/react-slot": "^1.2.4",
+		"@simplewebauthn/browser": "14.0.0",
+		"@simplewebauthn/server": "14.0.3",
+		"@tanstack/react-query": "^5.99.0",
+		"@tiptap/extension-color": "3.20.2",
+		"@tiptap/extension-highlight": "3.20.2",
+		"@tiptap/extension-image": "3.20.2",
+		"@tiptap/extension-link": "3.20.2",
+		"@tiptap/extension-table": "3.20.2",
+		"@tiptap/extension-text-align": "3.20.2",
+		"@tiptap/extension-text-style": "3.20.2",
+		"@tiptap/extension-underline": "3.20.2",
+		"@tiptap/extensions": "3.20.2",
+		"@tiptap/pm": "3.20.2",
+		"@tiptap/react": "3.20.2",
+		"@tiptap/starter-kit": "3.20.2",
+		"@tiptap/suggestion": "3.20.2",
+		"agents": "0.30.1",
+		"ai": "7.0.154",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"dompurify": "^3.3.3",
+		"drizzle-orm": "^0.45.1",
+		"hono": "^4.7.11",
+		"isbot": "^5.1.27",
+		"jose": "^6.2.1",
+		"lucide-react": "^1.8.0",
+		"postal-mime": "^2.6.1",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"react-markdown": "^10.1.0",
+		"react-router": "^7.5.3",
+		"remark-gfm": "^4.0.1",
+		"tailwind-merge": "^3.0.2",
+		"tldts": "7.4.19",
+		"uqr": "0.1.3",
+		"zod": "^3.25.76",
+		"zustand": "^5.0.12"
+	},
+	"overrides": {
+		"@tiptap/core": "3.20.2",
+		"@tiptap/pm": "3.20.2",
+		"@tiptap/extensions": "3.20.2",
+		"@tiptap/extension-blockquote": "3.20.2",
+		"@tiptap/extension-bold": "3.20.2",
+		"@tiptap/extension-bubble-menu": "3.20.2",
+		"@tiptap/extension-bullet-list": "3.20.2",
+		"@tiptap/extension-code": "3.20.2",
+		"@tiptap/extension-code-block": "3.20.2",
+		"@tiptap/extension-document": "3.20.2",
+		"@tiptap/extension-dropcursor": "3.20.2",
+		"@tiptap/extension-floating-menu": "3.20.2",
+		"@tiptap/extension-gapcursor": "3.20.2",
+		"@tiptap/extension-hard-break": "3.20.2",
+		"@tiptap/extension-heading": "3.20.2",
+		"@tiptap/extension-horizontal-rule": "3.20.2",
+		"@tiptap/extension-italic": "3.20.2",
+		"@tiptap/extension-list": "3.20.2",
+		"@tiptap/extension-list-item": "3.20.2",
+		"@tiptap/extension-list-keymap": "3.20.2",
+		"@tiptap/extension-ordered-list": "3.20.2",
+		"@tiptap/extension-paragraph": "3.20.2",
+		"@tiptap/extension-strike": "3.20.2",
+		"@tiptap/extension-table": "3.20.2",
+		"@tiptap/extension-text": "3.20.2",
+		"agents": {
+			"zod": "$zod"
+		}
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.0.12",
+		"@cloudflare/workers-types": "^4.20251128.0",
+		"@react-router/dev": "^7.5.3",
+		"@tailwindcss/vite": "^4.1.4",
+		"@types/dompurify": "^3.0.5",
+		"@types/node": "^20.19.37",
+		"@types/react": "^19.1.2",
+		"@types/react-dom": "^19.1.2",
+		"jsdom": "^26.1.0",
+		"tailwindcss": "^4.1.4",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.3",
+		"vite-tsconfig-paths": "^5.1.4",
+		"vitest": "3.2.4",
+		"wrangler": "^4.74.0"
+	}
+}

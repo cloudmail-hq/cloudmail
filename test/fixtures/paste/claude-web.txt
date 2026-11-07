@@ -1,0 +1,15 @@
+### Summary
+
+The bug is in `parseDraft`. Two fixes:
+
+- **Short term:** guard the null subject
+- **Long term:** make the schema strict
+
+```typescript
+const subject = draft.subject ?? "";
+```
+
+| Fix | Effort |
+| --- | --- |
+| Guard | 1 line |
+| Schema | Half a day |

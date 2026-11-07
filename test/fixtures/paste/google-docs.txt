@@ -1,0 +1,5 @@
+Q4 launch notes
+We ship on Nov 18. See the tracker.
+
+* Pricing page
+* Launch email (owner: TBD)

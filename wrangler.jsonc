@@ -1,0 +1,253 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Worker name. Keep it unless you have a reason not to:
+	//   - Email Routing catch-all rules target this script by name
+	//   - Durable Object namespaces (MailboxDO / EmailAgent / EmailMCP / AuthDO) are scoped
+	//     per script, so renaming a running deployment orphans its mailbox data
+	// If you deploy under another name, set the WORKER_SCRIPT_NAME var to it, or
+	// connect a Cloudflare token in Settings and the app detects it.
+	"name": "cloudmail",
+	"compatibility_date": "2025-11-28",
+	"main": "./workers/app.ts",
+	"observability": {
+		"enabled": true
+	},
+	"compatibility_flags": [
+		"nodejs_compat",
+		// Route every outbound fetch() as if from the public internet. Without
+		// it, a fetch to a URL on this Worker's own zone skips that zone's
+		// Worker routes and goes straight to the origin, so a same-zone AI
+		// gateway (a path on your domain served by another Worker) would
+		// answer 404 to Discover. It also closes the
+		// same-zone origin bypass noted in workers/lib/image-proxy.ts.
+		"global_fetch_strictly_public"
+	],
+	"vars": {
+		// Authentication. See workers/auth/config.ts.
+		//
+		// AUTH_MODE is "password" (built-in email + password accounts, the
+		// default) or "access" (Cloudflare Access, the legacy mode). When unset,
+		// the mode is "access" if both POLICY_AUD and TEAM_DOMAIN are set, so
+		// existing Access deployments keep working unchanged, and "password"
+		// otherwise. TEAM_DOMAIN may be the base Access URL or the full
+		// /cdn-cgi/access/certs URL.
+		//
+		// Password mode needs no vars, but two Worker secrets are recommended
+		// (`wrangler secret put`, never here):
+		//   SETUP_TOKEN  required to create the first (owner) account, and the
+		//                break-glass key for /recover. If unset, a token is
+		//                generated once and printed to the Worker logs while
+		//                setup is pending; /recover is then unavailable.
+		//   AUTH_SECRET  key material for encrypting 2FA secrets at rest. If
+		//                unset, one is generated and kept in the AuthDO, which
+		//                protects less against a storage-only compromise.
+		"DOMAINS": "",
+		// The R2 bucket below. The usage page reads its size; without this it
+		// would look for a bucket named after the Worker.
+		"R2_BUCKET_NAME": "cloudmail",
+		// The licence gate (workers/lib/licence.ts): the app needs an active
+		// licence, activated in the onboarding wizard or Settings → Licence.
+		"LICENCE_ENFORCEMENT": "enforce",
+		"EMAIL_ADDRESSES": [],
+		// ADMIN_EMAILS: addresses that are always administrators. In password
+		// mode enforcement is always on (the owner account is an admin, invited
+		// members reach only their granted mailboxes) and this list just adds
+		// admins. In access mode it is also the switch that turns per-mailbox
+		// authorization on: while unset, everyone who passes the Access policy
+		// is treated as an administrator of every mailbox, the behaviour this app
+		// shipped with. Deliberately absent rather than set to a placeholder.
+		//
+		// Set it to a comma-separated list of addresses and enforcement begins:
+		// those addresses are administrators unconditionally, everyone else gets
+		// only the mailboxes granted to them at Settings -> Access. The listed
+		// addresses cannot be locked out by a bad grant, which is why they live
+		// here and not in the bucket beside the grants they protect.
+		//
+		//   "ADMIN_EMAILS": "owner@example.com,ops@example.com"
+		//
+		// See workers/lib/authz.ts.
+	},
+	// Sequence steps are dispatched from a cron tick. Without this trigger the
+	// whole sequences feature is inert: enrolling a contact writes pending steps
+	// and nothing ever sends them.
+	//
+	// Every 5 minutes rather than every minute: step delays are configured in
+	// hours, so minute-level precision buys nothing, and each tick lists R2 to
+	// find due work. Snoozes and scheduled sends are unaffected — those run on
+	// per-mailbox Durable Object alarms, which are exact.
+	"triggers": {
+		"crons": [
+			"*/5 * * * *"
+		]
+	},
+	// Request-rate limiting, keyed per caller. See workers/lib/rate-limit.ts.
+	//
+	// `namespace_id` is an identifier you choose rather than a resource to
+	// provision; it only has to be unique per limiter on the account. The two
+	// buckets are separate so a busy UI cannot spend the budget that bounds the
+	// expensive surface.
+	//
+	// `period` may only be 10 or 60 seconds, so this is burst protection. The
+	// long-window controls live elsewhere: outbound send is capped per mailbox
+	// per hour and per day by an exact counter in the mailbox Durable Object.
+	//
+	// The Worker treats these bindings as optional and logs once if they are
+	// missing, so a deployment on an account without rate limiting still runs.
+	"ratelimits": [
+		{
+			"name": "API_RATE_LIMITER",
+			"namespace_id": "1001",
+			// Generous: every open tab polls the mailbox change counter, and a
+			// person with several mailboxes open is not an attacker.
+			"simple": { "limit": 600, "period": 60 }
+		},
+		{
+			"name": "MCP_RATE_LIMITER",
+			"namespace_id": "1002",
+			// Tighter: each call here can fan out to Workers AI and to mail sending.
+			"simple": { "limit": 120, "period": 60 }
+		},
+		{
+			"name": "AUTH_RATE_LIMITER",
+			"namespace_id": "1003",
+			// Strict: login, setup, 2FA, invite-accept, reset and recover, keyed
+			// per IP and per email. Burst protection only; the per-account
+			// lockout in the AuthDO is the real backstop against guessing.
+			"simple": { "limit": 10, "period": 60 }
+		}
+	],
+	"send_email": [
+		{
+			"name": "EMAIL",
+			"remote": true
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "BUCKET",
+			"bucket_name": "cloudmail",
+			"preview_bucket_name": "cloudmail"
+		}
+	],
+	// OAuth sign-in for MCP clients (workers/auth/oauth.ts): registered
+	// clients, grants and tokens, hashed, with props encrypted. Declared without
+	// an `id` on purpose: `wrangler deploy` (4.45+) creates the namespace on the
+	// first deploy and keeps the binding linked on later ones, so neither this
+	// repo nor a deploy-button fork needs an account-specific id. Without the
+	// binding, OAuth stays off and `ttk_` tokens on /mcp work as before.
+	"kv_namespaces": [
+		{
+			"binding": "OAUTH_KV"
+		}
+	],
+	"ai": {
+		"binding": "AI"
+	},
+	// Semantic search and "Ask my inbox" (workers/lib/semantic.ts). The Deploy
+	// to Cloudflare button creates the index; `wrangler deploy` does not, so for
+	// a manual deploy create it first. Neither creates the metadata index: the
+	// onboarding screen does once a Cloudflare token is connected, or run the
+	// second command below. One-time, see README "Semantic search":
+	//
+	//   npx wrangler vectorize create cloudmail-semantic --dimensions=1024 --metric=cosine
+	//   npx wrangler vectorize create-metadata-index cloudmail-semantic --property-name=mailbox --type=string
+	//
+	// 1024 is bge-m3's output size. The metadata index must exist before any
+	// vector is inserted, or those vectors cannot be filtered. Without this
+	// binding every feature degrades: search is full-text only and Ask
+	// retrieves with full-text.
+	"vectorize": [
+		{
+			"binding": "SEMANTIC_INDEX",
+			"index_name": "cloudmail-semantic"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "MAILBOX",
+				"class_name": "MailboxDO"
+			},
+			{
+				"name": "EMAIL_AGENT",
+				"class_name": "EmailAgent"
+			},
+			{
+				"name": "EMAIL_MCP",
+				"class_name": "EmailMCP"
+			},
+			{
+				// One global instance holding accounts, sessions and tokens.
+				// See workers/auth/store.ts.
+				"name": "AUTH_STORE",
+				"class_name": "AuthDO"
+			},
+			{
+				// One global instance holding outbound webhook endpoints, the
+				// delivery queue and its log. Retries fire from its alarm.
+				// See workers/lib/webhooks-do.ts.
+				"name": "WEBHOOKS",
+				"class_name": "WebhookDO"
+			},
+			{
+				// One instance per signed-in user: AI preferences and the daily
+				// brief, whose alarm fires at the user's local time.
+				// See workers/lib/assistant-do.ts. Created by `wrangler deploy`
+				// through the v6 migration below; nothing to provision.
+				"name": "ASSISTANT",
+				"class_name": "AssistantDO"
+			},
+			{
+				// One global instance: the realtime event stream (WebSocket + SSE)
+				// with a 24-hour replay log. Optional; without it /api/v1/events
+				// answers 503. See workers/lib/events-do.ts and docs/realtime.md.
+				"name": "EVENTS",
+				"class_name": "EventsDO"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": [
+				"MailboxDO"
+			]
+		},
+		{
+			"tag": "v2",
+			"new_sqlite_classes": [
+				"EmailAgent"
+			]
+		},
+		{
+			"tag": "v3",
+			"new_sqlite_classes": [
+				"EmailMCP"
+			]
+		},
+		{
+			"tag": "v4",
+			"new_sqlite_classes": [
+				"AuthDO"
+			]
+		},
+		{
+			"tag": "v5",
+			"new_sqlite_classes": [
+				"WebhookDO"
+			]
+		},
+		{
+			"tag": "v6",
+			"new_sqlite_classes": [
+				"AssistantDO"
+			]
+		},
+		{
+			"tag": "v7",
+			"new_sqlite_classes": [
+				"EventsDO"
+			]
+		}
+	]
+}

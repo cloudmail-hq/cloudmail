@@ -1,0 +1,5 @@
+Deploy is **done**. Run this to check:
+```bash
+curl -s https://mail.example.com/health | jq .status
+```
+and ping `@oncall` if it is not *ok*.

@@ -1,0 +1,548 @@
+{
+ "data": {
+  "viewer": {
+   "zones": [
+    {
+     "byDate": [
+      {
+       "dimensions": {
+        "date": "2026-09-26",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 10,
+        "totalMatchingMessages": 10
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-09-27",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 11,
+        "totalMatchingMessages": 11
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-09-28",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 17,
+        "totalMatchingMessages": 17
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-09-29",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 17,
+        "totalMatchingMessages": 17
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-09-30",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 12,
+        "totalMatchingMessages": 12
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-01",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 17,
+        "totalMatchingMessages": 17
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-02",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 16,
+        "totalMatchingMessages": 16
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-03",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 11,
+        "totalMatchingMessages": 11
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-04",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 27,
+        "totalMatchingMessages": 27
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-05",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 12,
+        "totalMatchingMessages": 12
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-06",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 12,
+        "totalMatchingMessages": 12
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-07",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 6,
+        "totalMatchingMessages": 6
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-08",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 10,
+        "totalMatchingMessages": 10
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-09",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 13,
+        "totalMatchingMessages": 13
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-10",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 22,
+        "totalMatchingMessages": 22
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-11",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 13,
+        "totalMatchingMessages": 13
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-12",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 19,
+        "totalMatchingMessages": 19
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-13",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 20,
+        "totalMatchingMessages": 20
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-14",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 14,
+        "totalMatchingMessages": 14
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-15",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 21,
+        "totalMatchingMessages": 21
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-16",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 14,
+        "totalMatchingMessages": 14
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-17",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 14,
+        "totalMatchingMessages": 14
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-18",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 13,
+        "totalMatchingMessages": 13
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-19",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 17,
+        "totalMatchingMessages": 17
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-20",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 19,
+        "totalMatchingMessages": 19
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-21",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 18,
+        "totalMatchingMessages": 18
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-22",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 16,
+        "totalMatchingMessages": 16
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-23",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 26,
+        "totalMatchingMessages": 26
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-24",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 11,
+        "totalMatchingMessages": 11
+       }
+      },
+      {
+       "dimensions": {
+        "date": "2026-10-25",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "dmarc": 14,
+        "totalMatchingMessages": 14
+       }
+      }
+     ],
+     "byReporter": [
+      {
+       "dimensions": {
+        "orgName": "google.com",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "totalMatchingMessages": 461
+       }
+      },
+      {
+       "dimensions": {
+        "orgName": "Yahoo",
+        "sampleInterval": 1
+       },
+       "sum": {
+        "totalMatchingMessages": 1
+       }
+      }
+     ],
+     "bySource": [
+      {
+       "dimensions": {
+        "sampleInterval": 1,
+        "sourceOrgName": "Cloudflare, Inc."
+       },
+       "sum": {
+        "dkimPass": 261,
+        "dmarc": 261,
+        "spfPass": 261,
+        "totalMatchingMessages": 261
+       },
+       "uniq": {
+        "ipCount": 2
+       }
+      },
+      {
+       "dimensions": {
+        "sampleInterval": 1,
+        "sourceOrgName": "Amazon.com, Inc."
+       },
+       "sum": {
+        "dkimPass": 201,
+        "dmarc": 201,
+        "spfPass": 201,
+        "totalMatchingMessages": 201
+       },
+       "uniq": {
+        "ipCount": 15
+       }
+      }
+     ],
+     "detail": [
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "104.30.16.156",
+        "sourceOrgName": "Cloudflare, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 142,
+        "totalMatchingMessages": 142
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "104.30.16.97",
+        "sourceOrgName": "Cloudflare, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 119,
+        "totalMatchingMessages": 119
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.20",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 20,
+        "totalMatchingMessages": 20
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.21",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 20,
+        "totalMatchingMessages": 20
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.25",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 16,
+        "totalMatchingMessages": 16
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.1",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 16,
+        "totalMatchingMessages": 16
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.24",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 16,
+        "totalMatchingMessages": 16
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.23",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 14,
+        "totalMatchingMessages": 14
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.3",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 13,
+        "totalMatchingMessages": 13
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.26",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 13,
+        "totalMatchingMessages": 13
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.4",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 13,
+        "totalMatchingMessages": 13
+       }
+      },
+      {
+       "dimensions": {
+        "disposition": "none",
+        "evaluatedReason": "",
+        "headerFrom": "example.com",
+        "sampleInterval": 1,
+        "sourceIP": "76.223.180.2",
+        "sourceOrgName": "Amazon.com, Inc.",
+        "sourcePTR": ""
+       },
+       "sum": {
+        "dmarc": 12,
+        "totalMatchingMessages": 12
+       }
+      }
+     ],
+     "zoneTag": "b8f81bfc13367df4146457bcd04befe4"
+    }
+   ]
+  }
+ },
+ "errors": null
+}

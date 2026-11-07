@@ -1,0 +1,7 @@
+codder@mac ~/proj % npm test
+
+ PASS  test/threading.test.ts
+ FAIL  test/send.test.ts
+  ✕ rejects oversize message (12 ms)
+
+Tests:       1 failed, 41 passed, 42 total

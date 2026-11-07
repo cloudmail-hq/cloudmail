@@ -1,0 +1,9 @@
+# Build output
+/bin/
+/dist/
+/completions/
+/cloudmail
+
+# Go test artefacts
+*.test
+*.out

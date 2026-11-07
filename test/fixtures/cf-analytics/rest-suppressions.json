@@ -1,0 +1,67 @@
+{
+ "errors": [],
+ "messages": [],
+ "result": [
+  {
+   "id": "84ce78f6-b2af-4607-8150-024b2db0f1f6",
+   "email": "person20@example.net",
+   "reason": "hard_bounce",
+   "created_at": "2026-09-24 09:28:19.873",
+   "expires_at": null,
+   "read_only": false,
+   "scope": {
+    "type": "account"
+   }
+  },
+  {
+   "id": "980ee17f-286b-442f-80e3-ea4c3b932f80",
+   "email": "person21@example.net",
+   "reason": "hard_bounce",
+   "created_at": "2026-06-27 14:56:44.561",
+   "expires_at": null,
+   "read_only": false,
+   "scope": {
+    "type": "account"
+   }
+  },
+  {
+   "id": "86661466-dcf5-4ef2-8758-41ab11be13ea",
+   "email": "person22@example.net",
+   "reason": "hard_bounce",
+   "created_at": "2026-06-26 08:10:48.691",
+   "expires_at": null,
+   "read_only": false,
+   "scope": {
+    "type": "account"
+   }
+  },
+  {
+   "id": "09e11d24-5659-4a93-9588-fa1ba7ec0118",
+   "email": "person23@example.net",
+   "reason": "hard_bounce",
+   "created_at": "2026-06-23 01:23:49.740",
+   "expires_at": null,
+   "read_only": false,
+   "scope": {
+    "type": "account"
+   }
+  },
+  {
+   "id": "076aa912-d6c2-4a0e-b2c3-ccb2370c12ec",
+   "email": "person24@example.net",
+   "reason": "hard_bounce",
+   "created_at": "2026-06-23 01:23:49.716",
+   "expires_at": null,
+   "read_only": false,
+   "scope": {
+    "type": "account"
+   }
+  }
+ ],
+ "success": true,
+ "result_info": {
+  "count": 5,
+  "per_page": 1000,
+  "next_cursor": null
+ }
+}

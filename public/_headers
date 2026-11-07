@@ -1,0 +1,25 @@
+# Workers static assets headers (https://developers.cloudflare.com/workers/static-assets/headers/).
+# Applies only to files served from build/client, never to Worker (SSR/API) responses,
+# so HTML keeps its no-cache policy. Everything under /assets/ is content-hashed by Vite:
+# a new build gets new URLs, so a year-long immutable cache is safe and removes the
+# per-navigation revalidation of every chunk. sw.js, the manifest and icons keep the default.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Security headers for every static asset.
+#
+# These files are served before the Worker runs, so the headers
+# `workers/lib/security-headers.ts` applies never reach them. This block repeats
+# BASE_SECURITY_HEADERS so every response carries the same set;
+# `test/security-headers.test.ts` fails if the two drift.
+#
+# The zone-level HSTS setting (security_header, currently include_subdomains:
+# false) overrides Strict-Transport-Security on every response, Worker or
+# asset. Changing it is a zone-wide decision for the account owner, not code.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin

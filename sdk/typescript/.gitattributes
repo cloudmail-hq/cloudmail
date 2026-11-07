@@ -1,0 +1,2 @@
+sdk/typescript/openapi.json linguist-generated=true -diff
+sdk/typescript/src/generated/schema.ts linguist-generated=true -diff

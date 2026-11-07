@@ -1,0 +1,12 @@
+cloudmail
+Copyright 2026 Tapetide
+
+cloudmail is a modified fork of agentic-inbox
+(https://github.com/cloudflare/agentic-inbox), Copyright (c) 2026 Cloudflare, Inc.,
+licensed under the Apache License, Version 2.0. See the LICENSE file.
+
+Files carrying a Cloudflare copyright header keep it; many of them have been
+modified in this fork.
+
+cloudmail is not affiliated with, endorsed by or sponsored by Cloudflare, Inc.
+"Cloudflare" and related marks are trademarks of Cloudflare, Inc.

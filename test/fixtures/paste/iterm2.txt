@@ -1,0 +1,4 @@
+$ git log --oneline -3
+881ff10 (HEAD -> main) Brand v2: envelope on the brand-blue tile
+38b6814 CLI: rename to cloudmail
+7846b3c SDKs 0.2.0: full REST coverage

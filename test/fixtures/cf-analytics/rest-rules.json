@@ -1,0 +1,218 @@
+{
+ "result": [
+  {
+   "id": "076cc246bdd14b83ac7d1e2e14d28e3d",
+   "tag": "076cc246bdd14b83ac7d1e2e14d28e3d",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "manish@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "forward",
+     "value": [
+      "forward-target-2@example.com"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "e1d933d063e14046a8f604142e7fd7b3",
+   "tag": "e1d933d063e14046a8f604142e7fd7b3",
+   "name": "updates -> agentic-inbox",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "updates@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "0d33e6e998f6479a98ac0ca10b953f76",
+   "tag": "0d33e6e998f6479a98ac0ca10b953f76",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "hr@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "db164dfc0d17400b9bf95137647bf6ed",
+   "tag": "db164dfc0d17400b9bf95137647bf6ed",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "govind@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "84139028096a4d7fa0fd41778fb47944",
+   "tag": "84139028096a4d7fa0fd41778fb47944",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "support@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "eed35ea612c541c7acff16accb32689e",
+   "tag": "eed35ea612c541c7acff16accb32689e",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "ceo@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "c031ace4ec3d4d288c65462e503f95a8",
+   "tag": "c031ace4ec3d4d288c65462e503f95a8",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "devops@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "0c49c1eddf2e4aa98da17852490a58f3",
+   "tag": "0c49c1eddf2e4aa98da17852490a58f3",
+   "name": "",
+   "matchers": [
+    {
+     "type": "literal",
+     "field": "to",
+     "value": "hitesh@example.com"
+    }
+   ],
+   "actions": [
+    {
+     "type": "worker",
+     "value": [
+      "tapetide-agentic-inbox"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 0,
+   "source": "api"
+  },
+  {
+   "id": "ecc3bcd66d5f4d09b34cb2ed1234d08c",
+   "tag": "ecc3bcd66d5f4d09b34cb2ed1234d08c",
+   "name": "",
+   "matchers": [
+    {
+     "type": "all"
+    }
+   ],
+   "actions": [
+    {
+     "type": "forward",
+     "value": [
+      "forward-target@example.com"
+     ]
+    }
+   ],
+   "enabled": true,
+   "priority": 2147483647,
+   "source": "api"
+  }
+ ],
+ "success": true,
+ "errors": [],
+ "messages": [],
+ "result_info": {
+  "page": 1,
+  "per_page": 50,
+  "count": 9,
+  "total_count": 9
+ }
+}

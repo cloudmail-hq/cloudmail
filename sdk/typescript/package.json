@@ -1,0 +1,60 @@
+{
+	"name": "@cloudmail/sdk",
+	"version": "0.2.0",
+	"description": "Typed client for the cloudmail API: send and read mail, agent inboxes, webhooks, approvals and the realtime event stream.",
+	"license": "Apache-2.0",
+	"private": false,
+	"type": "module",
+	"sideEffects": false,
+	"engines": {
+		"node": ">=20.3"
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./webhooks": {
+			"types": "./dist/webhooks.d.ts",
+			"import": "./dist/webhooks.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tapetide-com/tapetide-agentic-inbox.git",
+		"directory": "sdk/typescript"
+	},
+	"keywords": [
+		"email",
+		"cloudmail",
+		"tapetide",
+		"cloudflare",
+		"agents",
+		"webhooks"
+	],
+	"scripts": {
+		"generate": "tsx scripts/generate.ts",
+		"check:generated": "tsx scripts/generate.ts --check",
+		"build": "rm -rf dist && tsc -p tsconfig.build.json",
+		"typecheck": "tsc -p tsconfig.json",
+		"test": "vitest run",
+		"prepublishOnly": "npm run check:generated && npm run typecheck && npm test && npm run build"
+	},
+	"devDependencies": {
+		"@types/node": "22.20.5",
+		"openapi-typescript": "7.13.0",
+		"tsx": "4.21.0",
+		"typescript": "5.9.3",
+		"vitest": "3.2.4"
+	}
+}
