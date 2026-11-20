@@ -1,0 +1,16 @@
+{
+ "result": {
+  "quota": {
+   "value": 5000,
+   "unit": "day"
+  },
+  "usage": {
+   "sent": 17,
+   "over_quota": false,
+   "resets_at": "2026-10-26T10:22:26Z"
+  }
+ },
+ "success": true,
+ "errors": [],
+ "messages": []
+}

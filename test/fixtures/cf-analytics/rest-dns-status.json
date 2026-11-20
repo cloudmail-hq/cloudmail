@@ -1,0 +1,50 @@
+{
+ "result": {
+  "records": [
+   {
+    "name": "cf-bounce.example.com",
+    "content": "route1.mx.cloudflare.net.",
+    "type": "MX",
+    "priority": 100,
+    "ttl": 1
+   },
+   {
+    "name": "cf-bounce.example.com",
+    "content": "route2.mx.cloudflare.net.",
+    "type": "MX",
+    "priority": 61,
+    "ttl": 1
+   },
+   {
+    "name": "cf-bounce.example.com",
+    "content": "route3.mx.cloudflare.net.",
+    "type": "MX",
+    "priority": 41,
+    "ttl": 1
+   },
+   {
+    "name": "cf-bounce.example.com",
+    "content": "\"v=spf1 include:_spf.mx.cloudflare.net ~all\"",
+    "type": "TXT",
+    "ttl": 1
+   },
+   {
+    "name": "cf-bounce._domainkey.example.com",
+    "content": "\"v=DKIM1; h=sha256; k=rsa; p=MIIBexamplepublickeyAQAB\"",
+    "type": "TXT",
+    "ttl": 1
+   },
+   {
+    "name": "_dmarc.example.com",
+    "content": "\"v=DMARC1; p=MIIBexamplepublickeyAQAB;\"",
+    "type": "TXT",
+    "ttl": 1
+   }
+  ],
+  "errors": [],
+  "status": "ready"
+ },
+ "success": true,
+ "errors": [],
+ "messages": []
+}

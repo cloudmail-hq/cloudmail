@@ -1,0 +1,57 @@
+name: Release CLI
+
+# Builds the cloudmail CLI (cli/) for every platform on a version tag and
+# attaches the archives and SHA256SUMS to the tag's GitHub Release.
+#
+#   git tag v1.2.3 && git push origin v1.2.3
+#
+# The archives are cloudmail_<version>_<os>_<arch>.tar.gz (.zip for windows);
+# see cli/README.md, "Releases".
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-cli-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: cli/go.mod
+          cache-dependency-path: cli/go.sum
+
+      - name: Test
+        working-directory: cli
+        run: go test -race ./...
+
+      - name: Build archives
+        working-directory: cli
+        env:
+          TAG: ${{ github.ref_name }}
+        run: make release VERSION="$TAG"
+
+      - name: Verify checksums
+        working-directory: cli/dist
+        run: sha256sum -c SHA256SUMS
+
+      - name: Publish to the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" cli/dist/* --clobber
+          else
+            gh release create "$TAG" cli/dist/* --verify-tag --title "cloudmail CLI $TAG" --generate-notes
+          fi

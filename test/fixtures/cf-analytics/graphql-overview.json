@@ -1,0 +1,499 @@
+{
+ "data": {
+  "viewer": {
+   "zones": [
+    {
+     "complaints": [],
+     "raw": [
+      {
+       "datetime": "2026-10-26T05:00:30Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example\" <noreply@example.com>",
+       "messageId": "<user1@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-26T05:00:30Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example\" <noreply@example.com>",
+       "messageId": "<user1@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-26T04:32:50Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Support Team Example\" <support@example.com>",
+       "messageId": "<user2@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-26T02:49:43Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example\" <noreply@example.com>",
+       "messageId": "<user3@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-26T02:49:43Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example\" <noreply@example.com>",
+       "messageId": "<user3@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-26T00:22:51Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example\" <noreply@example.com>",
+       "messageId": "<user4@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-26T00:22:51Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example\" <noreply@example.com>",
+       "messageId": "<user4@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-25T13:01:10Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example tech team\" <tech@example.com>",
+       "messageId": "<user5@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-25T13:01:10Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example tech team\" <tech@example.com>",
+       "messageId": "<user5@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-25T12:58:07Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example tech team\" <tech@example.com>",
+       "messageId": "<user6@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T12:16:08Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example Alerts\" <alerts@mail.example.com>",
+       "messageId": "<person7@example.net>",
+       "sampleInterval": 1,
+       "sendingDomain": "mail.example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T11:46:17Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example Alerts\" <alerts@mail.example.com>",
+       "messageId": "<person8@example.net>",
+       "sampleInterval": 1,
+       "sendingDomain": "mail.example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T11:16:10Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example Alerts\" <alerts@mail.example.com>",
+       "messageId": "<person9@example.net>",
+       "sampleInterval": 1,
+       "sendingDomain": "mail.example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T10:16:13Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example Alerts\" <alerts@mail.example.com>",
+       "messageId": "<person10@example.net>",
+       "sampleInterval": 1,
+       "sendingDomain": "mail.example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T10:16:11Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example Alerts\" <alerts@mail.example.com>",
+       "messageId": "<person11@example.net>",
+       "sampleInterval": 1,
+       "sendingDomain": "mail.example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T06:30:35Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Support Team Example\" <support@example.com>",
+       "messageId": "<user12@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-24T06:24:24Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Support Team Example\" <support@example.com>",
+       "messageId": "<user13@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-23T13:47:29Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Example Alerts\" <alerts@mail.example.com>",
+       "messageId": "<person14@example.net>",
+       "sampleInterval": 1,
+       "sendingDomain": "mail.example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-22T11:03:10Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "support@example.com",
+       "messageId": "<user15@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-22T05:37:24Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "support@example.com",
+       "messageId": "<user16@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      },
+      {
+       "datetime": "2026-10-19T11:02:56Z",
+       "errorAttribution": "",
+       "errorCause": "",
+       "errorDetail": "",
+       "from": "\"Support Team Example\" <support@example.com>",
+       "messageId": "<user17@example.com>",
+       "sampleInterval": 1,
+       "sendingDomain": "example.com",
+       "status": "delivered"
+      }
+     ],
+     "received": [
+      {
+       "count": 81,
+       "dimensions": {
+        "date": "2026-10-21",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 79,
+       "dimensions": {
+        "date": "2026-10-23",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 70,
+       "dimensions": {
+        "date": "2026-10-20",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 90,
+       "dimensions": {
+        "date": "2026-10-24",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 103,
+       "dimensions": {
+        "date": "2026-10-22",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 98,
+       "dimensions": {
+        "date": "2026-10-25",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 49,
+       "dimensions": {
+        "date": "2026-10-19",
+        "sampleInterval": 1
+       }
+      },
+      {
+       "count": 16,
+       "dimensions": {
+        "date": "2026-10-26",
+        "sampleInterval": 1
+       }
+      }
+     ],
+     "reputation": [
+      {
+       "count": 156,
+       "dimensions": {
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 57,
+       "dimensions": {
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      }
+     ],
+     "reputationComplaints": [],
+     "sending": [
+      {
+       "count": 38,
+       "dimensions": {
+        "date": "2026-10-22",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 28,
+       "dimensions": {
+        "date": "2026-10-20",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 22,
+       "dimensions": {
+        "date": "2026-10-19",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 18,
+       "dimensions": {
+        "date": "2026-10-21",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 17,
+       "dimensions": {
+        "date": "2026-10-23",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 17,
+       "dimensions": {
+        "date": "2026-10-25",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 14,
+       "dimensions": {
+        "date": "2026-10-23",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 13,
+       "dimensions": {
+        "date": "2026-10-19",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 12,
+       "dimensions": {
+        "date": "2026-10-24",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 11,
+       "dimensions": {
+        "date": "2026-10-22",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 10,
+       "dimensions": {
+        "date": "2026-10-21",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 7,
+       "dimensions": {
+        "date": "2026-10-26",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 5,
+       "dimensions": {
+        "date": "2026-10-24",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      },
+      {
+       "count": 1,
+       "dimensions": {
+        "date": "2026-10-20",
+        "errorAttribution": "",
+        "errorCause": "",
+        "isSpam": 0,
+        "sampleInterval": 1,
+        "sendingDomain": "mail.example.com",
+        "status": "delivered"
+       }
+      }
+     ],
+     "zoneTag": "b8f81bfc13367df4146457bcd04befe4"
+    }
+   ]
+  }
+ },
+ "errors": null
+}

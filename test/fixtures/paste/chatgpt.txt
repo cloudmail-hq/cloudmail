@@ -1,0 +1,18 @@
+### Migration plan
+
+Here is a **safe** order of operations:
+
+1. Back up the bucket
+2. Run the migration in a *dry run*
+3. Swap the binding
+
+- Docs: [Workers docs](https://developers.cloudflare.com/workers/)
+
+```bash
+wrangler r2 object get mail/backup.tar --file ./backup.tar
+```
+
+| Step | Risk |
+| --- | --- |
+| Backup | Low |
+| Swap | **High** |

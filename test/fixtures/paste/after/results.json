@@ -1,0 +1,2513 @@
+{
+  "capturedAt": "2026-11-07T12:48:43.686Z",
+  "base": "http://localhost:5197",
+  "results": [
+    {
+      "fixture": "chatgpt",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/chatgpt.light.png",
+      "html": "<h3>Migration plan</h3><p>Here is a <strong>safe</strong> order of operations:</p><ol><li><p>Back up the bucket</p></li><li><p>Run the migration in a <em>dry run</em></p></li><li><p>Swap the binding</p></li></ol><ul><li><p>Docs: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://developers.cloudflare.com/workers/\">Workers docs</a></p></li></ul><pre><code class=\"language-bash\">wrangler r2 object get mail/backup.tar --file ./backup.tar</code></pre><table style=\"min-width: 50px;\"><colgroup><col style=\"min-width: 25px;\"><col style=\"min-width: 25px;\"></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\"><p>Step</p></th><th colspan=\"1\" rowspan=\"1\"><p>Risk</p></th></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Backup</p></td><td colspan=\"1\" rowspan=\"1\"><p>Low</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Swap</p></td><td colspan=\"1\" rowspan=\"1\"><p><strong>High</strong></p></td></tr></tbody></table><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Migration plan",
+          "tag": "h3",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Here is a",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "safe",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Back up the bucket",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Run the migration in a",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "dry run",
+          "tag": "em",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Swap the binding",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Docs:",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Workers docs",
+          "tag": "a",
+          "color": "#5048e5",
+          "background": "#ffffff",
+          "contrast": 6.18,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "wrangler r2 object get mail/backup.tar -",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Step",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#f3f4f6",
+          "contrast": 16.24,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Risk",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#f3f4f6",
+          "contrast": 16.24,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Backup",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Low",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Swap",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "High",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 1,
+        "ul": 1,
+        "ol": 1,
+        "li": 4,
+        "strong": 2,
+        "em": 1,
+        "a": 1,
+        "pre": 1,
+        "code": 1,
+        "table": 1,
+        "th": 2,
+        "td": 4,
+        "img": 0,
+        "br": 1,
+        "p": 12
+      }
+    },
+    {
+      "fixture": "claude-web",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/claude-web.light.png",
+      "html": "<h3>Summary</h3><p>The bug is in <code>parseDraft</code>. Two fixes:</p><ul><li><p><strong>Short term:</strong> guard the null subject</p></li><li><p><strong>Long term:</strong> make the schema strict</p></li></ul><pre><code class=\"language-typescript\">const subject = draft.subject ?? \"\";</code></pre><table style=\"min-width: 50px;\"><colgroup><col style=\"min-width: 25px;\"><col style=\"min-width: 25px;\"></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\"><p>Fix</p></th><th colspan=\"1\" rowspan=\"1\"><p>Effort</p></th></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Guard</p></td><td colspan=\"1\" rowspan=\"1\"><p>1 line</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Schema</p></td><td colspan=\"1\" rowspan=\"1\"><p>Half a day</p></td></tr></tbody></table><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Summary",
+          "tag": "h3",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "The bug is in",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "parseDraft",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Short term:",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "guard the null subject",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Long term:",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "make the schema strict",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "const subject = draft.subject ?? \"\";",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Fix",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#f3f4f6",
+          "contrast": 16.24,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Effort",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#f3f4f6",
+          "contrast": 16.24,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Guard",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "1 line",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Schema",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Half a day",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 1,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 2,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 2,
+        "table": 1,
+        "th": 2,
+        "td": 4,
+        "img": 0,
+        "br": 1,
+        "p": 10
+      }
+    },
+    {
+      "fixture": "dark-text",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/dark-text.light.png",
+      "html": "<p>The quarterly report shows steady growth across every region, led by <em>APAC</em>.</p><p>Full numbers are in the appendix.</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "The quarterly report shows steady growth",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "APAC",
+          "tag": "em",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Full numbers are in the appendix.",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 1,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 2
+      }
+    },
+    {
+      "fixture": "discord",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/discord.light.png",
+      "html": "<p>Deploy is <strong>done</strong>. Run this to check:</p><pre><code>curl -s https://mail.example.com/health | jq .status</code></pre><p>and ping <code>@oncall</code> if it is not <em>ok</em>.</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Deploy is",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "done",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "curl -s https://mail.example.com/health ",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "and ping",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "@oncall",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "ok",
+          "tag": "em",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 1,
+        "a": 0,
+        "pre": 1,
+        "code": 2,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 2
+      }
+    },
+    {
+      "fixture": "gmail",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/gmail.light.png",
+      "html": "<p>Hi Priya,</p><p>Following up on <strong>Tuesday's</strong> call. The contract is attached.</p><p>Thanks,</p><p>Hitesh</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Hi Priya,",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Following up on",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Tuesday's",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Thanks,",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Hitesh",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 0,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 4
+      }
+    },
+    {
+      "fixture": "google-docs",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/google-docs.light.png",
+      "html": "<h2>Q4 launch notes</h2><p>We ship on <strong>Nov 18</strong>. See the <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://docs.google.com/document/d/abc/edit\">tracker</a>.</p><ul><li><p>Pricing page</p></li><li><p>Launch email (owner: TBD)</p></li></ul><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Q4 launch notes",
+          "tag": "h2",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "We ship on",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Nov 18",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "tracker",
+          "tag": "a",
+          "color": "#5048e5",
+          "background": "#ffffff",
+          "contrast": 6.18,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Pricing page",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Launch email (owner: TBD)",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 1,
+        "h3": 0,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 1,
+        "em": 0,
+        "a": 1,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 4
+      }
+    },
+    {
+      "fixture": "iterm2",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/iterm2.light.png",
+      "html": "<pre><code>$ git log --oneline -3\n881ff10 (HEAD -&gt; main) Brand v2: envelope on the brand-blue tile\n38b6814 CLI: rename to cloudmail\n7846b3c SDKs 0.2.0: full REST coverage</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "$ git log --oneline -3\n881ff10 (HEAD -> ",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "markdown-plain",
+      "mode": "light",
+      "flavours": [
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/markdown-plain.light.png",
+      "html": "<p>Quick status:</p><p> </p><p><strong>Shipped</strong> the paste fix to staging.</p><ul><li><p>list item one</p></li><li><p>list item two</p></li></ul><pre><code class=\"language-sh\">npm run deploy</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Quick status:",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Shipped",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "the paste fix to staging.",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "list item one",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "list item two",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "npm run deploy",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 1,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 6
+      }
+    },
+    {
+      "fixture": "ms-word",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/ms-word.light.png",
+      "html": "<p><strong>Board update</strong></p><p>Revenue is up <strong>12%</strong> quarter on quarter.</p><ul><li><p>Hiring two engineers</p></li><li><p>Office move in March</p></li></ul><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Board update",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Revenue is up",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "12%",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Hiring two engineers",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Office move in March",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 2,
+        "em": 0,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 5
+      }
+    },
+    {
+      "fixture": "terminal-app",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/terminal-app.light.png",
+      "html": "<pre><code>codder@mac ~/proj % npm test\n\n PASS  test/threading.test.ts\n FAIL  test/send.test.ts\n  ✕ rejects oversize message (12 ms)\n\nTests:       1 failed, 41 passed, 42 total</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "codder@mac ~/proj % npm test\n\n PASS  tes",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "vscode",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/vscode.light.png",
+      "html": "<pre><code>export function isDevBypass(env: Env, isDev: boolean) {\n    return isDev &amp;&amp; env.DEV_AUTH_BYPASS === \"1\";\n}</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "export function isDevBypass(env: Env, is",
+          "tag": "code",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "whatsapp-web",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/whatsapp-web.light.png",
+      "html": "<p>Hey! Running 10 min late 🙏<br>Can you send the <strong>deck</strong> before 3?<br>Thanks 😊</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Hey! Running 10 min late 🙏",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "deck",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 0,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 2,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "white-text-dark-site",
+      "mode": "light",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/white-text-dark-site.light.png",
+      "html": "<p>Our new plan includes <strong>unlimited seats</strong> and priority support, starting at $49 a month.</p><p>Cancel any time from <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://example.com/billing\">billing settings</a>.</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#ffffff",
+      "editorColor": "rgb(15, 23, 41)",
+      "samples": [
+        {
+          "text": "Our new plan includes",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "unlimited seats",
+          "tag": "strong",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Cancel any time from",
+          "tag": "p",
+          "color": "#0f1729",
+          "background": "#ffffff",
+          "contrast": 17.87,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "billing settings",
+          "tag": "a",
+          "color": "#5048e5",
+          "background": "#ffffff",
+          "contrast": 6.18,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 0,
+        "a": 1,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 2
+      }
+    },
+    {
+      "fixture": "chatgpt",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/chatgpt.dark.png",
+      "html": "<h3>Migration plan</h3><p>Here is a <strong>safe</strong> order of operations:</p><ol><li><p>Back up the bucket</p></li><li><p>Run the migration in a <em>dry run</em></p></li><li><p>Swap the binding</p></li></ol><ul><li><p>Docs: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://developers.cloudflare.com/workers/\">Workers docs</a></p></li></ul><pre><code class=\"language-bash\">wrangler r2 object get mail/backup.tar --file ./backup.tar</code></pre><table style=\"min-width: 50px;\"><colgroup><col style=\"min-width: 25px;\"><col style=\"min-width: 25px;\"></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\"><p>Step</p></th><th colspan=\"1\" rowspan=\"1\"><p>Risk</p></th></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Backup</p></td><td colspan=\"1\" rowspan=\"1\"><p>Low</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Swap</p></td><td colspan=\"1\" rowspan=\"1\"><p><strong>High</strong></p></td></tr></tbody></table><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Migration plan",
+          "tag": "h3",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Here is a",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "safe",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Back up the bucket",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Run the migration in a",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "dry run",
+          "tag": "em",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Swap the binding",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Docs:",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Workers docs",
+          "tag": "a",
+          "color": "#828df8",
+          "background": "#14171f",
+          "contrast": 6.07,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "wrangler r2 object get mail/backup.tar -",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Step",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#171a21",
+          "contrast": 15.93,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Risk",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#171a21",
+          "contrast": 15.93,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Backup",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Low",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Swap",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "High",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 1,
+        "ul": 1,
+        "ol": 1,
+        "li": 4,
+        "strong": 2,
+        "em": 1,
+        "a": 1,
+        "pre": 1,
+        "code": 1,
+        "table": 1,
+        "th": 2,
+        "td": 4,
+        "img": 0,
+        "br": 1,
+        "p": 12
+      }
+    },
+    {
+      "fixture": "claude-web",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/claude-web.dark.png",
+      "html": "<h3>Summary</h3><p>The bug is in <code>parseDraft</code>. Two fixes:</p><ul><li><p><strong>Short term:</strong> guard the null subject</p></li><li><p><strong>Long term:</strong> make the schema strict</p></li></ul><pre><code class=\"language-typescript\">const subject = draft.subject ?? \"\";</code></pre><table style=\"min-width: 50px;\"><colgroup><col style=\"min-width: 25px;\"><col style=\"min-width: 25px;\"></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\"><p>Fix</p></th><th colspan=\"1\" rowspan=\"1\"><p>Effort</p></th></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Guard</p></td><td colspan=\"1\" rowspan=\"1\"><p>1 line</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Schema</p></td><td colspan=\"1\" rowspan=\"1\"><p>Half a day</p></td></tr></tbody></table><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Summary",
+          "tag": "h3",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "The bug is in",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "parseDraft",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Short term:",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "guard the null subject",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Long term:",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "make the schema strict",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "const subject = draft.subject ?? \"\";",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Fix",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#171a21",
+          "contrast": 15.93,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Effort",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#171a21",
+          "contrast": 15.93,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Guard",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "1 line",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Schema",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Half a day",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "16px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 1,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 2,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 2,
+        "table": 1,
+        "th": 2,
+        "td": 4,
+        "img": 0,
+        "br": 1,
+        "p": 10
+      }
+    },
+    {
+      "fixture": "dark-text",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/dark-text.dark.png",
+      "html": "<p>The quarterly report shows steady growth across every region, led by <em>APAC</em>.</p><p>Full numbers are in the appendix.</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "The quarterly report shows steady growth",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "APAC",
+          "tag": "em",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Full numbers are in the appendix.",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 1,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 2
+      }
+    },
+    {
+      "fixture": "discord",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/discord.dark.png",
+      "html": "<p>Deploy is <strong>done</strong>. Run this to check:</p><pre><code>curl -s https://mail.example.com/health | jq .status</code></pre><p>and ping <code>@oncall</code> if it is not <em>ok</em>.</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Deploy is",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "done",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "curl -s https://mail.example.com/health ",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "and ping",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "@oncall",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "ok",
+          "tag": "em",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 1,
+        "a": 0,
+        "pre": 1,
+        "code": 2,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 2
+      }
+    },
+    {
+      "fixture": "gmail",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/gmail.dark.png",
+      "html": "<p>Hi Priya,</p><p>Following up on <strong>Tuesday's</strong> call. The contract is attached.</p><p>Thanks,</p><p>Hitesh</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Hi Priya,",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Following up on",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Tuesday's",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Thanks,",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Hitesh",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 0,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 4
+      }
+    },
+    {
+      "fixture": "google-docs",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/google-docs.dark.png",
+      "html": "<h2>Q4 launch notes</h2><p>We ship on <strong>Nov 18</strong>. See the <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://docs.google.com/document/d/abc/edit\">tracker</a>.</p><ul><li><p>Pricing page</p></li><li><p>Launch email (owner: TBD)</p></li></ul><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Q4 launch notes",
+          "tag": "h2",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "We ship on",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Nov 18",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "tracker",
+          "tag": "a",
+          "color": "#828df8",
+          "background": "#14171f",
+          "contrast": 6.07,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Pricing page",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Launch email (owner: TBD)",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 1,
+        "h3": 0,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 1,
+        "em": 0,
+        "a": 1,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 4
+      }
+    },
+    {
+      "fixture": "iterm2",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/iterm2.dark.png",
+      "html": "<pre><code>$ git log --oneline -3\n881ff10 (HEAD -&gt; main) Brand v2: envelope on the brand-blue tile\n38b6814 CLI: rename to cloudmail\n7846b3c SDKs 0.2.0: full REST coverage</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "$ git log --oneline -3\n881ff10 (HEAD -> ",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "markdown-plain",
+      "mode": "dark",
+      "flavours": [
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/markdown-plain.dark.png",
+      "html": "<p>Quick status:</p><p> </p><p><strong>Shipped</strong> the paste fix to staging.</p><ul><li><p>list item one</p></li><li><p>list item two</p></li></ul><pre><code class=\"language-sh\">npm run deploy</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Quick status:",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Shipped",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "the paste fix to staging.",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "list item one",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "list item two",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "npm run deploy",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 1,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 6
+      }
+    },
+    {
+      "fixture": "ms-word",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/ms-word.dark.png",
+      "html": "<p><strong>Board update</strong></p><p>Revenue is up <strong>12%</strong> quarter on quarter.</p><ul><li><p>Hiring two engineers</p></li><li><p>Office move in March</p></li></ul><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Board update",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Revenue is up",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "12%",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Hiring two engineers",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Office move in March",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 1,
+        "ol": 0,
+        "li": 2,
+        "strong": 2,
+        "em": 0,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 5
+      }
+    },
+    {
+      "fixture": "terminal-app",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/terminal-app.dark.png",
+      "html": "<pre><code>codder@mac ~/proj % npm test\n\n PASS  test/threading.test.ts\n FAIL  test/send.test.ts\n  ✕ rejects oversize message (12 ms)\n\nTests:       1 failed, 41 passed, 42 total</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "codder@mac ~/proj % npm test\n\n PASS  tes",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "vscode",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/vscode.dark.png",
+      "html": "<pre><code>export function isDevBypass(env: Env, isDev: boolean) {\n    return isDev &amp;&amp; env.DEV_AUTH_BYPASS === \"1\";\n}</code></pre><p></p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "export function isDevBypass(env: Env, is",
+          "tag": "code",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [
+        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      ],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 0,
+        "em": 0,
+        "a": 0,
+        "pre": 1,
+        "code": 1,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 1,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "whatsapp-web",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/whatsapp-web.dark.png",
+      "html": "<p>Hey! Running 10 min late 🙏<br>Can you send the <strong>deck</strong> before 3?<br>Thanks 😊</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Hey! Running 10 min late 🙏",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "deck",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 0,
+        "a": 0,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 2,
+        "p": 1
+      }
+    },
+    {
+      "fixture": "white-text-dark-site",
+      "mode": "dark",
+      "flavours": [
+        "text/html",
+        "text/plain"
+      ],
+      "screenshot": "test/fixtures/paste/after/white-text-dark-site.dark.png",
+      "html": "<p>Our new plan includes <strong>unlimited seats</strong> and priority support, starting at $49 a month.</p><p>Cancel any time from <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://example.com/billing\">billing settings</a>.</p>",
+      "editorFont": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+      "editorBackground": "#14171f",
+      "editorColor": "rgb(243, 245, 247)",
+      "samples": [
+        {
+          "text": "Our new plan includes",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "unlimited seats",
+          "tag": "strong",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "Cancel any time from",
+          "tag": "p",
+          "color": "#f3f5f7",
+          "background": "#14171f",
+          "contrast": 16.39,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        },
+        {
+          "text": "billing settings",
+          "tag": "a",
+          "color": "#828df8",
+          "background": "#14171f",
+          "contrast": 6.07,
+          "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "inlineStyle": null
+        }
+      ],
+      "lowContrast": [],
+      "foreignFonts": [],
+      "counts": {
+        "h1": 0,
+        "h2": 0,
+        "h3": 0,
+        "ul": 0,
+        "ol": 0,
+        "li": 0,
+        "strong": 1,
+        "em": 0,
+        "a": 1,
+        "pre": 0,
+        "code": 0,
+        "table": 0,
+        "th": 0,
+        "td": 0,
+        "img": 0,
+        "br": 0,
+        "p": 2
+      }
+    }
+  ],
+  "draft": {
+    "id": "28a3b076-1917-4e16-83c6-ace6544430a6",
+    "subject": "paste-baseline draft",
+    "body": "<pre><code>$ git log --oneline -3\n881ff10 (HEAD -&gt; main) Brand v2: envelope on the brand-blue tile\n38b6814 CLI: rename to cloudmail\n7846b3c SDKs 0.2.0: full REST coverage</code></pre><p></p>"
+  }
+}
