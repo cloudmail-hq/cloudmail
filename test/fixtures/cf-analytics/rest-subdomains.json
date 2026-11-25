@@ -1,0 +1,31 @@
+{
+ "result": [
+  {
+   "id": "0e8e19bf90384d7ea6f52e5eadf9edd0",
+   "tag": "0e8e19bf90384d7ea6f52e5eadf9edd0",
+   "name": "mail.example.com",
+   "enabled": true,
+   "preview_enabled": false,
+   "return_path_domain": "cf-bounce.mail.example.com",
+   "dkim_selector": "cf-bounce",
+   "drop_suppressed_recipients": false,
+   "created": "2026-04-16T18:38:04.260297Z",
+   "modified": "2026-04-16T18:38:04.260297Z"
+  },
+  {
+   "id": "024bdc70a3544d108d5444722b30486b",
+   "tag": "024bdc70a3544d108d5444722b30486b",
+   "name": "example.com",
+   "enabled": true,
+   "preview_enabled": false,
+   "return_path_domain": "cf-bounce.example.com",
+   "dkim_selector": "cf-bounce",
+   "drop_suppressed_recipients": false,
+   "created": "2026-04-18T08:26:05.334622Z",
+   "modified": "2026-04-18T08:26:05.334622Z"
+  }
+ ],
+ "success": true,
+ "errors": [],
+ "messages": []
+}

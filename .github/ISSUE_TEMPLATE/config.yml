@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/cloudmail-hq/cloudmail/security/advisories/new
+    about: Report privately. Please don't open a public issue.
+  - name: Licence or purchase help
+    url: mailto:support@trycloudmail.com
+    about: Questions about your licence key or order. Include your order email, never the key itself.
+  - name: Deploy and setup guide
+    url: https://github.com/cloudmail-hq/cloudmail/blob/main/docs/self-deploy.md
+    about: Step-by-step deploy, and docs/troubleshooting.md for common problems.

@@ -1,0 +1,52 @@
+# Built-in email + password auth (default mode).
+# Fill both with `npm run secrets -- --dev` (or `npm run secrets` to print them).
+# Left empty on purpose: the Deploy to Cloudflare button builds its secrets form
+# from this file, and a value written here would be public.
+#
+# One-time token for creating the owner account at /setup, also the break-glass
+# key for /recover (which needs 16+ characters). If empty, the Worker generates
+# one and prints it in its logs.
+SETUP_TOKEN=
+# Key material for encrypting 2FA secrets at rest. Set it before anyone enables
+# 2FA and never change it afterwards.
+AUTH_SECRET=
+# Optional Cloudflare API token: lets the app set up Email Routing, sending and
+# DNS. Keep it empty here (this file is public); paste it in the deploy form or
+# connect one later at Settings -> Cloudflare connection.
+CF_API_TOKEN=
+
+# Optional: base URL used in invite/reset links (defaults to the request origin).
+# APP_URL=http://localhost:5173
+
+# Optional: From address of "Forgot password?" emails. Defaults to
+# no-reply@<first domain in DOMAINS>; the domain must be onboarded to
+# Email Service sending.
+# AUTH_EMAIL_FROM="cloudmail <no-reply@example.com>"
+
+# Optional: always-admin addresses (comma-separated).
+# ADMIN_EMAILS=you@example.com
+
+# Optional: Cloudflare Turnstile on setup, sign-in and invite acceptance.
+# These are Cloudflare's always-pass test keys.
+# TURNSTILE_SITE_KEY=1x00000000000000000000AA
+# TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Local dev only: skip sign-in and treat every request as an admin.
+# DEV_AUTH_BYPASS=1
+
+# Legacy Cloudflare Access mode. Setting both switches AUTH_MODE to "access" unless
+# AUTH_MODE is set explicitly. TEAM_DOMAIN may be the base Access URL or the full
+# /cdn-cgi/access/certs URL.
+# AUTH_MODE=access
+# POLICY_AUD=your-access-policy-audience-tag
+# TEAM_DOMAIN=https://your-team.cloudflareaccess.com
+
+# Domain configuration - choose one approach:
+
+# Simple: Single domain or comma-separated list
+# DOMAINS=example.com
+# DOMAINS=example.com,mycompany.org
+
+# Advanced: Multi-zone configuration with metadata (JSON array)
+# Each zone can have: domain (required), name (display name), zoneId (optional Cloudflare zone ID)
+# ZONES=[{"domain":"example.com","name":"Example Corp"},{"domain":"mycompany.org","name":"My Company","zoneId":"abc123"}]

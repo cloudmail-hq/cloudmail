@@ -1,0 +1,29 @@
+{
+ "result": {
+  "status": "healthy",
+  "status_since": null,
+  "grace_started_at": null,
+  "evaluated_at": null,
+  "active_policy": {
+   "customer_bounce": {
+    "warning_at": 0.4,
+    "at_risk_at": 0.9,
+    "minimum_denominator": 100
+   },
+   "complaint": {
+    "warning_at": 0.02,
+    "at_risk_at": 0.04,
+    "minimum_denominator": 100
+   },
+   "spam_rejection": {
+    "warning_at": 0.2,
+    "at_risk_at": 0.6,
+    "minimum_denominator": 100
+   },
+   "suspension_after_hours": 168
+  }
+ },
+ "success": true,
+ "errors": [],
+ "messages": []
+}

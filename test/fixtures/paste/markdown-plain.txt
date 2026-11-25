@@ -1,0 +1,10 @@
+Quick status:
+
+**Shipped** the paste fix to staging.
+
+- list item one
+- list item two
+
+```sh
+npm run deploy
+```

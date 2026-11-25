@@ -1,0 +1,22 @@
+{
+ "errors": [
+  {
+   "action": "worker",
+   "datetime": "2026-10-12T20:36:48Z",
+   "errorDetail": "66.98.68.188 isn't allowed to send email for person18@example.net",
+   "from": "\"Example Sender\" <person18@example.net>",
+   "sampleInterval": 1,
+   "status": "error",
+   "to": "hr@example.com"
+  },
+  {
+   "action": "worker",
+   "datetime": "2026-10-01T02:57:23Z",
+   "errorDetail": "177.136.244.186 isn't allowed to send email for person19@example.net",
+   "from": "\"Example Sender\" <person19@example.net>",
+   "sampleInterval": 1,
+   "status": "error",
+   "to": "hr@example.com"
+  }
+ ]
+}
