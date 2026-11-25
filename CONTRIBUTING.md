@@ -85,9 +85,9 @@ npm run build
 If you changed an SDK or the CLI:
 
 ```bash
-cd sdk/typescript && npm ci && npm run check:generated && npm run typecheck && npm test
-cd sdk/python && uv venv && uv pip install -e '.[dev]' && uv run pytest -q
-cd cli && go vet ./... && go test -race ./...
+(cd sdk/typescript && npm ci && npm run check:generated && npm run typecheck && npm test)
+(cd sdk/python && uv venv && uv pip install -e '.[dev]' && uv run pytest -q)
+(cd cli && go vet ./... && go test -race ./...)
 ```
 
 ### Adding or changing an API route
