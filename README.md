@@ -16,6 +16,9 @@
     <a href="https://trycloudmail.com"><img src="docs/images/button-site.svg" alt="Visit trycloudmail.com" height="44"></a>
   </p>
   <p>
+    <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/cloudmail-hq/cloudmail"><img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare" height="40"></a>
+  </p>
+  <p>
     <a href="https://trycloudmail.com/features">Features</a> ·
     <a href="https://trycloudmail.com/pricing">Pricing</a> ·
     <a href="https://trycloudmail.com/agents">For AI agents</a> ·
