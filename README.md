@@ -366,7 +366,9 @@ You also need a domain on Cloudflare DNS (Cloudflare limits Email Routing to 200
 
 - **Website:** [trycloudmail.com](https://trycloudmail.com), with the [feature tour](https://trycloudmail.com/features), [pricing](https://trycloudmail.com/pricing) and [API docs](https://trycloudmail.com/docs).
 - **Docs:** [self-deploy](docs/self-deploy.md), [troubleshooting](docs/troubleshooting.md), [upgrade](docs/upgrade.md), [reference](docs/reference.md).
-- **Bugs and questions:** [GitHub issues](https://github.com/cloudmail-hq/cloudmail/issues). Never paste tokens, keys or licence keys there.
+- **Bugs:** [GitHub issues](https://github.com/cloudmail-hq/cloudmail/issues). Never paste tokens, keys or licence keys there.
+- **Questions and ideas:** [GitHub discussions](https://github.com/cloudmail-hq/cloudmail/discussions). The [roadmap](https://github.com/cloudmail-hq/cloudmail/discussions/1) is there too.
+- **Contributing:** [CONTRIBUTING.md](https://github.com/cloudmail-hq/cloudmail/blob/main/CONTRIBUTING.md) shows how to run cloudmail on your computer without a Cloudflare account or a licence key. Start with a [good first issue](https://github.com/cloudmail-hq/cloudmail/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22). Your first merged pull request earns a free Unlimited licence.
 - **Licence and purchase help:** support@trycloudmail.com, with your order email.
 
 ## Licence

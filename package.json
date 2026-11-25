@@ -44,6 +44,7 @@
 		"cf-typegen": "wrangler types",
 		"deploy": "npm run build && wrangler deploy && node scripts/ensure-vectorize-metadata.mjs",
 		"dev": "react-router dev",
+		"dev:demo": "scripts/demo/run.sh dev",
 		"preview": "npm run build && vite preview",
 		"secrets": "node scripts/generate-secrets.mjs",
 		"test": "vitest run",

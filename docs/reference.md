@@ -30,8 +30,17 @@ is a gap in the product rather than a reason to reach for another surface.
 
 ## Local development
 
+The quickest start needs no Cloudflare account and no licence key. It runs offline with fictional mail, without the AI model, semantic search or real sending:
+
 ```bash
-npm install
+npm ci
+npm run dev:demo
+```
+
+To run against your own Cloudflare account, with Workers AI and Vectorize, sign in with `npx wrangler login` first. Without it `npm run dev` stops with "You must be logged in to use wrangler dev in remote mode".
+
+```bash
+npm ci
 cp .dev.vars.example .dev.vars
 npm run dev
 ```

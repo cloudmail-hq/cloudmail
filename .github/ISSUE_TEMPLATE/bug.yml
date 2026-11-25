@@ -1,0 +1,51 @@
+name: Bug report
+description: Something in cloudmail doesn't work as it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Never paste tokens, keys, licence keys or other people's mail here. For a security problem, use the Security tab instead.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The version your deployment runs, as shown by `/api/v1/health`, or the commit you built from.
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - Web app
+        - Phone app (installed)
+        - API
+        - MCP server
+        - CLI
+        - TypeScript SDK
+        - Python SDK
+        - Deploy or upgrade
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Browser console errors, Worker logs or a screenshot, with secrets removed.

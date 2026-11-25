@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Read-only: nothing here comments, tags or publishes. A pull request from
+# outside the repository runs without its secrets, and no job needs one.
+permissions:
+  contents: read
+
+# A new push to the same branch or pull request replaces the run in progress.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          # test/threading.test.ts uses node:sqlite, built in from Node 22.5.
+          # Kept in step with `engines.node` in package.json.
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run build
+
+  # The TypeScript types are generated from workers/lib/openapi.ts, so a route
+  # change without `npm run generate` in sdk/typescript fails here.
+  sdk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            sdk/typescript/package-lock.json
+      # Root dependencies too: the generator imports workers/lib/openapi.ts.
+      - run: npm ci
+      - run: npm ci
+        working-directory: sdk/typescript
+      - name: Generated types are up to date
+        run: npm run check:generated
+        working-directory: sdk/typescript
+      - run: npm run typecheck
+        working-directory: sdk/typescript
+      - run: npm test
+        working-directory: sdk/typescript
+      - run: npm run build
+        working-directory: sdk/typescript
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          python-version: "3.12"
+      - name: Python SDK tests
+        working-directory: sdk/python
+        run: |
+          uv venv
+          uv pip install -e '.[dev]'
+          uv run pytest -q
+
+  cli:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: cli
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: cli/go.mod
+          cache-dependency-path: cli/go.sum
+      - run: go vet ./...
+      - run: go build ./...
+      - run: go test -race ./...

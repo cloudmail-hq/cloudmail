@@ -1,0 +1,22 @@
+name: Feature request
+description: Something cloudmail should do and doesn't.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you are trying to do
+      description: The task you can't do today, or that takes too many steps.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help
+      description: How you picture it working. Say how other mail apps do it if that helps.
+  - type: checkboxes
+    id: build
+    attributes:
+      label: Would you build it?
+      options:
+        - label: I'd like to open a pull request for this

@@ -34,8 +34,6 @@ import { preSend } from "../workers/lib/pre-send";
 import { DEV_KEY_ID, LICENCE_KEYS, PRODUCTION_KEY_ID, onlyDevKey, verificationJwks } from "../shared/licence-keys";
 import { base64UrlEncode, type Ed25519PublicJwk, type Jwks, type LicenceClaims } from "../shared/licence-token";
 import type { Env } from "../workers/types";
-// @ts-expect-error plain .mjs script without type declarations
-import { parseJsonc, rewriteWrangler } from "../scripts/build-template.mjs";
 
 // The test runner is a development build, where the check is off. Run it the
 // way a deployed Worker does; the "development build" tests switch it back.
@@ -700,16 +698,11 @@ describe("refresh", () => {
 // ── no switch anywhere ─────────────────────────────────────────────
 
 describe("the check has no switch", () => {
-	it("neither this repo's config nor the template's sets one", () => {
+	// Read as text, not parsed: this file also runs in the published copy of
+	// the repository, which has no JSONC parser of its own.
+	it("wrangler.jsonc sets no licence variable", () => {
 		const text = readFileSync(join(ROOT, "wrangler.jsonc"), "utf8");
-		for (const cfg of [parseJsonc(text), parseJsonc(rewriteWrangler(text))]) {
-			expect(Object.keys(cfg.vars).filter((k) => /licen[cs]e/i.test(k))).toEqual([]);
-		}
-	});
-
-	it("the template build refuses a config that sets one", () => {
-		const src = readFileSync(join(ROOT, "wrangler.jsonc"), "utf8").replace('"DOMAINS": "tapetide.com",', '"DOMAINS": "tapetide.com",\n\t\t"LICENCE_ENFORCE": "off",');
-		expect(() => rewriteWrangler(src)).toThrow(/licence enforcement/);
+		expect(text.match(/"[A-Za-z_]*licen[cs]e[A-Za-z_]*"\s*:/gi) ?? []).toEqual([]);
 	});
 
 	it("the Worker source reads no licence variable but the server URL, and every off path is behind the build-time constant", () => {

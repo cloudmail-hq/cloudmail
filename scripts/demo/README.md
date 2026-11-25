@@ -9,7 +9,18 @@ Everything is invented: Northwind Supply Co. (northwind.example), Northwind Labs
 customers and suppliers. Every address is under the reserved `.example` TLD
 (RFC 2606). Nothing is copied from real mail.
 
-## Run it
+## Work on the app with it
+
+```bash
+npm ci
+npm run dev:demo
+```
+
+The first run seeds the instance (about a minute) and prints the address and
+the sign-in. Later runs reuse the seeded state. `scripts/demo/run.sh reset`
+throws it away. This needs no browser automation, Cloudflare login or licence key.
+
+## Capture the screenshots
 
 Heavy work (install, dev server, Chromium) belongs on a Linux box, not a laptop
 that runs other things.
