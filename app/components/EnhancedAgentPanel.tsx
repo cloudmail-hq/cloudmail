@@ -5,7 +5,6 @@ import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import SafeMarkdown from "~/components/SafeMarkdown";
 import {
-  Sparkles,
   Send,
   Trash2,
   User,
@@ -27,6 +26,7 @@ import { Badge } from "~/components/ui/badge";
 import { Textarea } from "~/components/ui/textarea";
 import { cn } from "~/lib/utils";
 import { useUIStore } from "~/hooks/useUIStore";
+import { AgentIcon, AutoDraftIcon } from "~/components/ai-icons";
 import {
   getDraftIdFromMessage,
   getToolNameFromPart,
@@ -379,7 +379,7 @@ function AgentChatConnected({
       <div className="flex shrink-0 items-center justify-between border-b border-border bg-bg-subtle/70 px-4 py-3">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet/10">
-            <Sparkles size={16} className="text-violet" />
+            <AgentIcon size={16} className="text-violet" />
           </div>
           <div>
             <h3 className="text-sm font-semibold text-text-primary">
@@ -583,7 +583,7 @@ function AutoRunSummary({
           ) : (
             <ChevronRight size={13} aria-hidden />
           )}
-          <Sparkles size={12} className="text-violet" aria-hidden />
+          <AutoDraftIcon size={12} className="text-violet" aria-hidden />
           <span className="font-medium">{label}</span>
         </button>
         {drafted && (
@@ -631,7 +631,7 @@ function AgentPanelSkeleton({ onClose }: { onClose?: () => void }) {
       <div className="flex shrink-0 items-center justify-between border-b border-border bg-bg-subtle/70 px-4 py-3">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet/10">
-            <Sparkles size={16} className="text-violet" aria-hidden />
+            <AgentIcon size={16} className="text-violet" aria-hidden />
           </div>
           <div>
             <h3 className="text-sm font-semibold text-text-primary">AI Email Agent</h3>

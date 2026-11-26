@@ -12,7 +12,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
-import { AlertCircle, Loader2, RotateCw, Sparkles, X } from "lucide-react";
+import { AlertCircle, Loader2, RotateCw, X } from "lucide-react";
+import { AskIcon } from "~/components/ai-icons";
 import { splitCitations } from "shared/semantic";
 import api, { type AskInboxResponse } from "~/services/api";
 
@@ -56,7 +57,7 @@ export default function AskAnswerPanel({ question, mailbox = "*", onDismiss, cla
 			className={`border-b border-border bg-card px-4 py-3 ${className ?? ""}`}
 		>
 			<div className="flex items-start gap-2">
-				<Sparkles size={14} className="mt-0.5 shrink-0 text-accent" aria-hidden />
+				<AskIcon size={15} className="mt-0.5 shrink-0 text-accent" aria-hidden />
 				<div className="min-w-0 flex-1">
 					<h2 className="text-xs font-semibold text-text-secondary">
 						<span className="sr-only">Question: </span>

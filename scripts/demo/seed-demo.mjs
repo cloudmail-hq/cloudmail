@@ -16,7 +16,8 @@
  * `db` then edits the local Durable Object SQLite files for what has no API
  * because it normally comes from the outside world or a model: which messages
  * were sent by us (they were delivered inbound), read/starred state, AI triage
- * labels, thread summaries, and delivery/open/click events. Never point this
+ * labels, thread summaries, delivery/open/click events, and what was filed in
+ * Spam, Trash, Snoozed and the Screener. Never point this
  * at anything but a throwaway local state directory.
  */
 
@@ -191,14 +192,14 @@ function makePdf(title, kb = 60) {
 function makeCsv(name) {
 	if (name.includes("nps")) {
 		const rows = ["respondent,company,score,comment"];
-		const cos = ["Brightcup Roasters", "Café Lumen", "Morning Owl", "Tidewater Coffee", "Salt & Crumb", "Lantern Stays", "Moretti Café"];
-		for (let i = 0; i < 60; i++) rows.push(`${1000 + i},${cos[i % cos.length]},${[10, 9, 9, 8, 10, 7, 6, 9, 10, 4][i % 10]},"${["Fast technician visit", "Great descaling guide", "Delivery window too wide", "Love the S2", ""][i % 5]}"`);
+		const cos = ["Brightcup", "Lumen Health", "Morning Owl Games", "Tidewater Logistics", "Salt & Crumb", "Lantern Stays", "Moretti Pay"];
+		for (let i = 0; i < 60; i++) rows.push(`${1000 + i},${cos[i % cos.length]},${[10, 9, 9, 8, 10, 7, 6, 9, 10, 4][i % 10]},"${["Fast support replies", "On-call schedules are great", "SMS alerts arrive late", "Love the status page", ""][i % 5]}"`);
 		return Buffer.from(rows.join("\n"));
 	}
-	const rows = ["sensor_id,reference_bar,measured_bar,delta"];
+	const rows = ["window,alerts,p50_ms,p99_ms"];
 	for (let i = 0; i < 200; i++) {
-		const d = ((i * 37) % 9) / 100 - 0.04;
-		rows.push(`PS-11-${String(i).padStart(3, "0")},9.00,${(9 + d).toFixed(3)},${d.toFixed(3)}`);
+		const slow = i === 71 || i === 72;
+		rows.push(`${String(i).padStart(3, "0")},${4800 + ((i * 37) % 400)},${310 + ((i * 13) % 90)},${slow ? 2600 + i : 1100 + ((i * 53) % 700)}`);
 	}
 	return Buffer.from(rows.join("\n"));
 }
@@ -243,19 +244,22 @@ function toHtml(text) {
 		.join("\n");
 }
 
-function buildRaw({ from, to, cc, subject, date, messageId, inReplyTo, references, text, attachments }) {
+function buildRaw({ from, to, cc, replyTo, auth, subject, date, messageId, inReplyTo, references, text, attachments }) {
+	// What the receiving server found. Spam in the seed arrives failing these.
+	const a = { spf: "pass", dkim: "pass", dmarc: "pass", ...auth };
 	const b = (n) => `----=_demo_${n}_${messageId.replace(/\W/g, "").slice(0, 16)}`;
 	const outer = b("mixed"), alt = b("alt");
 	const h = [
 		`From: ${fmt(from)}`,
 		`To: ${to.map(fmt).join(", ")}`,
 		...(cc?.length ? [`Cc: ${cc.map(fmt).join(", ")}`] : []),
+		...(replyTo ? [`Reply-To: <${replyTo}>`] : []),
 		`Subject: ${encodeHeader(subject)}`,
 		`Date: ${date.toUTCString().replace("GMT", "+0000")}`,
 		`Message-ID: ${messageId}`,
 		...(inReplyTo ? [`In-Reply-To: ${inReplyTo}`, `References: ${references.join(" ")}`] : []),
 		`MIME-Version: 1.0`,
-		`Authentication-Results: mx.cloudflare.net; dkim=pass header.d=${domainOf(from.email)} header.s=mail; spf=pass smtp.mailfrom=${from.email}; dmarc=pass header.from=${domainOf(from.email)}`,
+		`Authentication-Results: mx.cloudflare.net; dkim=${a.dkim} header.d=${domainOf(from.email)} header.s=mail; spf=${a.spf} smtp.mailfrom=${from.email}; dmarc=${a.dmarc} header.from=${domainOf(from.email)}`,
 		`Content-Type: multipart/mixed; boundary="${outer}"`,
 	];
 	const parts = [];
@@ -345,6 +349,8 @@ async function phaseApi() {
 			from,
 			to: m.to,
 			cc: m.cc,
+			replyTo: m.replyTo,
+			auth: m.auth,
 			subject: i === 0 ? t.subject : `Re: ${t.subject}`,
 			date,
 			messageId: ids[i],
@@ -416,7 +422,7 @@ async function phaseApi() {
 				personEmail: p.email,
 				personName: p.name,
 				fromAddress: "sales@northwind.example",
-				variables: { firstName: p.name.split(" ")[0] },
+				variables: { firstName: p.name.split(" ")[0], company: p.company ?? "your team" },
 			}).catch((e) => ({ status: "error", text: e.message }));
 			if (r.status !== 200 && r.status !== 201) console.log(`enroll ${p.email}: ${r.status} ${String(r.text).slice(0, 160)}`);
 		}
@@ -427,7 +433,12 @@ async function phaseApi() {
 	// deployment would have them.
 	for (const mb of D.MAILBOXES) {
 		await api("PUT", `/api/v1/mailboxes/${encodeURIComponent(mb.email)}`, {
-			settings: { autoDraft: { enabled: true }, triage: { enabled: true } },
+			settings: {
+				autoDraft: { enabled: true },
+				triage: { enabled: true },
+				// On only now: while mail was delivered it would have held every sender.
+				...(D.SCREENER_ON.includes(mb.email) ? { screener: "unknown_only" } : {}),
+			},
 		});
 	}
 
@@ -490,6 +501,19 @@ async function phaseDb() {
 					t.starred && isLast ? 1 : 0,
 					row.id,
 				);
+				// What the app records when mail lands in these folders.
+				if (folder === "spam") {
+					db.prepare("UPDATE emails SET spam_score = ?, spam_signals = ? WHERE id = ?").run(t.spam.score, JSON.stringify(t.spam.signals), row.id);
+				} else if (folder === "trash") {
+					const at = new Date(Date.now() - (t.trashedDaysAgo ?? 1) * 86400000 - (i + 1) * 1000 * 613);
+					db.prepare("UPDATE emails SET trashed_from = 'inbox', trashed_at = ? WHERE id = ?").run(iso(at), row.id);
+				} else if (folder === "snoozed") {
+					const until = new Date(Date.now() + (t.snoozeHours ?? 24) * 3600000);
+					until.setUTCMinutes(0, 0, 0);
+					db.prepare("UPDATE emails SET snoozed_until = ?, snooze_return_folder = 'inbox' WHERE id = ?").run(iso(until), row.id);
+				} else if (folder === "screener" && t.verdict) {
+					db.prepare("UPDATE emails SET sender_kind = ?, sender_confidence = ? WHERE id = ?").run(t.verdict.kind, t.verdict.confidence, row.id);
+				}
 				// Labels: the AI triage label on inbound mail, user labels on all.
 				if (t.ai && !isSent) {
 					const lid = presetId(t.ai);
@@ -526,13 +550,7 @@ async function phaseDb() {
 						ev.run(row.id, to, "opened", "pixel", iso(new Date(when)), iso(new Date(when)));
 						when += (5 + Math.floor(rnd(10 + k) * 1400)) * 60000;
 					}
-					const links = [
-						"https://northwind.example/learn/dial-in",
-						"https://northwind.example/care-plans",
-						"https://northwind.example/s2/spec-sheet",
-						"https://northwind.example/financing",
-						"https://northwind.example/book-a-demo",
-					];
+					const links = D.CLICK_LINKS;
 					const clicks = opens && rnd(5) < 0.45 ? 1 + Math.floor(rnd(8) * 3) : 0;
 					for (let k = 0; k < clicks; k++) {
 						const c = new Date(Math.min(Date.now() - 30000, at.getTime() + (6 + Math.floor(rnd(6 + k) * 300) + k * 47) * 60000));

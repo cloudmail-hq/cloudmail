@@ -24,7 +24,6 @@ import {
   ScrollText,
   Send,
   Shield,
-  Sparkles,
   UserCog,
   Activity,
   UsersRound,
@@ -59,6 +58,7 @@ import { SaveStatus } from "~/components/settings/settings-ui";
 import AssistantSettings from "~/components/settings/AssistantSettings";
 import NotificationSettings from "~/components/settings/NotificationSettings";
 import { useCurrentUser } from "~/queries/people";
+import { AutoDraftIcon } from "~/components/ai-icons";
 import {
 	usePreferences,
 	useUpdatePreferences,
@@ -113,7 +113,7 @@ export default function AppSettingsPage() {
     account: KeyRound,
     preferences: Contrast,
     notifications: Bell,
-    "auto-draft": Sparkles,
+    "auto-draft": AutoDraftIcon,
     users: Users,
     domains: Globe,
     cloudflare: Cloud,

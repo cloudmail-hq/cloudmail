@@ -14,8 +14,8 @@ import {
   RotateCcw,
   Settings2,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
+import { AutoDraftIcon } from "~/components/ai-icons";
 import { Switch } from "~/components/ui/switch";
 import { Badge } from "~/components/ui/badge";
 import { useMailboxesWithSettings, useSetAutoDraft } from "~/queries/mailboxes";
@@ -155,7 +155,7 @@ export default function AutoDraftSettings() {
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
-        <Sparkles size={14} style={{ color: "#7c5cfc" }} />
+        <AutoDraftIcon size={14} style={{ color: "#7c5cfc" }} />
         <h2 className="text-base font-semibold text-text-primary">
           Automatic draft replies
         </h2>

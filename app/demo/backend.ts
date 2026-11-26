@@ -380,6 +380,12 @@ export class DemoBackend {
 				if (!read && isObject(limits?.caps)) merge(limits.caps, body);
 				return limits === undefined ? notFound() : ok(limits);
 			}
+			case "screener": {
+				if (!b) return read ? ok({ senders: s.screenerSenders(id) }) : notFound();
+				if (method !== "POST") return notFound();
+				if (body.decision !== "allow" && body.decision !== "block") throw new DemoError(400, "Choose yes or no.");
+				return ok(s.screen(id, b, body.decision, body.target === "trash" ? "trash" : "spam"));
+			}
 			case "imports":
 				return read ? ok({ imports: [] }) : refuse(READ_ONLY);
 			case "export":

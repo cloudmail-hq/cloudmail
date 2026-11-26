@@ -19,152 +19,237 @@ import { type DemoStore, htmlToText, type Row } from "./store";
 const SUMMARIES: Record<string, [subject: string, line: string, bullets: string[]][]> = {
 	"hello@harborline.example": [
 		[
-			"Wholesale enquiry: stoneware sets",
-			"Oak & Olive, two homeware shops in Bath, asks for wholesale terms and the minimum order on stoneware.",
-			["Zoe Chambers runs two shops in Bath", "Wants wholesale terms", "Asks for the minimum order"],
+			"Dark theme for the widget?",
+			"Marlow Labs asked for a dark widget; Sam explained the data-theme setting and Rosa confirmed it works.",
+			["The widget stayed white in their dark mode", "Fix: data-theme=\"auto\" on the script tag", "Rosa confirmed it works"],
 		],
 		[
-			"Gift guide feature",
-			"Home Journal wants the pour-over kettle in its December gift guide; Sam sent two product shots.",
-			["Mei Lin asked for two high-res shots by Friday", "Sam sent both", "Sam offered a lifestyle image too"],
+			"Come on Small Bets Radio",
+			"Carys Vaughn invites Sam onto the Small Bets Radio podcast in January.",
+			["A podcast about small software businesses", "Recording takes 40 minutes", "Not yet answered"],
+		],
+		[
+			"Agency plan: 14 client changelogs",
+			"Oak & Olive, a product studio in Bath, asks whether the Agency plan covers 14 client changelogs on the clients' own domains.",
+			["14 client apps, each on the client's domain", "Asks whether the Agency plan covers it", "Wants separate billing per client"],
+		],
+		[
+			"Embedding the widget in a React app",
+			"Quiet Harbor's unread badge never updates inside their React app; Ines asks for a package or a hook.",
+			["The script tag works on their marketing site", "In React the count shows once and never updates", "Not yet answered"],
+		],
+		[
+			"Tools roundup feature",
+			"Dev Journal wants Harborline in its December tools roundup; Sam sent two screenshots.",
+			["Mei Lin asked for two high-res screenshots by Friday", "Sam sent both", "Sam offered one of the editor too"],
 		],
 	],
 	"maya@northwind.example": [
 		[
-			"The Supply Chain Brief",
-			"Newsletter: trans-Pacific container rates fell for a fourth week and Rotterdam congestion is easing.",
-			["Spot rates down four weeks running", "Rotterdam congestion easing", "Three ways small importers hedge January surcharges"],
+			"The Reliability Brief",
+			"Newsletter: four of October's five largest outages started with a config change.",
+			["Four of five big outages began with a config change", "Status pages get updated about 20 minutes late", "Three ways small teams run on-call without burnout"],
 		],
 		[
-			"Port Coffee Summit",
-			"Invitation to the Port Coffee Summit in Rotterdam on Feb 11–12; early-bird passes close Dec 1.",
-			["900 roasters, importers and equipment makers", "February 11–12, Rotterdam", "Early-bird closes December 1"],
+			"You're invited: DevOps North Summit",
+			"Invitation to the DevOps North Summit in Rotterdam on Feb 11–12; early-bird passes close Dec 1.",
+			["900 engineers, SREs and platform leads", "February 11–12, Rotterdam", "Early-bird closes December 1"],
 		],
 		[
-			"Weekly firmware build report",
-			"Firmware 2.4.0-rc3 passed all 412 tests; the next release candidate is due Tuesday.",
-			["Boiler PID tuning regression fixed", "Two flaky grinder dose-timing tests quarantined", "Next release candidate: Tuesday"],
+			"Speak at DevOps North Summit",
+			"Anders Holm asks Maya to speak again at DevOps North Summit; the call for proposals closes Dec 20.",
+			["Last year's alert fatigue talk was the best-rated session", "A title and three lines holds a slot", "Snoozed until later this week"],
 		],
 		[
-			"Holiday catalogue proofs",
-			"Sam sent v2 catalogue proofs; Maya signed off with one fix on page 9.",
-			["Cover swapped to the stoneware set, pricing fixed on page 6", "Printer needed sign-off by Wednesday noon", "Kettle on p. 9 should read \"1.0 L\""],
+			"Nightly build report",
+			"api 4.12.0-rc3 passed all 1,412 tests; the next release candidate is due Tuesday.",
+			["Webhook retry regression fixed", "Two flaky SMS delivery-receipt tests quarantined", "Next release candidate: Tuesday"],
+		],
+		[
+			"Harborline pricing page",
+			"Sam sent v2 of the Harborline pricing page; Maya signed off with one fix to the Starter column.",
+			["Agency plan moved into the main table, annual discount fixed", "Sam ships it Wednesday at noon", "Starter should read \"1,000 subscribers\""],
 		],
 		[
 			"October NPS",
-			"October NPS is 61, up 7 points; delivery windows are the main complaint.",
-			["Drivers: faster technician visits and the new descaling guide", "Detractors mention delivery windows", "Raw responses attached"],
+			"October NPS is 61, up 7 points; late SMS alerts are the main complaint.",
+			["Drivers: faster support replies and the new on-call schedules", "Detractors mention late SMS alerts", "Raw responses attached"],
 		],
 		[
-			"Q1 demand forecast",
-			"Maya's Q1 forecast assumes 15% growth on S2 units; Lena will pull it into the board pack.",
-			["15% growth on S2 units", "Soft launch of the S3 in March", "Lena says it lines up with her cash model"],
+			"Q1 revenue forecast",
+			"Maya's Q1 forecast assumes 15% growth in new ARR; Lena will pull it into the board deck.",
+			["15% growth in new ARR", "On-call scheduling goes on sale in March", "Lena says it lines up with her cash model"],
 		],
 		[
-			"SSO for the warehouse tablets",
-			"Tomás will move the warehouse tablets to SSO with passkeys next Tuesday; Maya approved.",
-			["Tablets still share one password", "About a day of work, no cost", "Maya asked for a heads-up to the night shift"],
+			"SSO for the admin console",
+			"Tomás will move the internal admin console to SSO with passkeys next Tuesday; Maya approved.",
+			["The console still shares one password", "About a day of work, no cost", "Maya asked for a heads-up to the support team"],
 		],
 		[
-			"3x your B2B pipeline",
-			"Cold outreach from Jordan Pike offering AI-personalised sales outreach; asks for a 15-minute call.",
-			["Unsolicited sales pitch", "Asks for a call next week"],
+			"Trial extension for Little Fern Studio",
+			"Little Fern, a 12-person agency in Portland, wants two more trial weeks before buying; Maya approved it.",
+			["Two more weeks plus an onboarding call", "Maya: set up a status page for one of their clients", "They are weighing the Team plan"],
 		],
 		[
-			"Sample kit for Little Fern Bakery",
-			"Little Fern, three bakeries in Portland, wants a sample kit before buying grinders; Maya approved it.",
-			["Standard kit plus the decaf burrs", "Maya: add a printed dial-in guide", "Bakeries usually run lighter roasts"],
-		],
-		[
-			"Warehouse weekly",
-			"Warehouse weekly: 98.2% on-time, no mis-picks, two damage claims filed with Fjord.",
-			["98.2% on-time, 0 mis-picks", "2 damaged-in-transit claims, both Fjord", "Cycle count on aisle C next Tuesday"],
+			"Support weekly",
+			"Support weekly: 96% of tickets answered within 2 hours, two escalations filed with Kobayashi.",
+			["Median first reply 14 minutes", "2 escalations, both SMS delivery", "Help centre review next Tuesday"],
 		],
 		[
 			"Please welcome Elif",
-			"Elif Demir joins the Newark warehouse as Inventory Coordinator on Monday.",
-			["Five years at a regional food distributor", "Starts Monday"],
+			"Elif Demir joins the support team as a Support Engineer on Monday.",
+			["Five years on call at a payments company", "Starts Monday"],
+		],
+		[
+			"October investor update",
+			"Maya's October update: ARR up 6% and 41 new workspaces; Victor offers two CTO introductions.",
+			["ARR up 6% on the month, 41 new paying workspaces", "One miss: a 40-minute alert delay, now fixed", "Victor can introduce two portfolio CTOs"],
 		],
 		[
 			"November payroll approved",
-			"Payroll for Nov 1–15 was approved by Lena; 34 employees are paid on November 20.",
-			["Approved by Lena Fischer", "34 employees", "Paid November 20"],
+			"Payroll for Nov 1–15 was approved by Lena; 28 employees are paid on November 20.",
+			["Approved by Lena Fischer", "28 employees", "Paid November 20"],
 		],
 		[
 			"October cloud usage",
-			"Stratus Cloud billed $312.48 for October to the card on file.",
-			["$312.48 for October", "Already charged"],
+			"Stratus Cloud billed $6,312.48 for October to the card on file.",
+			["$6,312.48 for October", "Already charged"],
+		],
+		[
+			"Completed: mutual NDA",
+			"The mutual NDA with Meridian Hotels is signed by everyone; a copy is attached.",
+			["Signed by both sides", "Copy attached"],
+		],
+		[
+			"Postmortem: Oct 14",
+			"Final postmortem for the Oct 14 notification delay: a certificate rotation the canary did not cover.",
+			["Cause: certificate rotation on the push gateway", "Canary now sends a real push", "Rotation moved to Tuesday mornings"],
+		],
+		[
+			"Offsite recap",
+			"Nia shared notes and photos from the Lisbon offsite; the survey scored 4.7 out of 5.",
+			["Roadmap notes and photos are in the shared folder", "Survey score 4.7 out of 5", "Top request: a longer hack day"],
+		],
+		[
+			"renews in 49 days",
+			"Three domains renew on January 14; auto-renew is on.",
+			["Renewal date January 14", "Card on file ends 4402", "Nothing to do unless something should change"],
 		],
 	],
 	"sales@northwind.example": [
 		[
-			"Demo request: Copperleaf Coffee",
-			"Copperleaf Coffee is replacing espresso machines at 12 locations next spring and wants a demo in early December.",
-			["12 locations, next spring", "Wants to see the S2 and what comes next", "Asks for early December"],
+			"Signed: Sunroom Apps",
+			"Sunroom Apps signed for 18 seats on the Team plan; onboarding is booked for Thursday at 10.",
+			["Signed order form attached", "Starts on the 1st", "Onboarding call Thursday at 10"],
 		],
 		[
-			"Meridian Hotels: breakfast program",
-			"Meridian Hotels sent a pre-RFP questionnaire ahead of its January RFP.",
-			["Covers service SLAs, training and spare parts", "RFP planned for January", "Questionnaire attached"],
+			"Budget opens in January",
+			"Grant & Co liked the demo, but its budget is frozen until January 6; Isla asked for the 30-seat quote in the first week of January.",
+			["Budget frozen until January 6", "Wants a quote for 30 seats", "Write again in the first week of January"],
 		],
 		[
-			"Pricing for 6 boutique hotels",
-			"Lantern Stays asked for pricing on six S2s with a 3-year service plan; Daniel sent the quote.",
-			["Six S2s with the 3-year Care plan", "Installation and barista training included", "They want to budget before year end"],
+			"Demo request: Copperleaf",
+			"Copperleaf is replacing its paging tool across 12 engineering teams next spring and wants a demo in early December.",
+			["12 engineering teams, next spring", "Wants to see on-call scheduling and what comes next", "Asks for early December"],
 		],
 		[
-			"S3 early access",
-			"Rafael Duarte wants to join the S3 early-access list; he has two shops and a roastery.",
-			["Two shops and a roastery", "Offers real-world testing"],
+			"Meridian Hotels: security questionnaire",
+			"Meridian Hotels sent a security questionnaire ahead of its January vendor review.",
+			["Covers data residency, SSO, audit logs and incident response", "Vendor review planned for January", "Questionnaire attached"],
+		],
+		[
+			"Pricing for 60 seats",
+			"Lantern Stays asked for pricing on 60 Team seats with annual billing; Daniel sent the quote.",
+			["60 seats, billed annually", "Onboarding and migration included", "They want to budget before year end"],
+		],
+		[
+			"On-call scheduling early access",
+			"Rafael Duarte wants early access to on-call scheduling; his team runs three rotations in two time zones.",
+			["Three rotations across two time zones", "Offers real-world testing"],
+		],
+		[
+			"How does Carter & Sons",
+			"Ben Carter declined the cold email and asked to be removed; Daniel confirmed he was taken off the list.",
+			["A four-person shop, not a fit", "Asked to be taken off the list", "Daniel removed him the same morning"],
 		],
 	],
 	"support@northwind.example": [
 		[
-			"Grinder making a clicking noise",
-			"Moretti Café's G1 grinder clicks at the finest settings; a reply is drafted but not sent.",
-			["Grinder is 8 months old", "Draft: back the grind off two steps", "Draft: technician to recalibrate this week"],
+			"Status page shows incident times in UTC",
+			"Tidewater Logistics wanted incident times in local time; Aiko pointed Kwame to the time zone setting and it worked.",
+			["Customers are in Ghana, the page showed UTC", "Setting: Status page → Settings → Time zone", "Kwame confirmed it works"],
 		],
 		[
-			"invoice for order NW-30122",
-			"Tidewater Coffee needs the invoice for order NW-30122 resent; it is missing from the portal.",
-			["Two grinders, delivered Nov 4", "Their accountant needs it", "Not yet answered"],
+			"Export of last year's incidents",
+			"Moretti Pay's auditors need last year's incidents; Elif pointed Luca to the CSV export and turned on the monthly export email.",
+			["Incidents → Export gives a CSV for any date range", "Monthly export email turned on", "Luca confirmed it is what the auditors asked for"],
 		],
 		[
-			"Replacement portafilter gasket",
-			"Elena ordered two group-head gaskets (SKU NW-GG58, $9 each) and confirmed the order.",
-			["Can be ordered from Northwind directly", "Aiko added two to a draft order", "Elena replied yes"],
+			"Pausing our plan over the holidays",
+			"Kissa asks whether to pause the plan while its cafés are closed from December 24 to January 3.",
+			["Closed December 24 to January 3", "Yuki needs an answer before the 20th", "Not yet answered"],
 		],
 		[
-			"Return label for damaged milk jugs",
-			"Three of twelve milk jugs arrived dented at Salt & Crumb; Aiko sent a return label and replacements.",
-			["Return label RMA-5521", "Three new jugs ship today", "No need to wait for the return"],
+			"Webhook signature check failing",
+			"Moretti Pay's endpoint rejects about one webhook in five on a signature mismatch; a reply is drafted but not sent.",
+			["Started yesterday, nothing changed on their side", "Draft: keep the check on", "Draft: verify against the raw request body"],
+		],
+		[
+			"Can't find the October invoice",
+			"Tidewater Logistics needs the October invoice resent; it is missing under Billing.",
+			["Workspace \"tidewater\", Team plan, 25 seats", "Their accountant needs it", "Not yet answered"],
+		],
+		[
+			"Custom domain for our status page",
+			"Elena set up a custom domain for the Petrova Labs status page with a CNAME; it is live.",
+			["Custom domains are on every paid plan", "CNAME to pages.northwind.example", "Elena confirmed it works"],
+		],
+		[
+			"Charged twice for November",
+			"Salt & Crumb was charged $290 twice on November 1; Aiko refunded the second charge.",
+			["The second charge was a retry", "Credit note CN-5521", "Refund reaches the card in three to five working days"],
 		],
 		[
 			"Thank you!",
-			"Café Lumen thanks the team: the technician fixed the machine and it is back to 9 bar.",
-			["Machine back to 9 bar", "No reply needed"],
+			"Grant & Co thanks the team: their status page went live the same afternoon.",
+			["Elif ran the onboarding call", "Two customers already subscribed", "No reply needed"],
 		],
 		[
-			"Training video link not working",
-			"The \"Dialing in the S2\" video link was broken; Aiko sent the new one and fixed the welcome email.",
-			["Videos moved last week", "New link: northwind.example/learn/dial-in", "Welcome email corrected"],
+			"Quickstart link in the welcome email",
+			"The quickstart link in the welcome email was broken; Aiko sent the new one and fixed the email.",
+			["Docs moved last week", "New link: northwind.example/docs/quickstart", "Welcome email corrected"],
 		],
 		[
-			"How often should we descale",
-			"Isla Grant asks how often to descale an S2 in a hard-water area at about 300 shots a day.",
-			["Hard-water area", "About 300 shots a day", "Not yet answered"],
+			"How many monitors on the Team plan",
+			"Zoe asks how many monitors the Team plan includes and whether a three-region check counts once.",
+			["About 60 services", "Each checked from three regions", "Not yet answered"],
 		],
 	],
 	"team@northwindlabs.example": [
 		[
-			"Firmware 2.4 release notes",
-			"Tomás shared draft release notes for firmware 2.4; comments are due Friday.",
-			["Smarter boiler warm-up saves about 11 minutes each morning", "Dose-by-weight for the G1", "Quieter pump start"],
+			"Go SDK: name of the incidents client",
+			"Nadia proposed naming the Go SDK client like the Python one; Tomás agreed.",
+			["Options: Incidents() or NewIncidentClient()", "Decision: keep it the same as the Python SDK"],
 		],
 		[
-			"Pressure sensor calibration results",
-			"Batch 11: 198 of 200 pressure sensors are within ±0.05 bar; two outliers come from one reel.",
-			["198/200 within ±0.05 bar", "Both outliers from the same reel", "Nadia flagged it with the supplier"],
+			"Webhooks v2 switch-off",
+			"Tomás plans to switch v2 webhooks off on March 1 and email the 41 workspaces still using them on December 2.",
+			["41 workspaces still send to v2 endpoints", "Switch-off planned for March 1", "Check the list before the December 2 email"],
+		],
+		[
+			"API 4.12 release notes",
+			"Tomás shared draft release notes for API 4.12; comments are due Friday.",
+			["Per-workspace webhook queues", "Idempotency keys on the incidents API", "A Go SDK"],
+		],
+		[
+			"Rate limit on the incidents API",
+			"Quillstack hit a 429 opening incidents from its deploy pipeline and asks how the rate limit is counted.",
+			["60 requests a minute per token in the docs", "Asks whether it is per workspace or per token", "Wants it raised on the Team plan"],
+		],
+		[
+			"Load test results",
+			"Run 11: 198 of 200 windows stayed under 2 seconds from alert to page at 5× volume.",
+			["198/200 windows under 2 seconds", "Both slow windows are during a database failover", "Nadia opened a ticket"],
 		],
 	],
 };
@@ -280,98 +365,115 @@ interface Topic {
 	match: RegExp;
 	answer: string;
 	cite: Pick[];
+	/** Covers many threads, so it is not checked against the mail a question names. */
+	broad?: true;
 }
 
-/** Answers written from the owner's seeded mail. `[n]` points at `cite[n - 1]`. */
+/**
+ * Answers written from the owner's seeded mail. `[n]` points at `cite[n - 1]`.
+ * The first topic that fits a question answers it, so each pattern uses words
+ * that belong to its own thread, and the one broad topic comes last.
+ */
 const TOPICS: Topic[] = [
 	{
-		match: /deadline|due\b|this week|attention|urgent|to.?do|priorit|what.*(need|should).*(do|reply|answer)/i,
+		match: /brightcup|priya|enterprise plan|net.?45|net.?30|payment terms|120 seats/i,
 		answer:
-			"Five things have a date on them. Daniel needs your sign-off on the HostEx booth plan by tomorrow so he can place the power order on Monday [1]. " +
-			"Lena needs the operations section of the board pack by Monday end of day [2]. " +
-			"Kobayashi Steel's burr quote is valid until December 5 [3]. " +
-			"The landlord wants an answer on the lease renewal by December 15 [4]. " +
-			"Brightcup will sign today once you confirm the payment terms [5].",
+			"Brightcup signed an order form for 120 Enterprise seats on an annual term, with SSO and the audit log [1]. " +
+			"You offered onboarding for all six teams on December 9–11 and net-30 with a 2% early-payment discount [2]. " +
+			"Priya accepted the dates. Her finance team asked for net-45, but she will sign today on net-30 with the discount, and she asked for Daniel to send the SSO setup checklist [3].",
 		cite: [
-			["Booth layout for HostEx", "last"],
-			["Board pack draft", "last"],
-			["Revised quote: conical burr", "last"],
-			["Lease renewal: Unit 4B", "first"],
-			["Q4 wholesale order", "last"],
+			["Enterprise plan: Brightcup", 0],
+			["Enterprise plan: Brightcup", 1],
+			["Enterprise plan: Brightcup", "last"],
 		],
 	},
 	{
-		match: /brightcup|priya|wholesale|net.?45|net.?30|payment terms|48 (units|machines)/i,
+		match: /soc ?2|fjord|attestation|audit report|bridge letter/i,
 		answer:
-			"Brightcup Roasters ordered 48 Model S2 machines and 12 grinder bundles for six cafés [1]. " +
-			"You offered a December 9–11 install window and net-30 with a 2% early-payment discount [2]. " +
-			"Priya accepted the dates. Her finance team asked for net-45, but she will sign today on net-30 with the discount, and she asked for Daniel to send the install checklist [3].",
+			"Fjord Assurance finished the SOC 2 Type II attestation for May 1 to October 31 with no exceptions, and the report is attached. You can share it with customers under NDA, and Fjord will issue a bridge letter on request [1].",
+		cite: [["SOC 2 Type II report", "last"]],
+	},
+	{
+		match: /incident timeline|launch (page|plan)|newsletter slot|free tier/i,
+		answer:
+			"Daniel's launch page for Incident Timeline has a hero, three feature blocks, a customer quote and pricing [1]. " +
+			"You decided to launch to Team and Enterprise on Tuesday and open the free tier a week later. Version 3 puts the live demo at the top. Daniel needs a thumbs-up by tomorrow, because he books the newsletter slot on Monday [2].",
 		cite: [
-			["Q4 wholesale order", 0],
-			["Q4 wholesale order", 1],
-			["Q4 wholesale order", "last"],
+			["Launch plan for Incident Timeline", "first"],
+			["Launch plan for Incident Timeline", "last"],
 		],
 	},
 	{
-		match: /fjord|pickup|pick-up|pallet|truck|bill of lading|freight/i,
+		match: /stratus (cloud )?(renewal|contract|commit|offer)|renewal (with|from|of) stratus|committed spend|cloud contract|marcus/i,
 		answer:
-			"Fjord Freight confirmed the pickup for Monday at 7:30 AM at the Newark distribution centre, dock 3. Two trucks are coming for the 14 pallets, and the bill of lading is attached. The driver's name and number follow the evening before [1].",
-		cite: [["Pickup confirmed", "last"]],
+			"Stratus Cloud offered a three-year commitment at 18% off list, against 9% on a one-year term, with $20,000 in credits if you go ahead with the database migration. The current contract ends March 31 and Marcus asked for an answer by December 15 [1]. A reply asking about a two-year term at 15% off is in Drafts and has not been sent.",
+		cite: [["Renewal: Stratus Cloud", "first"]],
 	},
 	{
-		match: /hostex|booth|chicago|trade show|expo/i,
-		answer:
-			"The HostEx booth is a 20×20 corner spot with two demo stations and a meeting area at the back [1]. " +
-			"Version 3 moves the espresso bar to the front and puts the S3 in a display case. Daniel needs a thumbs-up by tomorrow, because he places the power order on Monday [2].",
-		cite: [
-			["Booth layout for HostEx", "first"],
-			["Booth layout for HostEx", "last"],
-		],
-	},
-	{
-		match: /lease|rent\b|landlord|unit 4b|riverside|marcus/i,
-		answer:
-			"Riverside Trade Park offered a three-year renewal on Unit 4B at a 4% increase, with two months rent-free if you go ahead with the mezzanine fit-out. The current lease expires March 31 and Marcus asked for an answer by December 15 [1]. A reply asking about a five-year option at +3% is in Drafts and has not been sent.",
-		cite: [["Lease renewal: Unit 4B", "first"]],
-	},
-	{
-		match: /invoice|ledgerly|owe|bill\b|billing|\bpay(ment)?\b/i,
+		// "The invoice" is this one, unless the question names another sender's.
+		match: /ledgerly|inv-?20418|^(?!.*\b(stratus|october|88213|overdue invoice|final notice|spam|scam|phishing)\b).*\binvoice\b/i,
 		answer:
 			"Ledgerly invoice INV-20418 is for $1,240.00. It will be collected automatically on December 1 from the card ending 4402, so nothing needs doing [1].",
 		cite: [["Invoice INV-20418", "last"]],
 	},
 	{
-		match: /warranty|lumen|oskar|pump|pressure drop|loaner/i,
+		match: /lumen|oskar|missed alerts/i,
 		answer:
-			"Café Lumen's S2 (serial S2-04417) drops from 9 bar to about 6 halfway through every shot [1]. " +
-			"It is under warranty until March. You shipped a replacement pump and booked a technician for Friday, and said you would look for a loaner for the weekend [2]. " +
-			"Oskar replied that a loaner would save them, since Saturday is their busiest day [3].",
+			"Lumen Health's API was down for 40 minutes on Saturday night and the first page reached on-call 40 minutes late [1]. " +
+			"You told Oskar that alert webhooks had queued behind another customer's slow endpoint, that a fix shipped on Sunday, and that a month was credited [2]. " +
+			"Oskar accepted a call and asked for a written postmortem by Friday for their compliance team [3].",
 		cite: [
-			["Warranty claim: Model S2", 0],
-			["Warranty claim: Model S2", 1],
-			["Warranty claim: Model S2", "last"],
+			["Missed alerts during Saturday", 0],
+			["Missed alerts during Saturday", 1],
+			["Missed alerts during Saturday", "last"],
 		],
 	},
 	{
-		match: /burr|kobayashi|hana|quote|supplier price/i,
+		match: /kobayashi|\bhana\b|sms (quote|credits?|pric)|voice alerts/i,
 		answer:
-			"Kobayashi Steel offered $10.72 per conical burr set for a 2,000-unit commitment, down from $11.40. Lead time is eight weeks from deposit and the quote is valid until December 5. Hardness certificates for the new alloy follow this week [1].",
-		cite: [["Revised quote: conical burr", "last"]],
+			"Kobayashi Telecom offered $0.0107 per SMS for a commitment of 2 million credits a year, down from $0.0114. Voice call pricing stays as it is and the quote is valid until December 5. Delivery reports for the new Italian route follow this week [1].",
+		cite: [["Revised quote: SMS and voice", "last"]],
 	},
 	{
-		match: /board|lena|inventory turns|ops section|operations section/i,
+		match: /board (deck|meeting)|product section|runway|net revenue retention/i,
 		answer:
-			"Lena's draft board pack shows revenue up 18% year on year and a 41% gross margin. She needs the operations section from you by Monday end of day: inventory turns, on-time delivery and warranty rate, two slides at most [1].",
-		cite: [["Board pack draft", "last"]],
+			"Lena's draft board deck shows ARR up 18% on the quarter, net revenue retention of 112% and 19 months of runway. She needs the product section from you by Monday end of day: uptime, the Incident Timeline launch and the Q1 roadmap, two slides at most [1].",
+		cite: [["Board deck draft", "last"]],
 	},
 	{
-		match: /meridian|ruth|hotel|breakfast|rfp|grace/i,
+		match: /\bruth\b|abara|grace holt|vendor review/i,
 		answer:
-			"Grace Holt introduced you to Ruth Abara, who leads equipment procurement at Meridian Hotels and is reviewing breakfast-service coffee for 22 properties [1]. " +
-			"Ruth agreed to a call on Tuesday at 2pm and said they aim to issue an RFP in January [2].",
+			"Grace Holt introduced you to Ruth Abara, who leads platform engineering at Meridian Hotels and is reviewing incident tooling for 22 engineering teams [1]. " +
+			"Ruth agreed to a call on Tuesday at 2pm and said they aim to start a vendor review in January [2].",
 		cite: [
 			["Intro: Ruth Abara", "first"],
 			["Intro: Ruth Abara", "last"],
+		],
+	},
+	{
+		match: /offer approval|offer (to|for) jonas|jonas|weber|hiring|senior backend role/i,
+		answer:
+			"Nia wants to make an offer to Jonas Weber for the senior backend role. The panel gave four yes votes and one lean yes, and Tomás wants him on the alert pipeline. The offer is at the top of the band with a March start, and Nia needs your approval by Thursday because his other offer expires on Friday [1].",
+		cite: [["Offer approval: senior backend", "last"]],
+	},
+	{
+		broad: true,
+		// Not a question about an invoice: those have their own answer, or none.
+		match: /^(?!.*\binvoice\b).*(deadline|due\b|this week|attention|urgent|to.?do|priorit|what.*(need|should).*(do|reply|answer))/i,
+		answer:
+			"These have a date on them. Daniel needs your sign-off on the Incident Timeline launch page by tomorrow, so he can book the newsletter slot on Monday [1]. " +
+			"Nia needs your approval by Thursday for the offer to Jonas Weber [2]. " +
+			"Lena needs the product section of the board deck by Monday end of day [3]. " +
+			"Oskar at Lumen Health asked for a written postmortem by Friday [4]. " +
+			"Kobayashi Telecom's SMS quote is valid until December 5 [5]. " +
+			"Brightcup will sign today once you confirm the payment terms [6].",
+		cite: [
+			["Launch plan for Incident Timeline", "last"],
+			["Offer approval: senior backend", "last"],
+			["Board deck draft", "last"],
+			["Missed alerts during Saturday", "last"],
+			["Revised quote: SMS and voice", "last"],
+			["Enterprise plan: Brightcup", "last"],
 		],
 	},
 ];
@@ -447,19 +549,34 @@ export function keywordHits(store: DemoStore, text: string, mailbox: string | un
 		.slice(0, limit);
 }
 
-/** The stored answer a question matches, with the messages it cites, if they are all still there. */
+/**
+ * The stored answer for a question, with the messages it cites. A topic is
+ * passed over when a visitor has deleted mail it rests on, or when the question
+ * names other mail more closely than the mail the topic cites.
+ */
 function topicHits(store: DemoStore, question: string, mailbox: string | undefined) {
 	const owner = store.owner.toLowerCase();
 	// The stored answers are about the owner's mail.
 	if (mailbox && mailbox.toLowerCase() !== owner) return null;
-	const topic = TOPICS.find((t) => t.match.test(question));
-	if (!topic) return null;
-	const hits = topic.cite.map(([subject, which]) => {
-		const found = store.bySubject(subject).filter((h) => h.mailboxId.toLowerCase() === owner && h.email.folder_id !== "draft");
-		return which === "first" ? found[0] : which === "last" ? found[found.length - 1] : found[which];
-	});
-	// A visitor may have deleted the mail an answer rests on: then there is no stored answer.
-	return hits.every(Boolean) ? { topic, hits: hits as { mailboxId: string; email: Row }[] } : null;
+	const threadOf = (e: Row) => String(e.thread_id ?? e.id);
+	let named: ReturnType<typeof keywordHits> | undefined;
+	for (const topic of TOPICS) {
+		if (!topic.match.test(question)) continue;
+		const found = topic.cite.map(([subject, which]) => {
+			const list = store.bySubject(subject).filter((h) => h.mailboxId.toLowerCase() === owner && h.email.folder_id !== "draft");
+			return which === "first" ? list[0] : which === "last" ? list[list.length - 1] : list[which];
+		});
+		if (!found.every(Boolean)) continue;
+		const hits = found as { mailboxId: string; email: Row }[];
+		if (!topic.broad) {
+			named ??= keywordHits(store, question, mailbox, 10_000);
+			const cited = new Set(hits.map((h) => threadOf(h.email)));
+			const best = (mine: boolean) => Math.max(0, ...named!.filter((h) => cited.has(threadOf(h.email)) === mine).map((h) => h.score));
+			if (best(false) > best(true)) continue;
+		}
+		return { topic, hits };
+	}
+	return null;
 }
 
 export function ask(store: DemoStore, body: { question?: unknown; mailbox?: unknown }) {
@@ -474,7 +591,7 @@ export function ask(store: DemoStore, body: { question?: unknown; mailbox?: unkn
 	if (hits.length === 0) {
 		return respond(
 			question,
-			"Nothing in this mail answers that. The demo answers from the mail it ships with, so try asking about the Brightcup order, the HostEx booth, the Fjord pickup or the lease renewal.",
+			"Nothing in this mail answers that. The demo answers from the mail it ships with, so try asking about the Brightcup contract, the Incident Timeline launch, the SOC 2 report or the Stratus renewal.",
 			[],
 			mailboxes,
 			false,
@@ -525,9 +642,9 @@ const STORED_CONVERSATION: AgentMessage[] = [
 				type: "text",
 				text:
 					"Three things:\n\n" +
-					"1. **Brightcup, 48 units**: Priya will sign today on net-30 with 2% early-pay if net-45 is a no.\n" +
-					"2. **HostEx booth**: Daniel needs your OK on plan v3 by **tomorrow**.\n" +
-					"3. **Board pack**: two ops slides for Lena by **Monday**.\n\n" +
+					"1. **Brightcup, 120 seats**: Priya will sign today on net-30 with 2% early-pay if net-45 is a no.\n" +
+					"2. **Incident Timeline launch**: Daniel needs your OK on page v3 by **tomorrow**.\n" +
+					"3. **Offer for Jonas Weber**: Nia needs your approval by **Thursday**.\n\n" +
 					"Draft the reply to Priya?",
 			},
 		],
@@ -538,14 +655,14 @@ const STORED_CONVERSATION: AgentMessage[] = [
 		role: "assistant",
 		parts: [
 			{ type: "step-start" },
-			{ type: "tool-get_thread", toolCallId: "call_demo_3", state: "output-available", input: { subject: "Q4 wholesale order" }, output: { messages: 3 } },
+			{ type: "tool-get_thread", toolCallId: "call_demo_3", state: "output-available", input: { subject: "Enterprise plan: Brightcup" }, output: { messages: 3 } },
 			{ type: "tool-draft_reply", toolCallId: "call_demo_4", state: "output-available", input: { to: "priya@brightcup.example" }, output: { draftId: AGENT_DRAFT_ID, status: "draft_saved" } },
 			{ type: "step-start" },
 			{
 				type: "text",
 				text:
 					"Saved to **Drafts**. Nothing was sent.\n\n" +
-					"> Hi Priya, Dec 9–11 is confirmed. We'll stay at net-30, with 2% off if paid within 10 days. Daniel will send the install checklist today.",
+					"> Hi Priya, Dec 9–11 is confirmed. We'll stay at net-30, with 2% off if paid within 10 days. Daniel will send the SSO setup checklist today.",
 			},
 		],
 	},
@@ -553,14 +670,14 @@ const STORED_CONVERSATION: AgentMessage[] = [
 
 /** Put the draft the stored conversation refers to into the owner's Drafts. */
 export function seedAgentDraft(store: DemoStore): void {
-	const thread = store.bySubject("Q4 wholesale order").filter((h) => h.mailboxId === store.owner && h.email.folder_id === "inbox");
+	const thread = store.bySubject("Enterprise plan: Brightcup").filter((h) => h.mailboxId === store.owner && h.email.folder_id === "inbox");
 	const last = thread[thread.length - 1]?.email;
 	if (!last) return;
 	store.saveDraft(store.owner, {
 		draft_id: AGENT_DRAFT_ID,
 		to: last.sender,
 		subject: `Re: ${String(last.subject ?? "").replace(/^re:\s*/i, "")}`,
-		body: "<p>Hi Priya,</p><p>Dec 9–11 is confirmed. We'll stay at net-30, with 2% off if paid within 10 days. Daniel will send the install checklist today.</p><p>Maya</p>",
+		body: "<p>Hi Priya,</p><p>Dec 9–11 is confirmed. We'll stay at net-30, with 2% off if paid within 10 days. Daniel will send the SSO setup checklist today.</p><p>Maya</p>",
 		in_reply_to: last.message_id ?? null,
 		thread_id: last.thread_id ?? last.id,
 	});

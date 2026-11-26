@@ -6,8 +6,8 @@ import {
   ArrowLeft,
   GripVertical,
   ListOrdered,
+  Info,
   Plus,
-  Sparkles,
   Trash2,
   Loader2,
 } from "lucide-react";
@@ -234,7 +234,7 @@ export default function SequenceEditorPage() {
           {/* --- Details card --- */}
           <section className="rounded-[8px] bg-card p-5 ring-1 ring-border">
             <div className="flex items-start gap-2 mb-4">
-              <Sparkles size={14} className="mt-0.5 text-text-tertiary" />
+              <Info size={14} className="mt-0.5 text-text-tertiary" />
               <div>
                 <h2 className="text-sm font-semibold text-text-primary">Details</h2>
                 <p className="text-xs font-light text-text-secondary">

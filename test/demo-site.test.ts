@@ -133,7 +133,7 @@ describe("demo mail", () => {
 
 	it("searches one mailbox and all of them", () => {
 		const d = start();
-		expect(d.get(`${mb()}/search?query=pallets`).emails.map((e: Row) => e.subject)).toEqual([expect.stringMatching(/Pickup confirmed/)]);
+		expect(d.get(`${mb()}/search?query=attestation`).emails.map((e: Row) => e.subject)).toEqual([expect.stringMatching(/SOC 2 Type II/)]);
 		expect(d.get(`${mb()}/search?query=${encodeURIComponent("from:priya is:unread")}`).totalCount).toBe(1);
 		// A question matches no message word for word; the related mail is listed instead.
 		const question = d.get(`${mb()}/search?query=${encodeURIComponent("What did Brightcup say about payment terms?")}`);
@@ -141,9 +141,112 @@ describe("demo mail", () => {
 		expect(question.emails.map((e: Row) => e.subject)).toEqual([expect.stringMatching(/Brightcup/), expect.stringMatching(/Brightcup/), expect.stringMatching(/Brightcup/)]);
 		expect(d.get(`${mb()}/search?query=${encodeURIComponent("from:nobody zzz")}`).totalCount).toBe(0);
 		expect(d.get(`${mb()}/search?query=qqqqzzzz`).totalCount).toBe(0);
-		const all = d.get("/api/v1/search?q=descale");
+		const all = d.get("/api/v1/search?q=webhook");
 		expect(new Set(all.results.map((r: Row) => r.mailboxId)).size).toBeGreaterThan(0);
 		expect(all.results[0]).toHaveProperty("snippet");
+	});
+
+	it("has mail in every folder, with what each folder records", () => {
+		const d = start();
+		const counts = Object.fromEntries(d.get(`${mb()}/folders`).map((f: Row) => [f.id, f.totalCount]));
+		for (const id of ["inbox", "sent", "draft", "scheduled", "archive", "snoozed", "screener", "spam", "trash", "receipts"]) {
+			expect(counts[id], id).toBeGreaterThan(0);
+		}
+		// Every mailbox has something in Spam, for the reader's "why is this here".
+		for (const id of d.store.order) {
+			const spam = d.get(`${mb(id)}/emails?folder=spam&limit=50`).emails as Row[];
+			expect(spam.length, id).toBeGreaterThan(0);
+			for (const e of spam) {
+				expect(e.spam_score, e.subject).toBeGreaterThanOrEqual(5);
+				expect(JSON.parse(e.spam_signals)[0], e.subject).toMatchObject({ id: expect.any(String), label: expect.any(String) });
+			}
+		}
+		for (const e of d.get(`${mb()}/emails?folder=trash&limit=50`).emails as Row[]) {
+			expect(e.trashed_from, e.subject).toBe("inbox");
+			expect(Date.parse(e.trashed_at), e.subject).toBeLessThan(NOW);
+		}
+		for (const e of d.get(`${mb()}/emails?folder=snoozed&limit=50`).emails as Row[]) {
+			expect(Date.parse(e.snoozed_until), e.subject).toBeGreaterThan(NOW);
+			expect(e.snooze_return_folder).toBe("inbox");
+		}
+		// Spam and Trash never show a summary.
+		expect(d.get(`${mb()}/emails?folder=spam&threaded=true`).emails.filter((e: Row) => e.summary_line)).toEqual([]);
+	});
+
+	it("has no empty Archive, Snoozed, Spam or Trash in any mailbox", () => {
+		const d = start();
+		for (const id of d.store.order) {
+			const counts = Object.fromEntries(d.get(`${mb(id)}/folders`).map((f: Row) => [f.id, f.totalCount]));
+			for (const folder of ["archive", "snoozed", "spam", "trash"]) expect(counts[folder], `${id} ${folder}`).toBeGreaterThan(0);
+			for (const e of d.get(`${mb(id)}/emails?folder=snoozed&limit=50`).emails as Row[]) {
+				expect(Date.parse(e.snoozed_until), e.subject).toBeGreaterThan(NOW);
+			}
+			// Archived and snoozed conversations carry a summary, like the inbox.
+			for (const folder of ["archive", "snoozed"]) {
+				const missing = (d.get(`${mb(id)}/emails?folder=${folder}&threaded=true&limit=50`).emails as Row[]).filter((e) => !e.summary_line).map((e) => e.subject);
+				expect(missing, `${id} ${folder}`).toEqual([]);
+			}
+		}
+	});
+
+	it("lists the Screener and applies Yes and No for the visit", () => {
+		const d = start();
+		expect(d.get(mb()).settings.screener).toBe("unknown_only");
+		const { senders } = d.get(`${mb()}/screener`);
+		expect(senders.length).toBeGreaterThan(3);
+		expect(senders.every((s: Row) => /^Looks like /.test(s.verdict))).toBe(true);
+		expect(senders.map((s: Row) => s.latest_date)).toEqual([...senders.map((s: Row) => s.latest_date)].sort().reverse());
+		const twice = senders.find((s: Row) => s.count === 2);
+		const inboxBefore = inbox(d).totalCount;
+
+		const yes = d.call("POST", `${mb()}/screener/${encodeURIComponent(senders[0].sender)}`, { decision: "allow" });
+		expect(yes.body).toMatchObject({ decision: "allow", folder: "inbox", moved: senders[0].count, listed: true });
+		expect(inbox(d).totalCount).toBe(inboxBefore + 1);
+		expect(d.get(`${mb()}/allowed-senders`).map((r: Row) => r.pattern)).toContain(senders[0].sender);
+
+		const no = d.call("POST", `${mb()}/screener/${encodeURIComponent(twice.sender)}`, { decision: "block", target: "trash" });
+		expect(no.body).toMatchObject({ decision: "block", folder: "trash", moved: 2 });
+		expect(d.get(`${mb()}/emails/${twice.latest_id}`)).toMatchObject({ folder_id: "trash", trashed_from: "screener" });
+		expect(d.get(`${mb()}/blocked-senders`).map((r: Row) => r.pattern)).toContain(twice.sender);
+		expect(d.get(`${mb()}/screener`).senders).toHaveLength(senders.length - 2);
+		expect(d.call("POST", `${mb()}/screener/not-an-address`, { decision: "allow" }).status).toBe(400);
+	});
+
+	it("keeps a domain-wide allow on a Screener No, and clears a domain-wide block on a Yes", () => {
+		const d = start();
+		const [first, second] = d.get(`${mb()}/screener`).senders as Row[];
+		const domainOf = (address: string) => address.slice(address.lastIndexOf("@"));
+		const patterns = (list: string) => (d.get(`${mb()}/${list}`) as Row[]).map((r) => r.pattern);
+
+		// One No about one sender is narrower than a rule for the whole domain.
+		d.call("POST", `${mb()}/allowed-senders`, { pattern: domainOf(first.sender) });
+		d.call("POST", `${mb()}/allowed-senders`, { pattern: first.sender });
+		expect(patterns("allowed-senders")).toEqual(expect.arrayContaining([domainOf(first.sender), first.sender]));
+		d.call("POST", `${mb()}/screener/${encodeURIComponent(first.sender)}`, { decision: "block" });
+		expect(patterns("allowed-senders")).toContain(domainOf(first.sender));
+		expect(patterns("allowed-senders")).not.toContain(first.sender);
+
+		// A Yes clears a block on the address and on its domain.
+		d.call("POST", `${mb()}/blocked-senders`, { pattern: domainOf(second.sender) });
+		expect(patterns("blocked-senders")).toContain(domainOf(second.sender));
+		d.call("POST", `${mb()}/screener/${encodeURIComponent(second.sender)}`, { decision: "allow" });
+		expect(patterns("blocked-senders")).not.toContain(domainOf(second.sender));
+	});
+
+	it("ships templates and sequences a software company would run", () => {
+		const d = start();
+		const templates = d.get("/api/v1/templates") as Row[];
+		expect(templates.map((t) => t.slug)).toEqual(expect.arrayContaining(["signup-welcome", "signup-trial-ending", "cold-intro", "cold-breakup", "demo-thanks", "winback-feedback"]));
+		const sequences = d.get("/api/v1/sequences") as Row[];
+		expect(sequences.map((s) => s.name)).toEqual(expect.arrayContaining(["New signup onboarding", "Cold outreach: engineering leaders", "Demo follow-up", "Trial ended: win-back"]));
+		// A step's delay is the wait after the step before it. The onboarding
+		// emails must land inside the 14-day trial their text describes.
+		const onboarding = sequences.find((s) => s.name === "New signup onboarding")!;
+		let hours = 0;
+		const days = (onboarding.steps as Row[]).map((step) => (hours += step.delayHours) / 24);
+		expect(days).toEqual([0, 1, 3, 7, 11]);
+		const cold = sequences.find((s) => s.name.startsWith("Cold outreach"))!;
+		expect(d.get(`/api/v1/sequences/${cold.id}/enrollments`).length ?? d.get(`/api/v1/sequences/${cold.id}/enrollments`).enrollments.length).toBeGreaterThan(3);
 	});
 
 	it("lists the unified inbox with unread counts per mailbox", () => {
@@ -285,12 +388,81 @@ describe("demo AI", () => {
 		const marks = [...res.answer.matchAll(/\[(\d+)\]/g)].map((m) => Number(m[1]));
 		expect(Math.max(...marks)).toBeLessThanOrEqual(res.citations.length);
 
-		const other = d.call("POST", "/api/v1/ask", { question: "descale schedule hard water", mailbox: "support@northwind.example" }).body as Row;
+		const other = d.call("POST", "/api/v1/ask", { question: "custom domain status page", mailbox: "support@northwind.example" }).body as Row;
 		expect(other.citations.length).toBeGreaterThan(0);
 		expect(other.citations.every((c: Row) => c.mailbox === "support@northwind.example")).toBe(true);
 
 		const none = d.call("POST", "/api/v1/ask", { question: "zzzz qqqq" }).body as Row;
 		expect(none).toMatchObject({ insufficient: true, citations: [] });
+
+		// A question gets its own thread's answer, not a neighbouring topic's.
+		const topics: [string, RegExp][] = [
+			["How much are SMS credits from Kobayashi?", /SMS and voice alerts/],
+			["What happened in the Lumen Health outage?", /Missed alerts/],
+			["Is the SOC 2 report ready?", /SOC 2/],
+			["When does the Stratus renewal need an answer?", /Stratus/],
+		];
+		for (const [question, subject] of topics) {
+			const got = d.call("POST", "/api/v1/ask", { question }).body as Row;
+			expect(got.citations.length, question).toBeGreaterThan(0);
+			expect(got.citations.every((c: Row) => subject.test(c.subject)), question).toBe(true);
+		}
+	});
+
+	it("does not give a stored answer to a question about other mail", () => {
+		const d = start();
+		// Each question shares a word with a stored topic but is about another message.
+		const others: [string, RegExp][] = [
+			["How much was the Stratus cloud usage in October?", /October cloud usage/],
+			["When do the domains come up for renewal?", /renews in 49 days/],
+			["What did the Reliability Brief say about outages?", /Reliability Brief/],
+			["Is the mutual NDA with Meridian signed?", /mutual NDA/],
+			["What did Victor offer in the investor update?", /October investor update/],
+			["What did Nia say about the offsite?", /Offsite recap/],
+			// One word of a stored topic does not outweigh the mail the question names.
+			["What did Nia say about hiring at the offsite?", /Offsite recap/],
+			["What did the offsite recap say about the board meeting?", /Offsite recap/],
+		];
+		for (const [question, subject] of others) {
+			const got = d.call("POST", "/api/v1/ask", { question }).body as Row;
+			expect(got.semantic, question).toBe(false);
+			expect(got.citations.some((c: Row) => subject.test(c.subject)), `${question} -> ${got.citations.map((c: Row) => c.subject).join(" / ")}`).toBe(true);
+		}
+		// These words are in several threads, so no single stored answer claims them.
+		const noStoredAnswer = [
+			"How much did ARR grow in October?",
+			"When does on-call scheduling launch?",
+			// Invoices from other senders, including the fake one in Spam.
+			"Is the Stratus invoice paid?",
+			"Is the overdue invoice real?",
+			"Is the overdue invoice due this week?",
+			"Who sent the phishing invoice?",
+			"Is the invoice in spam a scam?",
+		];
+		for (const question of noStoredAnswer) {
+			expect((d.call("POST", "/api/v1/ask", { question }).body as Row).semantic, question).toBe(false);
+		}
+		// The questions the stored answers are for still get them.
+		const stored: [string, RegExp][] = [
+			["What needs my attention this week?", /Launch plan/],
+			["When does Incident Timeline launch?", /Launch plan/],
+			["What is in the board deck?", /Board deck/],
+			["Who is Ruth Abara?", /Intro: Ruth Abara/],
+			["Should we make the offer to Jonas?", /Offer approval/],
+			["Is the Ledgerly invoice paid?", /INV-20418/],
+			["When is the invoice due?", /INV-20418/],
+			["Do I need to pay the invoice this week?", /INV-20418/],
+			["Is the invoice overdue?", /INV-20418/],
+			["Is our invoice overdue this week?", /INV-20418/],
+			["What is overdue?", /Launch plan/],
+			["Are we hiring?", /Offer approval/],
+			["What did Marcus offer for the Stratus renewal?", /Renewal: Stratus/],
+		];
+		for (const [question, subject] of stored) {
+			const got = d.call("POST", "/api/v1/ask", { question }).body as Row;
+			expect(got.semantic, question).toBe(true);
+			expect(subject.test(got.citations[0].subject), question).toBe(true);
+		}
 	});
 
 	it("opens the agent panel with a stored conversation whose draft exists", () => {

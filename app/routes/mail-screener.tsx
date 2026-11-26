@@ -8,7 +8,8 @@
  */
 
 import { useParams, Link } from "react-router";
-import { Check, ChevronDown, Settings2, Sparkles, UserCheck, X } from "lucide-react";
+import { Check, ChevronDown, Settings2, UserCheck, X } from "lucide-react";
+import { VerdictIcon } from "~/components/ai-icons";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -133,7 +134,7 @@ export default function MailScreenerRoute() {
 											</span>
 											{s.verdict && (
 												<span className="mt-0.5 inline-flex w-fit items-center gap-1 rounded-full bg-bg-muted px-2 py-0.5 text-[11px] text-text-secondary">
-													<Sparkles size={11} aria-hidden />
+													<VerdictIcon size={12} aria-hidden />
 													{s.verdict}
 												</span>
 											)}

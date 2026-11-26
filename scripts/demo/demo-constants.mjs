@@ -2,9 +2,9 @@
 // domains and people are fictional; `.example` is reserved by RFC 2606.
 
 export const DEMO_ZONES = [
-	{ domain: "northwind.example", name: "Northwind Supply Co." },
+	{ domain: "northwind.example", name: "Northwind" },
 	{ domain: "northwindlabs.example", name: "Northwind Labs" },
-	{ domain: "harborline.example", name: "Harborline Goods" },
+	{ domain: "harborline.example", name: "Harborline" },
 ];
 
 // Local-only values for the throwaway demo instance. Not secrets.

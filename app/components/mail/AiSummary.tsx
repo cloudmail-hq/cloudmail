@@ -7,7 +7,8 @@
  */
 
 import { useEffect, useId, useState } from "react";
-import { ChevronDown, Loader2, RefreshCw, Sparkles } from "lucide-react";
+import { ChevronDown, Loader2, RefreshCw } from "lucide-react";
+import { SummaryIcon } from "~/components/ai-icons";
 import { cn } from "~/lib/utils";
 import { ApiError } from "~/services/api";
 import {
@@ -20,10 +21,10 @@ import {
 /** The "this was written by AI" marker. Decorative to sighted users; named for screen readers. */
 export function AiMark({ className }: { className?: string }) {
 	return (
-		<Sparkles
-			size={11}
-			strokeWidth={2}
-			className={cn("inline-block shrink-0 text-accent", className)}
+		<SummaryIcon
+			size={12}
+			strokeWidth={2.25}
+			className={cn("inline-block shrink-0 text-ai", className)}
 			aria-label="AI summary"
 			role="img"
 		/>
@@ -51,7 +52,7 @@ function generateError(err: unknown): string {
 }
 
 /**
- * The summary card at the top of an open message or thread: a sparkle, three
+ * The summary card at the top of an open message or thread: its icon, three
  * bullets covering the conversation so far, and an "AI-generated" note.
  *
  * - Collapsible; the choice is remembered per device, like the theme.
@@ -128,7 +129,7 @@ export function ThreadSummaryPanel({
 					{pending ? (
 						<Loader2 size={13} className="animate-spin text-accent" aria-hidden />
 					) : (
-						<Sparkles size={13} className="text-accent" aria-hidden />
+						<SummaryIcon size={13} className="text-ai" aria-hidden />
 					)}
 					{pending ? "Summarizing…" : "Summarize"}
 				</button>
@@ -162,7 +163,7 @@ export function ThreadSummaryPanel({
 							aria-controls={bodyId}
 							className="-ml-1.5 inline-flex min-h-8 items-center gap-1.5 rounded-[6px] px-1.5 text-[13px] font-semibold text-text-primary hover:bg-bg-muted touch:min-h-11"
 						>
-							<Sparkles size={14} className="text-ai" aria-hidden />
+							<SummaryIcon size={14} className="text-ai" aria-hidden />
 							Summary
 							<ChevronDown
 								size={14}

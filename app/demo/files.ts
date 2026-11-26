@@ -107,15 +107,15 @@ export function makePdf(title: string): Uint8Array {
 export function makeCsv(name: string): Uint8Array {
 	if (name.includes("nps")) {
 		const rows = ["respondent,company,score,comment"];
-		const cos = ["Brightcup Roasters", "Café Lumen", "Morning Owl", "Tidewater Coffee", "Salt & Crumb", "Lantern Stays", "Moretti Café"];
-		const comments = ["Fast technician visit", "Great descaling guide", "Delivery window too wide", "Love the S2", ""];
+		const cos = ["Brightcup", "Lumen Health", "Morning Owl Games", "Tidewater Logistics", "Salt & Crumb", "Lantern Stays", "Moretti Pay"];
+		const comments = ["Fast support replies", "On-call schedules are great", "SMS alerts arrive late", "Love the status page", ""];
 		for (let i = 0; i < 60; i++) rows.push(`${1000 + i},${cos[i % cos.length]},${[10, 9, 9, 8, 10, 7, 6, 9, 10, 4][i % 10]},"${comments[i % 5]}"`);
 		return encoder.encode(rows.join("\n"));
 	}
-	const rows = ["sensor_id,reference_bar,measured_bar,delta"];
+	const rows = ["window,alerts,p50_ms,p99_ms"];
 	for (let i = 0; i < 200; i++) {
-		const d = ((i * 37) % 9) / 100 - 0.04;
-		rows.push(`PS-11-${String(i).padStart(3, "0")},9.00,${(9 + d).toFixed(3)},${d.toFixed(3)}`);
+		const slow = i === 71 || i === 72;
+		rows.push(`${String(i).padStart(3, "0")},${4800 + ((i * 37) % 400)},${310 + ((i * 13) % 90)},${slow ? 2600 + i : 1100 + ((i * 53) % 700)}`);
 	}
 	return encoder.encode(rows.join("\n"));
 }

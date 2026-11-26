@@ -63,14 +63,14 @@ export async function run(h) {
 	for (const dark of [false, true]) {
 		await shot(dark ? "inbox-dark" : "inbox-light", { dark }, async (page) => {
 			await goto(page, `/mail/${enc(MAYA)}/inbox`, 1200);
-			await openThread(page, "Q4 wholesale order");
+			await openThread(page, "Enterprise plan: Brightcup");
 		});
 	}
 
 	// ── A conversation, reading pane focused
 	await shot("thread", {}, async (page) => {
 		await goto(page, `/mail/${enc(MAYA)}/inbox`, 800);
-		await openThread(page, "Booth layout for HostEx");
+		await openThread(page, "Launch plan for Incident Timeline");
 	});
 
 	// ── Composer
@@ -82,14 +82,14 @@ export async function run(h) {
 		await to.click();
 		await to.fill("ruth.abara@meridianhotels.example");
 		await page.keyboard.press("Enter");
-		await page.locator("#compose-subject").fill("Breakfast service proposal for Meridian Hotels");
+		await page.locator("#compose-subject").fill("Pilot proposal for Meridian Hotels");
 		await page.evaluate(() => document.querySelectorAll("[contenteditable], input, textarea").forEach((el) => (el.spellcheck = false)));
 		const editor = page.locator('[contenteditable="true"]').first();
 		await editor.click();
 		// Type above the signature the composer inserts.
 		await page.keyboard.press("Control+Home");
 		await page.keyboard.type(
-			"Hi Ruth,\n\nThanks again for Tuesday's call. As promised, here is a short proposal for breakfast service across your 22 properties: two S2 machines per hotel, on-site barista training, and next-day technician cover.\n\nHappy to walk your team through it next week.",
+			"Hi Ruth,\n\nThanks again for Tuesday's call. As promised, here is a short proposal for a pilot across your 22 engineering teams: two teams on Northwind for two weeks, on-call set up with you, and your current tool left running alongside.\n\nHappy to walk your team through it next week.",
 			{ delay: 0 },
 		);
 		// Let autosave run, so the footer reads as saved.
@@ -105,7 +105,7 @@ export async function run(h) {
 	await shot("agent", {}, async (page, ctx) => {
 		await stubAgentHistory(ctx);
 		await goto(page, `/mail/${enc(MAYA)}/inbox`, 800);
-		await openThread(page, "Q4 wholesale order");
+		await openThread(page, "Enterprise plan: Brightcup");
 		await page.getByRole("button", { name: "AI agent" }).first().click();
 		await page.getByRole("log", { name: "Agent conversation" }).waitFor({ timeout: 20000 });
 		await page.waitForTimeout(1500);
@@ -114,14 +114,14 @@ export async function run(h) {
 	// ── Sends waiting for approval
 	await shot("approvals", {}, async (page) => {
 		await goto(page, `/mail/${enc(SALES)}/approvals`, 1500);
-		await page.getByText("Your Care plan renews on December 1").first().click();
+		await page.getByText("Your annual plan renews on December 1").first().click();
 		await page.waitForTimeout(1500);
 	});
 
 	// ── Sequences: the detail of the onboarding sequence
 	await shot("sequences", {}, async (page) => {
 		await goto(page, "/sequences", 800);
-		await page.getByText("New café onboarding").first().click();
+		await page.getByText("New signup onboarding").first().click();
 		await page.waitForTimeout(1500);
 		await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
 	});
@@ -162,6 +162,6 @@ export async function run(h) {
 	});
 	await shot("mobile-thread", { viewport: PHONE, mobile: true }, async (page) => {
 		await goto(page, `/mail/${enc(MAYA)}/inbox`, 1000);
-		await openThread(page, "Q4 wholesale order");
+		await openThread(page, "Enterprise plan: Brightcup");
 	});
 }

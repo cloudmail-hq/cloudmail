@@ -11,7 +11,6 @@ import {
   Moon,
   Settings as SettingsIcon,
   ShieldCheck,
-  Sparkles,
   Sun,
   User,
 } from "lucide-react";
@@ -22,6 +21,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { AgentIcon } from "~/components/ai-icons";
 import { AppSectionNav } from "~/components/AppNav";
 import { BrandMark } from "~/components/ui/brand-mark";
 import GlobalSearch from "~/components/GlobalSearch";
@@ -224,7 +224,7 @@ export default function TopNav({
             title="AI agent"
             className={cn(ICON_BUTTON, agentOpen && "bg-accent-subtle text-accent-subtle-fg hover:bg-accent-subtle")}
           >
-            <Sparkles className="h-4 w-4 touch:h-5 touch:w-5" aria-hidden />
+            <AgentIcon className="h-4 w-4 touch:h-5 touch:w-5" aria-hidden />
           </button>
 
           <ThemeToggleButton className={cn(ICON_BUTTON, "hidden md:flex")} />

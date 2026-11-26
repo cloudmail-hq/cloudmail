@@ -4,8 +4,9 @@ Scripts that build a local, offline cloudmail instance full of believable but
 entirely fictional mail, and screenshot it for the website, README and launch
 posts. They add nothing to the app and change none of its behaviour.
 
-Everything is invented: Northwind Supply Co. (northwind.example), Northwind Labs
-(northwindlabs.example) and Harborline Goods (harborline.example), their staff,
+Everything is invented: Northwind (northwind.example), a software company that
+sells status pages and incident alerts, Northwind Labs (northwindlabs.example)
+and Harborline (harborline.example), their staff,
 customers and suppliers. Every address is under the reserved `.example` TLD
 (RFC 2606). Nothing is copied from real mail.
 

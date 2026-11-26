@@ -14,7 +14,8 @@
  */
 
 import { useEffect, useId, useRef, useState } from "react";
-import { Search, SlidersHorizontal, Sparkles, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
+import { AskIcon } from "~/components/ai-icons";
 import { looksLikeQuestion, questionText } from "shared/semantic";
 import { cn } from "~/lib/utils";
 import { useModKeyLabel } from "~/hooks/useModKeyLabel";
@@ -392,7 +393,7 @@ export default function MailSearchBar({
 						}}
 						className="flex w-full min-w-0 items-center gap-2 rounded-[6px] px-2 py-1.5 text-left text-[13px] text-text-primary hover:bg-bg-muted focus:bg-bg-muted focus:outline-none touch:min-h-11"
 					>
-						<Sparkles size={13} className="shrink-0 text-accent" aria-hidden />
+						<AskIcon size={14} className="shrink-0 text-accent" aria-hidden />
 						<span className="shrink-0 font-semibold">Ask:</span>
 						<span className="min-w-0 truncate">{questionText(value)}</span>
 					</button>

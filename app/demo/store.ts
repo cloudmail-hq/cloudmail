@@ -761,6 +761,69 @@ export class DemoStore {
 		return this.box(mailboxId).extra[key];
 	}
 
+	/** Senders waiting in the Screener, newest first, one row each. */
+	screenerSenders(mailboxId: string): Row[] {
+		const box = this.box(mailboxId);
+		// The AI's guess at each sender was recorded with the snapshot.
+		const recorded = new Map<string, Row>((box.extra.screener?.senders ?? []).map((s: Row) => [lower(s.sender), s]));
+		const bySender = new Map<string, Row[]>();
+		for (const e of box.emails.values()) {
+			if (e.folder_id !== "screener") continue;
+			const key = lower(e.sender);
+			bySender.set(key, [...(bySender.get(key) ?? []), e]);
+		}
+		return [...bySender.entries()]
+			.map(([sender, list]) => {
+				const latest = [...list].sort(byDateDesc)[0];
+				const was = recorded.get(sender);
+				return {
+					sender,
+					sender_name: latest.sender_name ?? null,
+					count: list.length,
+					unread: list.filter((e) => !e.read).length,
+					latest_date: latest.date,
+					latest_subject: latest.subject ?? null,
+					latest_id: latest.id,
+					sender_kind: was?.sender_kind ?? null,
+					sender_confidence: was?.sender_confidence ?? null,
+					verdict: was?.verdict ?? null,
+				};
+			})
+			.sort((a, b) => (a.latest_date < b.latest_date ? 1 : -1));
+	}
+
+	/**
+	 * Yes or No for one sender. Yes moves their waiting mail to the Inbox and
+	 * allows them; No moves it to Spam or Trash and blocks them.
+	 */
+	screen(mailboxId: string, senderRaw: string, decision: "allow" | "block", target: "spam" | "trash" = "spam"): Row {
+		const box = this.box(mailboxId);
+		const sender = lower(senderRaw).trim();
+		if (!sender.includes("@")) throw new DemoError(400, "Not an email address");
+		const folder = decision === "allow" ? "inbox" : target;
+		let moved = 0;
+		for (const e of box.emails.values()) {
+			if (e.folder_id !== "screener" || lower(e.sender) !== sender) continue;
+			if (folder === "trash") this.toTrash(e);
+			else e.folder_id = folder;
+			moved += 1;
+		}
+		const key = decision === "allow" ? "allowed-senders" : "blocked-senders";
+		const other = decision === "allow" ? "blocked-senders" : "allowed-senders";
+		const list: Row[] = Array.isArray(box.extra[key]) ? box.extra[key] : [];
+		const listed = !list.some((r) => lower(r.pattern) === sender);
+		if (listed) list.push({ id: demoId(key.slice(0, 3)), pattern: sender, reason: `Screener: ${decision === "allow" ? "yes" : "no"}`, created_at: this.now() });
+		box.extra[key] = list;
+		// Like the app: a Yes clears a block on the address or on its whole domain; a No
+		// removes only the exact allow, because a domain-wide allow is a broader decision.
+		const domain = sender.slice(sender.lastIndexOf("@"));
+		if (Array.isArray(box.extra[other])) {
+			box.extra[other] = box.extra[other].filter((r: Row) => lower(r.pattern) !== sender && (decision === "block" || lower(r.pattern) !== domain));
+		}
+		this.touch(box);
+		return { sender, decision, folder, moved, listed };
+	}
+
 	private matches(box: Box, e: Row, node: SearchNode): boolean {
 		switch (node.type) {
 			case "and":

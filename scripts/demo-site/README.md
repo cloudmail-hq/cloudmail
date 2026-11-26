@@ -10,7 +10,7 @@ That builds the demo into `build-demo/client` and serves it on http://127.0.0.1:
 
 ## What a visitor gets
 
-- No sign-in. The page opens in the inbox of Maya Okafor at the fictional Northwind Supply Co., with four more mailboxes to switch to.
+- No sign-in. The page opens in the inbox of Maya Okafor at Northwind, a fictional software company, with four more mailboxes to switch to.
 - Reading, search, star, read and unread, archive, move, labels, snooze, delete, drafts and attachments all work. They change data held in memory, so a reload puts everything back.
 - AI features show stored results and call no model: thread summaries, the Today brief, "Ask your inbox", and the agent panel.
 - Sending is off. Send, scheduled send, send now, reply and forward by API, approving a held message and enrolling in a sequence all answer "Sending is turned off in the demo."

@@ -7,7 +7,8 @@
  */
 
 import { useEffect, useMemo, useState } from "react";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { AgentIcon } from "~/components/ai-icons";
 import { Switch } from "~/components/ui/switch";
 import { showToast } from "~/lib/toast";
 import {
@@ -105,7 +106,7 @@ export default function AssistantSettings({ isAdmin }: { isAdmin: boolean }) {
 		<section className="space-y-6">
 			<div className="space-y-3">
 				<div className="flex items-center gap-2">
-					<Sparkles size={14} className="text-text-tertiary" />
+					<AgentIcon size={14} className="text-text-tertiary" />
 					<h2 className="text-base font-semibold text-text-primary">AI assistant</h2>
 					{(update.isPending || updateAi.isPending) && (
 						<Loader2 size={12} className="animate-spin text-text-tertiary" aria-label="Saving" />

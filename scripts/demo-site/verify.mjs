@@ -47,6 +47,7 @@ const shot = async (page, name) => {
 	await page.screenshot({ path: `${OUT}/${name}.png` });
 };
 const rows = (page) => page.locator('[role="option"]');
+const PDF = "Northwind-SOC2-Type-II.pdf";
 const conversationCount = async (page) => (await page.getByText(/^\d+ conversations?$/).first().textContent())?.trim();
 const folderCount = async (page, name) => {
 	const link = page.locator("nav a, aside a").filter({ hasText: new RegExp(`^${name}`) }).first();
@@ -65,25 +66,32 @@ check("notice links to the site and pricing", (await banner.locator('a[href="htt
 const initialCount = await conversationCount(page);
 const initialDrafts = await folderCount(page, "Drafts");
 check("inbox lists seeded conversations", /^1\d conversations$/.test(initialCount ?? ""), initialCount);
-check("today's brief is on the inbox", (await page.getByText("Needs your reply").count()) > 0);
+// Today's brief: one line until it is opened, and a refresh closes it again.
+const today = page.getByRole("button", { name: "Today", exact: true });
+check("today's brief is on the inbox, collapsed", (await today.getAttribute("aria-expanded")) === "false" && (await page.locator("#today-card-body").isHidden()));
+await page.getByRole("button", { name: /^\d+ to reply$/ }).click();
+check("a count opens the brief on its list", (await today.getAttribute("aria-expanded")) === "true" && (await page.locator("#today-card-body li").first().isVisible()));
+await shot(page, "01b-today-open");
+await today.click();
+check("the brief closes again", (await today.getAttribute("aria-expanded")) === "false" && (await page.locator("#today-card-body").isHidden()));
 check("list rows carry AI summaries", (await page.locator('[aria-label="AI summary"]').count()) > 5);
 await shot(page, "01-inbox");
 
 // ── 2. open a thread: AI summary, attachments, drawn faces ──────────
-await rows(page).filter({ hasText: "Pickup confirmed" }).first().click();
+await rows(page).filter({ hasText: "SOC 2 Type II report" }).first().click();
 await page.getByText("AI-generated, can be wrong").waitFor();
-check("thread shows the AI summary", (await page.getByText("Fjord Freight will collect 14 pallets").count()) > 0);
-check("attachment is listed", (await page.getByText("BOL-88213.pdf").count()) > 0);
-const download = await page.locator('a[aria-label="Download BOL-88213.pdf"]').getAttribute("href");
+check("thread shows the AI summary", (await page.getByText("Fjord Assurance issued Northwind's SOC 2").count()) > 0);
+check("attachment is listed", (await page.getByText(PDF).count()) > 0);
+const download = await page.locator(`a[aria-label="Download ${PDF}"]`).getAttribute("href");
 check("attachment is a file made in the page", download?.startsWith("blob:"), download?.slice(0, 20));
 await shot(page, "02-thread-summary");
-await page.getByRole("button", { name: "BOL-88213.pdf" }).click();
-const frame = page.getByRole("dialog", { name: "BOL-88213.pdf" }).locator("iframe, embed, object").first();
+await page.getByRole("button", { name: PDF }).click();
+const frame = page.getByRole("dialog", { name: PDF }).locator("iframe, embed, object").first();
 await frame.waitFor({ timeout: 8000 });
 const previewSrc = (await frame.getAttribute("src")) ?? (await frame.getAttribute("data")) ?? "";
 check("attachment preview opens from the page's own file", previewSrc.startsWith("blob:"), previewSrc.slice(0, 12));
 await shot(page, "02b-attachment-preview");
-await page.getByRole("dialog", { name: "BOL-88213.pdf" }).getByRole("button", { name: "Close" }).click();
+await page.getByRole("dialog", { name: PDF }).getByRole("button", { name: "Close" }).click();
 
 await page.goto(`${BASE}/mail/maya%40northwind.example/inbox`, { waitUntil: "networkidle" });
 await rows(page).filter({ hasText: "Brightcup" }).first().click();
@@ -107,7 +115,7 @@ await shot(page, "04-starred-labelled");
 // Archive a one-message conversation. (The reader archives the open message,
 // so a conversation with more inbox mail stays listed, as in the app.)
 await page.locator('a[href$="/inbox"]').first().click();
-await rows(page).filter({ hasText: "Pickup confirmed" }).first().click();
+await rows(page).filter({ hasText: "SOC 2 Type II report" }).first().click();
 await page.getByText("AI-generated, can be wrong").waitFor();
 // The phone action bar has its own (hidden) Archive button; press the visible one.
 await page.locator('button[aria-label="Archive"]:visible').first().click();
@@ -144,7 +152,7 @@ await page.goto(`${BASE}/mail/maya%40northwind.example/inbox`, { waitUntil: "net
 await rows(page).first().waitFor();
 const reloadedCount = await conversationCount(page);
 check("reload restores the inbox", reloadedCount === initialCount, `${afterArchive} -> ${reloadedCount}`);
-check("reload restores the archived conversation", (await rows(page).filter({ hasText: "Pickup confirmed" }).count()) === 1);
+check("reload restores the archived conversation", (await rows(page).filter({ hasText: "SOC 2 Type II report" }).count()) === 1);
 check("reload clears the star", (await page.locator('[role="option"]').filter({ hasText: "Brightcup" }).locator('[aria-label="Unstar"], [aria-label="Starred"]').count()) === 0);
 check("reload removes the visitor's draft", (await folderCount(page, "Drafts")) === initialDrafts, `Drafts ${initialDrafts}`);
 check("demo notice is back after a reload", (await page.getByRole("note", { name: "About this demo" }).count()) === 1);
@@ -175,6 +183,51 @@ await page.getByText(/\d unread:/).waitFor({ timeout: 10000 });
 check("agent answers from the mailbox", true);
 await shot(page, "10-agent");
 
+// ── 6b. every folder has mail; the Screener, Spam and sequences ─────
+const M = `${BASE}/mail/maya%40northwind.example`;
+for (const folder of ["spam", "trash", "snoozed", "archive"]) {
+	await page.goto(`${M}/${folder}`, { waitUntil: "networkidle" });
+	await rows(page).first().waitFor({ timeout: 8000 }).catch(() => {});
+	check(`${folder} has mail`, (await rows(page).count()) > 1, `${await rows(page).count()} rows`);
+	if (folder !== "archive") await shot(page, `17-folder-${folder}`);
+}
+// The other mailboxes too: a visitor who switches mailbox finds no empty folder.
+const emptyFolders = await page.evaluate(async () => {
+	const { mailboxes } = await (await fetch("/api/v1/mailboxes")).json().then((r) => (Array.isArray(r) ? { mailboxes: r } : r));
+	const empty = [];
+	for (const m of mailboxes) {
+		const id = m.email ?? m.id;
+		const folders = await (await fetch(`/api/v1/mailboxes/${encodeURIComponent(id)}/folders`)).json();
+		for (const name of ["archive", "snoozed", "spam", "trash"]) {
+			if (!(folders.find((f) => f.id === name)?.totalCount > 0)) empty.push(`${id} ${name}`);
+		}
+	}
+	return { checked: mailboxes.length, empty };
+});
+check("Archive, Snoozed, Spam and Trash hold mail in every mailbox", emptyFolders.checked > 1 && emptyFolders.empty.length === 0, emptyFolders.empty.join(", ") || `${emptyFolders.checked} mailboxes`);
+await page.goto(`${M}/spam`, { waitUntil: "networkidle" });
+await rows(page).filter({ hasText: "Wire transfer needed" }).first().click();
+await page.getByText(/Replies would go to quickmailbox\.example/).first().waitFor({ timeout: 8000 });
+check("spam says why it was filtered", true);
+await shot(page, "18-spam-reasons");
+
+await page.goto(`${M}/screener`, { waitUntil: "networkidle" });
+await page.getByText(/\d senders waiting/).waitFor({ timeout: 8000 });
+check("the Screener lists first-time senders with a verdict", (await page.getByText("Looks like cold sales (high)").count()) > 0);
+await shot(page, "19-screener");
+await page.getByRole("button", { name: "Yes, allow carla@ridgelinecapital.example" }).click();
+await page.getByText(/allowed · 1 moved to Inbox/).waitFor({ timeout: 8000 });
+check("Yes moves a sender's mail to the Inbox for this visit", (await page.getByText("4 senders waiting").count()) > 0);
+
+await page.goto(`${BASE}/sequences`, { waitUntil: "networkidle" });
+await page.getByText("Cold outreach: engineering leaders").first().waitFor({ timeout: 8000 });
+check("sequences cover signup, cold outreach and win-back", (await page.getByText("New signup onboarding").count()) > 0 && (await page.getByText("Trial ended: win-back").count()) > 0);
+await shot(page, "20-sequences");
+await page.goto(`${BASE}/templates`, { waitUntil: "networkidle" });
+await page.getByText("Cold outreach: first email").first().waitFor({ timeout: 8000 });
+check("templates are listed", (await page.getByText("Signup: welcome").count()) > 0);
+await shot(page, "21-templates");
+
 // ── 7. settings are read-only ───────────────────────────────────────
 await page.goto(`${BASE}/settings/licence`, { waitUntil: "networkidle" });
 await page.getByText("One-time licence: active").waitFor({ timeout: 8000 });
@@ -199,7 +252,7 @@ await context.close();
 	const overflow = await phone.page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
 	check("phone width: no sideways scroll", overflow <= 0, `${overflow}px`);
 	await shot(phone.page, "13-phone-inbox");
-	await rows(phone.page).filter({ hasText: "Pickup confirmed" }).first().click();
+	await rows(phone.page).filter({ hasText: "SOC 2 Type II report" }).first().click();
 	await phone.page.getByText("AI-generated, can be wrong").waitFor();
 	await shot(phone.page, "14-phone-thread");
 	await phone.context.close();

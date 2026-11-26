@@ -35,9 +35,9 @@ export const AGENT_CONVERSATION = [
 				type: "text",
 				text:
 					"Three things:\n\n" +
-					"1. **Brightcup, 48 units**: Priya will sign today on net-30 with 2% early-pay if net-45 is a no.\n" +
-					"2. **HostEx booth**: Daniel needs your OK on plan v3 by **tomorrow**.\n" +
-					"3. **Board pack**: two ops slides for Lena by **Monday**.\n\n" +
+					"1. **Brightcup, 120 seats**: Priya will sign today on net-30 with 2% early-pay if net-45 is a no.\n" +
+					"2. **Incident Timeline launch**: Daniel needs your OK on page v3 by **tomorrow**.\n" +
+					"3. **Offer for Jonas Weber**: Nia needs your approval by **Thursday**.\n\n" +
 					"Draft the reply to Priya?",
 			},
 		],
@@ -56,7 +56,7 @@ export const AGENT_CONVERSATION = [
 				type: "tool-get_thread",
 				toolCallId: "call_demo_3",
 				state: "output-available",
-				input: { subject: "Q4 wholesale order" },
+				input: { subject: "Enterprise plan: Brightcup" },
 				output: { messages: 3 },
 			},
 			{
@@ -71,7 +71,7 @@ export const AGENT_CONVERSATION = [
 				type: "text",
 				text:
 					"Saved to **Drafts**. Nothing was sent.\n\n" +
-					"> Hi Priya, Dec 9–11 is confirmed. We'll stay at net-30, with 2% off if paid within 10 days. Daniel will send the install checklist today.",
+					"> Hi Priya, Dec 9–11 is confirmed. We'll stay at net-30, with 2% off if paid within 10 days. Daniel will send the SSO setup checklist today.",
 			},
 		],
 	},

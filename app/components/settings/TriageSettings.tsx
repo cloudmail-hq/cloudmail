@@ -8,7 +8,8 @@
  */
 
 import { useEffect, useState } from "react";
-import { Inbox as InboxIcon, Sparkles, UserCheck } from "lucide-react";
+import { Inbox as InboxIcon, UserCheck } from "lucide-react";
+import { TriageIcon } from "~/components/ai-icons";
 import {
 	LABEL_PROMPT_MAX_LENGTH,
 	MAX_DAILY_AI_CAP,
@@ -224,7 +225,7 @@ export default function TriageSettings({ mailboxId }: { mailboxId: string }) {
 			<div className="mb-4 flex items-start justify-between gap-3">
 				<div className="min-w-0">
 					<h2 className="flex items-center gap-2 text-base font-semibold text-text-primary">
-						<Sparkles size={15} className="text-text-tertiary" aria-hidden />
+						<TriageIcon size={15} className="text-text-tertiary" aria-hidden />
 						AI triage
 					</h2>
 					<p className="mt-1 text-sm text-text-secondary">
