@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { DEFAULT_SENDER_PICTURES, senderPictureUrl } from "shared/sender-pictures";
 import { isRoleAddress, senderAvatarTint, senderInitials } from "~/lib/sender-display";
+import { DEMO } from "~/demo/flag";
+import { demoHooks } from "~/demo/hooks";
 import { cn } from "~/lib/utils";
 import { usePrivacySettings } from "~/queries/privacy";
 
@@ -31,7 +33,9 @@ export default function SenderAvatar({
 	const stored = data ? (data.senderPictures ?? DEFAULT_SENDER_PICTURES) : null;
 	// A role mailbox gets a logo or its initials, never a drawn face.
 	const settings = stored && isRoleAddress(address) ? { ...stored, generated: false } : stored;
-	const src = settings ? senderPictureUrl(address, verified === 1 || verified === true, settings) : null;
+	const serverSrc = settings ? senderPictureUrl(address, verified === 1 || verified === true, settings) : null;
+	// Public demo: there is no picture route, so the face is drawn in the page.
+	const src = DEMO ? (serverSrc && settings && demoHooks.pictureUrl ? demoHooks.pictureUrl(address, settings.generated) : null) : serverSrc;
 	// Keyed by URL, so a recycled row never shows the previous sender's state.
 	const [state, setState] = useState<{ src: string; status: "loaded" | "failed" } | null>(null);
 	const status = state && state.src === src ? state.status : "loading";

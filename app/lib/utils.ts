@@ -5,6 +5,8 @@ import { MAX_ATTACHMENT_TOTAL_RAW_BYTES } from "../../shared/limits";
 import { splitQuotedBody } from "../../shared/quoted-text";
 import { htmlToTextLines } from "../../shared/html-text";
 import { formatListDate as formatSharedListDate } from "../../shared/dates";
+import { DEMO } from "~/demo/flag";
+import { demoHooks } from "~/demo/hooks";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -39,6 +41,8 @@ export function getAttachmentUrl(
   attachmentId: string,
   options: { inline?: boolean } = {},
 ): string {
+  // Public demo: the file is made in the page, so there is no server URL.
+  if (DEMO && demoHooks.attachmentUrl) return demoHooks.attachmentUrl(mailboxId, emailId, attachmentId);
   const base = `/api/v1/mailboxes/${encodeURIComponent(mailboxId)}/emails/${encodeURIComponent(emailId)}/attachments/${encodeURIComponent(attachmentId)}`;
   return options.inline ? `${base}?disposition=inline` : base;
 }

@@ -1,0 +1,16 @@
+// Deployment of the public demo: static files only. There is no Worker
+// script, no Durable Object, no bucket, no variable and no secret here, so a
+// visitor's input has no server to reach. Build first: `npm run build:demo`.
+//
+//   npx wrangler deploy --config scripts/demo-site/wrangler.jsonc
+//
+// The route (the public address) is added at deploy time; see README.md.
+{
+	"$schema": "../../node_modules/wrangler/config-schema.json",
+	"name": "cloudmail-demo",
+	"compatibility_date": "2026-11-01",
+	"assets": {
+		"directory": "../../build-demo/client",
+		"not_found_handling": "single-page-application"
+	}
+}

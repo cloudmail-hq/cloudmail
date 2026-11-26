@@ -1,0 +1,25 @@
+/*
+  Layout for the demo notice (DemoBanner.tsx), a strip above the top bar.
+  `--app-notice-h` is its height: index.css adds it to the top bar's height,
+  and these rules keep content out from under the strip. Loaded only by the
+  demo build (install.ts).
+*/
+
+/* The top bar's own content starts below the strip. */
+:root[data-demo] [data-app-topbar] {
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--app-notice-h, 0px));
+}
+
+/* Full-height sheets (the phone's folder drawer). */
+@media (max-width: 767px) {
+  :root[data-demo] .pt-safe.inset-y-0 {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--app-notice-h, 0px));
+  }
+}
+
+/* Full-screen sheets on a phone (composer, command palette). */
+@media (max-width: 639px) {
+  :root[data-demo] .pt-safe {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--app-notice-h, 0px));
+  }
+}

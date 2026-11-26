@@ -1,5 +1,6 @@
 // Enhanced Agent Panel: the restyled agent panel, keeping every agent feature.
 
+import { DEMO } from "~/demo/flag";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import SafeMarkdown from "~/components/SafeMarkdown";
@@ -691,16 +692,20 @@ export default function EnhancedAgentPanel({ onClose, mailboxId: mailboxProp }: 
   useEffect(() => {
     // Overlaps the history round trip with the chunk download.
     if (mailboxId) void prefetchHistory(mailboxId);
-    Promise.all([
-      import("agents/react"),
-      import("@cloudflare/ai-chat/react"),
-    ])
-      .then(([a, c]) =>
-        setHooks({
+    // Public demo: no agent to connect to, so stand-in hooks answer from the
+    // mail on the page. `DEMO` is a build-time constant; each build bundles
+    // only its own branch.
+    const modules = DEMO
+      ? import("~/demo/agent-hooks").then((m) => m.demoAgentHooks as unknown as NonNullable<typeof hooks>)
+      : Promise.all([
+          import("agents/react"),
+          import("@cloudflare/ai-chat/react"),
+        ]).then(([a, c]) => ({
           useAgent: a.useAgent,
           useAgentChat: c.useAgentChat,
-        })
-      )
+        }));
+    modules
+      .then((loaded) => setHooks(loaded))
       .catch((err) => {
         console.error("Failed to load agent modules:", err);
         setLoadError("Failed to connect to agent. Reload to retry.");

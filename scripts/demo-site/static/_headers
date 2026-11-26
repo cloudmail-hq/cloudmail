@@ -1,0 +1,29 @@
+# Response headers for the public demo (Cloudflare static assets / Pages format).
+#
+# The demo is static files and nothing else. `connect-src 'self'` means the
+# page can only fetch its own files; `form-action 'none'` means no form can
+# post anywhere. Generated attachments and sender faces are blob: and data:
+# URLs made in the page. `no-referrer` keeps the page address (which holds
+# the search box's text on a results page) out of every request for a file.
+#
+# `no-transform` on the pages: the demo sits on a Cloudflare zone, and the
+# zone's features may rewrite HTML on its way out (Web Analytics adds a script
+# tag when it is on for the zone). The policy below would block that script,
+# but the browser would still request it on every page. `no-transform` tells
+# the proxy to leave the response as built. Rules apply in file order and a
+# repeated header is joined with a comma, so /assets/* comes second and drops
+# the first value before setting its own.
+/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: data:; frame-src 'self' data: blob:; worker-src 'none'
+  X-Robots-Tag: noindex, nofollow
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+
+/assets/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable

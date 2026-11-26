@@ -1,0 +1,3 @@
+# The demo is a copy of the app with sample data. The site to index is trycloudmail.com.
+User-agent: *
+Disallow: /

@@ -13,12 +13,15 @@
   <p>
     <a href="https://trycloudmail.com/pricing"><img src="docs/images/button-buy.svg" alt="Buy a licence, from $9" height="44"></a>
     &nbsp;
+    <a href="https://demo.trycloudmail.com"><img src="docs/images/button-demo.svg" alt="Try the live demo" height="44"></a>
+    &nbsp;
     <a href="https://trycloudmail.com"><img src="docs/images/button-site.svg" alt="Visit trycloudmail.com" height="44"></a>
   </p>
   <p>
     <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/cloudmail-hq/cloudmail"><img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare" height="40"></a>
   </p>
   <p>
+    <a href="https://demo.trycloudmail.com">Live demo</a> ·
     <a href="https://trycloudmail.com/features">Features</a> ·
     <a href="https://trycloudmail.com/pricing">Pricing</a> ·
     <a href="https://trycloudmail.com/agents">For AI agents</a> ·

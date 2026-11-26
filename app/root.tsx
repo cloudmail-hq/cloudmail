@@ -3,7 +3,7 @@
 
 import { MutationCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import {
 	isRouteErrorResponse,
 	Links,
@@ -14,6 +14,8 @@ import {
 } from "react-router";
 import BrandingHead from "~/components/BrandingHead";
 import Toaster from "~/components/Toaster";
+import { DEMO } from "~/demo/flag";
+import { demoStorageScript } from "~/demo/storage-script";
 import { initThemeSync, themeInitScript } from "~/hooks/useThemeStore";
 import { registerServiceWorker } from "~/lib/service-worker";
 import { ApiError } from "~/services/api";
@@ -48,6 +50,10 @@ function makeQueryClient() {
 	});
 }
 
+// The public demo's notice. Not in any other build: `DEMO` is a build-time
+// constant, so the import below is dropped with the branch.
+const DemoBanner = DEMO ? lazy(() => import("~/demo/DemoBanner")) : null;
+
 // Lazy singleton for the browser — avoids module-scope instantiation that
 // leaks cache across SSR requests.
 let browserQueryClient: QueryClient | undefined;
@@ -69,6 +75,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<meta charSet="UTF-8" />
+				{/*
+					Public demo only: browser storage becomes in-memory before anything
+					reads it (the theme script below does), so a reload always starts
+					from the same state. The demo is also kept out of search results
+					(the site to index is trycloudmail.com).
+				*/}
+				{DEMO ? (
+					<>
+						{/* biome-ignore lint/security/noDangerouslySetInnerHtml: fixed, build-time literal with no interpolated input. */}
+						<script dangerouslySetInnerHTML={{ __html: demoStorageScript }} />
+						<meta name="robots" content="noindex, nofollow" />
+						{/* The address can hold what a visitor searched for; never send it along with a request. */}
+						<meta name="referrer" content="no-referrer" />
+					</>
+				) : null}
 				{/*
 					Applies the saved theme before the first paint.
 
@@ -108,11 +129,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 					silently reports the app as non-installable. See the route in
 					`workers/index.ts`.
 				*/}
-				<link
-					rel="manifest"
-					href="/manifest.webmanifest"
-					crossOrigin="use-credentials"
-				/>
+				{/* The demo is a static site with no Worker route for the manifest, and is not installable. */}
+				{DEMO ? null : (
+					<link
+						rel="manifest"
+						href="/manifest.webmanifest"
+						crossOrigin="use-credentials"
+					/>
+				)}
 				{/*
 					`viewport-fit=cover` so an installed app on a notched phone draws edge to
 					edge; the chrome pads itself with `env(safe-area-inset-*)` (the `*-safe`
@@ -180,6 +204,8 @@ export default function App() {
 	// Production only: a service worker in dev would cache Vite's modules and
 	// serve stale code across HMR reloads.
 	useEffect(() => {
+		// Never in the public demo: an offline cache would outlive the page.
+		if (DEMO) return;
 		if (import.meta.env.PROD) registerServiceWorker();
 	}, []);
 	return (
@@ -190,6 +216,11 @@ export default function App() {
 			{/* Mounted at the root so toasts survive route changes — the undo-send
 			    window in particular has to outlive navigating away from the composer. */}
 			<Toaster />
+			{DemoBanner ? (
+				<Suspense fallback={null}>
+					<DemoBanner />
+				</Suspense>
+			) : null}
 		</QueryClientProvider>
 	);
 }

@@ -41,12 +41,15 @@
 	},
 	"scripts": {
 		"build": "react-router build",
+		"build:demo": "node scripts/demo-site/build.mjs",
 		"cf-typegen": "wrangler types",
+		"demo": "node scripts/demo-site/build.mjs && node scripts/demo-site/serve.mjs",
 		"deploy": "npm run build && wrangler deploy && node scripts/ensure-vectorize-metadata.mjs",
 		"dev": "react-router dev",
 		"dev:demo": "scripts/demo/run.sh dev",
 		"preview": "npm run build && vite preview",
 		"secrets": "node scripts/generate-secrets.mjs",
+		"serve:demo": "node scripts/demo-site/serve.mjs",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"

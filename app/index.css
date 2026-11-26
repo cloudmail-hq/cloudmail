@@ -329,9 +329,13 @@ body {
   - desktop (md and up): 48px bar carrying the section links, no tab bar;
   - phone (below md): 56px bar, 56px tab bar carrying the sections;
   each plus the matching safe-area inset. There is no left app rail.
+
+  `--app-notice-h` is the height of a strip above the top bar. It is unset
+  (0) in the app; the public demo build sets it for its "This is a demo"
+  notice (app/demo), so the bar and everything below it move down together.
 */
 :root {
-  --app-topbar-h: calc(3.5rem + env(safe-area-inset-top, 0px));
+  --app-topbar-h: calc(3.5rem + env(safe-area-inset-top, 0px) + var(--app-notice-h, 0px));
   --app-tabbar-h: calc(3.5rem + env(safe-area-inset-bottom, 0px));
 }
 /* Reading on a phone: the reader's action bar replaces the tab bar (AppShell). */
@@ -340,14 +344,14 @@ body {
 }
 @media (min-width: 768px) {
   :root {
-    --app-topbar-h: 3rem;
+    --app-topbar-h: calc(3rem + var(--app-notice-h, 0px));
     --app-tabbar-h: 0px;
   }
 }
 /* A coarse pointer at desktop widths (a tablet) keeps 44px controls in a taller bar. */
 @media (min-width: 768px) and (pointer: coarse) {
   :root {
-    --app-topbar-h: calc(3.5rem + env(safe-area-inset-top, 0px));
+    --app-topbar-h: calc(3.5rem + env(safe-area-inset-top, 0px) + var(--app-notice-h, 0px));
   }
 }
 
