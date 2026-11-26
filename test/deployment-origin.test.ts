@@ -276,17 +276,12 @@ describe("no runtime path names tapetide.com", () => {
 		["app/components/analytics/fixtures.ts", "dev-only fixtures"],
 	]);
 	/**
-	 * Exact lines naming the vendor's OWN services, which every deployment
-	 * talks to on purpose: the licence server, the purchase portal and the
-	 * licence token issuer. None stands in for this deployment's host. Exact
-	 * text, so a new mention anywhere else still fails.
+	 * The one exact line that still names it: the licence token issuer, a fixed
+	 * string that every token already issued carries and every deployed app
+	 * checks. The licence server and the storefront are on trycloudmail.com.
+	 * Exact text, so a new mention anywhere else still fails.
 	 */
-	const VENDOR_SERVICE_LINES: [string, string][] = [
-		["workers/lib/licence.ts", 'export const DEFAULT_LICENCE_SERVER_URL = "https://licence.tapetide.com";'],
-		["workers/lib/licence.ts", 'export const LICENCE_MANAGE_URL = "https://tapetide.com/account";'],
-		["shared/licence-token.ts", 'export const TOKEN_ISSUER = "https://tapetide.com";'],
-		["app/components/licence/LicenceParts.tsx", 'export const BUY_URL = "https://licence.tapetide.com/cloudmail";'],
-	];
+	const VENDOR_SERVICE_LINES: [string, string][] = [["shared/licence-token.ts", 'export const TOKEN_ISSUER = "https://tapetide.com";']];
 
 	function walk(dir: string): string[] {
 		return readdirSync(dir).flatMap((name) => {

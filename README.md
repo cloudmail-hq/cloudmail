@@ -285,7 +285,7 @@ cloudmail is fair source: the code is public, and running it needs a licence key
 | Deployments | 1 | 1 |
 | Mailboxes and users | Unlimited | Unlimited |
 | Updates | All 1.x releases | All 1.x releases |
-| | [**Buy Solo**](https://licence.tapetide.com/cloudmail/buy/solo) | [**Buy Unlimited**](https://licence.tapetide.com/cloudmail/buy/unlimited) |
+| | [**Buy Solo**](https://licence.trycloudmail.com/cloudmail/buy/solo) | [**Buy Unlimited**](https://licence.trycloudmail.com/cloudmail/buy/unlimited) |
 
 Payments are handled by Dodo Payments. The key arrives by email. See [Licence](#licence).
 

@@ -21,7 +21,7 @@ You need:
   [Resend](https://resend.com) or [Amazon SES](https://aws.amazon.com/ses/)
   account instead. See [Cost and plan requirements](../README.md#cost-and-plan-requirements).
 - **A licence key** from your purchase email
-  ([buy one](https://licence.tapetide.com/cloudmail/buy/solo)).
+  ([buy one](https://licence.trycloudmail.com/cloudmail/buy/solo)).
 - **A GitHub or GitLab account.** The button copies the repository into it and
   builds from there.
 

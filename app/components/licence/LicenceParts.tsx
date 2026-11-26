@@ -17,7 +17,7 @@ import { authErrorMessage } from "~/services/auth-api";
 
 export const PRODUCT_NAME = "cloudmail";
 /** Where someone without a key can buy one: the storefront, Solo and Unlimited. */
-export const BUY_URL = "https://licence.tapetide.com/cloudmail";
+export const BUY_URL = "https://licence.trycloudmail.com/cloudmail";
 
 export function planLabel(plan: LicenceResponse["planName"]): string | null {
 	return plan === "solo" ? "Solo" : plan === "unlimited" ? "Unlimited" : null;

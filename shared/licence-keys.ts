@@ -25,7 +25,7 @@ export const DEV_KEY_ID = "dev-2026-1";
 
 /**
  * The production signing key, as published at
- * https://licence.tapetide.com/v1/keys (checked 2026-10-30).
+ * https://licence.trycloudmail.com/v1/keys (checked 2026-11-26).
  */
 export const PRODUCTION_KEY_ID = "2026-10";
 

@@ -43,7 +43,7 @@ export interface Env extends Cloudflare.Env {
 	TURNSTILE_SECRET_KEY?: string;
 	/** Base URL for invite and reset links. Defaults to the request origin. */
 	APP_URL?: string;
-	/** Licence server base URL. Default https://licence.tapetide.com. */
+	/** Licence server base URL. Default https://licence.trycloudmail.com. */
 	LICENCE_SERVER_URL?: string;
 	/**
 	 * From address for password reset emails, `Name <addr>` or a bare address.

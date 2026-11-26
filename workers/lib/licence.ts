@@ -2,7 +2,7 @@
  * The app licence ("paid for everything").
  *
  * The admin pastes a licence key once. The app exchanges it at the licence
- * server (`LICENCE_SERVER_URL`, default https://licence.tapetide.com) for an
+ * server (`LICENCE_SERVER_URL`, default https://licence.trycloudmail.com) for an
  * Ed25519-signed token bound to this deployment's `deployment_id` and host,
  * stores the token in the AuthDO (`./licence-store.ts`) and never the key,
  * then verifies the token offline against the bundled public keys
@@ -48,9 +48,13 @@ import type { Env } from "../types";
 import { deploymentOrigin } from "./deployment-origin";
 import type { LicenceRecord } from "./licence-store";
 
-export const DEFAULT_LICENCE_SERVER_URL = "https://licence.tapetide.com";
-/** Where a customer manages a purchase (receipts, deployments, a new key). */
-export const LICENCE_MANAGE_URL = "https://tapetide.com/account";
+/**
+ * The licence server. Builds before 2026-11-26 used https://licence.tapetide.com,
+ * which still passes every call through to this host.
+ */
+export const DEFAULT_LICENCE_SERVER_URL = "https://licence.trycloudmail.com";
+/** Where a customer sees a purchase again: its plan, key and deployments, by a code sent to their email. */
+export const LICENCE_MANAGE_URL = "https://licence.trycloudmail.com/cloudmail/licence";
 /** Per-isolate cache of the decided state. */
 export const LICENCE_CACHE_MS = 30_000;
 /** Minimum time between refresh attempts across all isolates. */
